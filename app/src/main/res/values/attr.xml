@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="test">
+        <attr name="background1" format="reference|color"/>
+    </declare-styleable>
+
+    <declare-styleable name="SunnyAttr">
+        <attr name="sunnyTextColor" format="color"/>
+        <attr name="sunnyTextColor2" format="color"/>
+        <attr name="sunnyBgColor" format="reference"/>
+        <attr name="sunnyTextColorWhite" format="color"/>
+        <attr name="sunnyTextColorRed" format="reference"/>
+        <attr name="textColor" format="reference"></attr>
+    </declare-styleable>
+</resources>

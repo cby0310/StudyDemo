@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.cyb.test.mytest">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+        </activity>
+
+        <service
+            android:name=".aidl.BookManagerService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":remotecyb">
+        </service>
+
+        <activity android:name=".reactivex.RxActivity">
+        </activity>
+        <activity
+            android:name=".rxjave2.Rxjava2Activity"
+            android:theme="@style/AppTheme.cyb">
+        </activity>
+        <activity android:name=".myview.BatteryViewActivity">
+        </activity>
+        <activity android:name=".myview.JustifyTextViewActivity">
+        </activity>
+        <activity android:name=".dagger2.Dagger2Activity">
+        </activity>
+        <activity android:name=".slideback.BaseSlideBackActivity">
+
+        </activity>
+        <activity android:name=".thread.ThreadTestActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

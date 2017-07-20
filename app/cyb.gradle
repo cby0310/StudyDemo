@@ -1,0 +1,204 @@
+class MyPlugin implements Plugin<Project> {
+    @Override
+    void apply(Project project) {
+        project.task hello << {
+            println "hello from the cyb-plugin"
+        }
+    }
+}
+
+//以下为测试内容
+ext {
+    local = 'Hello from build.gradle'
+}
+//<< 相当于使用了doLast
+task printProperties << {
+    println local        // Local extra property
+    println propertiesFile        // Property from file
+    if (project.hasProperty('cmd')) {
+        println cmd        // Command line property
+    }
+}
+
+
+def name = 'Andy'
+def greeting = "Hello, $name!"
+def name_size = "Your name is ${name.size()} characters long."
+def result = square1 2
+task printTest << {
+    println name_size
+}
+
+
+task myTask() {
+    println 'hello world!'
+    doLast {
+        println 'doLast!'
+
+        square2(3)
+    }
+}
+
+myTask.dependsOn printTest
+
+def square1(def num) {
+    println '11111111111111'
+    num * num
+}
+
+def square2 = { num ->
+    num * num
+}
+
+def myClosure(str) {
+    println(str)
+}
+
+def myClosure1 = { String str -> println str }
+def myClosure2 = { println it }
+task test << {
+    myClosure2('cybcybc')
+}
+
+task myCopy(type: Copy) {
+    from 'build.gradle'
+    into 'bak'
+    rename { String fileName ->
+        fileName.replace("*", "test1")
+    }
+}
+
+task copyFile(type: Delete) {
+    delete 'bak'
+//    from 'test'
+//    into 'bak'
+//    rename { String fileName ->
+//        fileName.replace("test", "test1")
+//    }
+}
+
+
+task getReleasePassword << {
+    def password1 = ''
+    if (rootProject.file('private.properties').exists()) {
+        Properties properties = new Properties();
+        properties.load(rootProject.file
+        ('private.properties').newDataInputStream())
+        password1 = properties.getProperty('release.password')
+    }
+
+
+    if (!password1?.trim()) {
+        password1 = new String(System.console().readPassword
+                ("\nWhat's the secret password? "))
+        println('====' + password1)
+    }
+    println(password1)
+}
+
+//tasks.whenTaskAdded { theTask ->
+//    if (theTask.name.equals("packageRelease")) {
+//        theTask.dependsOn "getReleasePassword"
+//    }
+//}
+
+def index = 0;
+
+//android.applicationVariants.all { variant ->
+//    variant.outputs.each { output ->
+//        def file = output.outputFile
+//        println(index++ + ":" + file.name)
+//        output.outputFile = new File(file.parent,
+//                file.name.replace(".apk", "-${variant.versionName}.apk"))
+//    }
+//}
+
+//android.applicationVariants.all { variant ->
+//    if (variant.install) {
+//        tasks.create(name: "run${variant.name.capitalize()}",
+//                dependsOn: variant.install) {
+//            description "Installs the ${variant.description} and runs the main launcher activity."
+//        }
+//    }
+//}
+
+//多个赋值的方式
+task showDescription1 << {
+    description = 'this is task showDescription'
+    println description
+}
+
+task showDescription2 << {
+    println description
+}
+showDescription2.description = 'this is task showDescription'
+
+task showDescription3 << {
+    println description
+}
+showDescription3 {
+    description = 'this is task showDescription'
+}
+
+
+class HelloWorldTask extends DefaultTask {
+    //@Optional，表示在配置该Task时，message是可选的。
+//    @Optional
+    String message = 'I am jjx'
+    //@TaskAction表示该Task要执行的动作,即在调用该Task时，hello()方法将被执行
+    @TaskAction
+    def hello() {
+        println "hello world $message"
+    }
+
+    @Override
+    int compareTo(Task o) {
+        return 0
+    }
+}
+
+class MyTask extends DefaultTask {
+    @TaskAction
+    def task() {
+    }
+}
+
+//hello使用了默认的message值
+task hello(type: HelloWorldTask)
+
+//重新设置了message的值
+task helloOne(type: HelloWorldTask) {
+    message = "I am a android developer"
+}
+
+////方法定义，有一个闭包参数
+//def testClosure(Closure c) {
+//    c()    //调用闭包，执行闭包内的的代码
+//}
+//
+//testClosure {    //这里是方法调用，闭包是参数
+//    println("呵呵呵")
+//}
+
+task test1 << {
+    def c = { def e = { 'milk' }; e }
+    def d = c
+    assert c == d
+    def v1 = c()
+    def v2 = c()
+    assert v1 != v2
+}
+
+task testOvveride << {
+    def e = { a, b, c = 0, d = 'a' -> "${a + b + c}$d" }
+    assert e(10, 4) == '14a'
+    println 'owner:' + e.getOwner()
+    assert e(9, 8, 7) == '24a' //override default value of 'c'
+}
+
+task testLastOne << {
+    def runTwoClosures = { c1, c2 -> c1(c2()) }
+    //when more than one closure as last params
+    assert runTwoClosures { it * 3 } { 4 } == 12 //usual syntax
+//    assert runTwoClosures(5) { it * 3 } { it * 4 } == 60 //shortcut form
+}
