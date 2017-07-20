@@ -129,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
             super.run();
             handler.sendEmptyMessage(4);
 
+
 //                handler.post(new Runnable() {
 //                    @Override
 //                    public void run() {
