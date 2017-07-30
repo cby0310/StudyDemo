@@ -15,6 +15,9 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.TreeSet;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -276,5 +279,32 @@ public class ExampleUnitTest {
             System.err.println(userInfo1.toString());
         }
     }
+
+    @Test
+    public void futureTaskTest() {
+//        System.err.print("返回值：" + 2);
+        FutureTask<Integer> futureTask = new FutureTask<Integer>(new Callable<Integer>() {
+            @Override
+            public Integer call() throws Exception {
+                return 12;
+            }
+        }) {
+            @Override
+            protected void done() {
+                try {
+                    Integer a = get();
+                    System.err.print("返回值：" + a);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+                super.done();
+            }
+        };
+
+        new Thread(futureTask).start();
+    }
+
 
 }

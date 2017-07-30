@@ -33,9 +33,19 @@
         <activity android:name=".dagger2.Dagger2Activity">
         </activity>
         <activity android:name=".slideback.BaseSlideBackActivity">
-
         </activity>
         <activity android:name=".thread.ThreadTestActivity">
+
+        </activity>
+
+        <service
+            android:name=".aidl.review.AppleManagerService"
+            android:enabled="true"
+            android:exported="true"
+            android:process="com.fuck.yang">
+        </service>
+
+        <activity android:name=".aidl.review.AidlTestActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

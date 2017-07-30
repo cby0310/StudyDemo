@@ -1,13 +1,17 @@
 package com.cyb.test.mytest.thread;
 
 import android.os.AsyncTask;
-import android.speech.tts.Voice;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
+import com.cyb.test.mytest.MyLog;
 import com.cyb.test.mytest.R;
 
-import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.FutureTask;
+
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
 
 public class ThreadTestActivity extends AppCompatActivity {
 
@@ -15,7 +19,30 @@ public class ThreadTestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thread_test);
-        test1();
+//        test1();
+
+        FutureTask<Integer> futureTask = new FutureTask<Integer>(new Callable<Integer>() {
+            @Override
+            public Integer call() throws Exception {
+                return 12;
+            }
+        }) {
+
+            @Override
+            protected void done() {
+                try {
+                    Integer a = get();
+                    MyLog.e("返回值：" + a);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+                super.done();
+            }
+        };
+
+        new Thread(futureTask).start();
     }
 
 
@@ -39,7 +66,6 @@ public class ThreadTestActivity extends AppCompatActivity {
             @Override
             protected void onProgressUpdate(Integer... values) {
                 super.onProgressUpdate(values);
-
             }
 
             @Override
@@ -49,6 +75,7 @@ public class ThreadTestActivity extends AppCompatActivity {
 
             @Override
             protected Float doInBackground(Integer... params) {
+                publishProgress(33);
                 return 12f;
             }
 

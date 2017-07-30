@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
 //        bindService(intent, MyServiceConn, Context.BIND_AUTO_CREATE);
 //
 //        startService(intent);
-//        startActivity(intent);
+//        startActivityForResult(intent,RESULT_OK);
 
         UserDao dao = new UserDao(this);
 //        dao.add(new User(23, "cyb"));

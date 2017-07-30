@@ -16,6 +16,7 @@ public class BookManagerService extends Service {
     private CopyOnWriteArrayList<IOnNewBookArrivedListener> listeners = new CopyOnWriteArrayList();
 
 
+
     public BookManagerService() {
     }
 
@@ -26,6 +27,7 @@ public class BookManagerService extends Service {
         Log.e("TAG", "onCreate");
         bookArrayList.add(new Book("android", 1000));
         bookArrayList.add(new Book("ios", 100));
+
     }
 
     @Override
