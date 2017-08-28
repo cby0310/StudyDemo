@@ -1,14 +1,23 @@
 package com.cyb.test.mytest;
 
+import android.widget.Toast;
+
 import com.cyb.test.mytest.retrofit.UserInfo;
 
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
 import org.junit.Test;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -78,6 +87,67 @@ public class ExampleUnitTest {
         System.err.println(d2);
         System.err.println(" ".length());
 
+    }
+
+    public void testHttpClient() {
+//
+//        HttpParams params = new BasicHttpParams();
+//        HttpConnectionParams.setConnectionTimeout(params, 3000);
+//        HttpConnectionParams.setSoTimeout(params, 10000);
+//
+//        HttpClient httpclient = new DefaultHttpClient(params);
+//
+//        HttpPost httppost = new HttpPost(urlServer);
+//        httppost.addHeader("DEVICE_INFORMATION", RequestHeader.getHeaderString());
+//
+//        MultipartEntity mpEntity = new CustomMultipartEntity(pl); // 文件传输
+//        FileBody cbFile = new FileBody(file);
+//        mpEntity.addPart("userfile", cbFile); // <input type="file"
+//        StringBody stringBody = new StringBody("ss");
+//        mpEntity.addPart("stringBody", stringBody);
+//        httppost.setEntity(mpEntity);
+//
+//        HttpResponse response = httpclient.execute(httppost);
+//        HttpEntity resEntity = response.getEntity();
+//        String json = EntityUtils.toString(resEntity, "utf-8");
+    }
+
+    @Test
+    public void testHttpURLConnection() {
+        try {
+            URL url1 = new URL("https://www.baidu.com");
+            HttpURLConnection httpURLConnection2 = (HttpURLConnection) url1.openConnection();
+            httpURLConnection2.setRequestMethod("GET");
+            httpURLConnection2.setConnectTimeout(100);
+            httpURLConnection2.setReadTimeout(200);
+            httpURLConnection2.setDoOutput(true);
+            httpURLConnection2.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
+            //下面是当post请求时需要的
+//            OutputStream outputStream = httpURLConnection2.getOutputStream();
+//            BufferedWriter bufferedWriter = new BufferedWriter(new PrintWriter(outputStream));
+//            bufferedWriter.write("111");
+//            outputStream.close();
+//            bufferedWriter.flush();
+//            bufferedWriter.close();
+
+            if (httpURLConnection2.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                InputStream inputStream = httpURLConnection2.getInputStream();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                StringBuilder stringBuilder = new StringBuilder();
+                String s;
+                while ((s = (bufferedReader.readLine())) != null) {
+                    stringBuilder.append(s + "\n");
+                }
+                inputStream.close();
+                bufferedReader.close();
+                System.err.print("result：");
+                System.err.print(stringBuilder.toString());
+            } else {
+                System.err.print("code：" + httpURLConnection2.getResponseCode());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Test

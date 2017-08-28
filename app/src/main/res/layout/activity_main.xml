@@ -27,9 +27,10 @@
         android:text="解除阻塞"/>
 
     <ImageView
-        android:layout_below="@+id/cancel"
         android:id="@+id/image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        />
+        android:layout_below="@+id/cancel"
+        android:layout_marginTop="10dp"
+    />
 </RelativeLayout>

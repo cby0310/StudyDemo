@@ -6,6 +6,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -14,6 +15,7 @@ import android.os.Message;
 import android.os.RemoteException;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.util.LruCache;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -25,7 +27,9 @@ import com.cyb.test.mytest.aidl.IBookManager;
 import com.cyb.test.mytest.aidl.IOnNewBookArrivedListener;
 import com.cyb.test.mytest.db.UserDao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -69,6 +73,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        LruCache lruCache = new LruCache<String, Bitmap>(120) {
+            @Override
+            protected int sizeOf(String key, Bitmap value) {
+                return super.sizeOf(key, value);
+            }
+        };
+        lruCache.put("", null);
+        lruCache.get("");
+
+        Map<String, String> map = new HashMap<>();
+        map.keySet();
+        map.entrySet().iterator().hasNext();
+        map.entrySet();
+        map.values();
+
 
         handler.post(new Runnable() {
             @Override
