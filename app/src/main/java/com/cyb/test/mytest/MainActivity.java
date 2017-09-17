@@ -50,21 +50,6 @@ public class MainActivity extends AppCompatActivity {
     };
 
 
-    private class MyToast extends Toast {
-        /**
-         * Construct an empty Toast object.  You must call {@link #setView} before you
-         * can call {@link #show}.
-         *
-         * @param context The context to use.  Usually your {@link Application}
-         *                or {@link Activity} object.
-         */
-        public MyToast(Context context) {
-            super(context);
-        }
-
-
-    }
-
     private MyThread myThread;
 
     private ImageView image;
@@ -118,17 +103,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        Intent intent = new Intent(this, BookManagerService.class);
-//        bindService(intent, MyServiceConn, Context.BIND_AUTO_CREATE);
-//
-//        startService(intent);
-//        startActivityForResult(intent,RESULT_OK);
-
-        UserDao dao = new UserDao(this);
-//        dao.add(new User(23, "cyb"));
-        Log.e("Terry", dao.getUser().toString());
-
-
         float widthPixels = getResources().getDisplayMetrics().widthPixels;
         float heightPixels = getResources().getDisplayMetrics().heightPixels;
 
@@ -170,45 +144,4 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    //    Looper.prepare();
-//    Toast.makeText(MainActivity.this, "ss", Toast.LENGTH_LONG).show();
-//    looper = Looper.myLooper();
-//    Log.e("Terry", "阻塞了，这一句下面的不会执行。");
-//    Looper.loop();
-//    Log.e("Terry", "解除阻塞。。。");
-//    Toast.makeText(MainActivity.this, "aaaaa", Toast.LENGTH_LONG).show();
-//    Log.e("Terry", "这一次不会阻塞。。。toast也不会出来");
-//    Looper.loop();
-//   子线程中Looper.loop();方法会将这个线程阻塞，下面的语句就不会走了，调用quit()方法可解除，解除后再次调用loop是无效的，会立即返回。不建议子线程中Toast。但是主线程中为什么没有阻塞呢？
-//
-    private ServiceConnection MyServiceConn = new ServiceConnection() {
-
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            IBookManager iBookManager = IBookManager.Stub.asInterface(service);
-            try {
-                iBookManager.addListener(listener);
-
-                iBookManager.addBook(new Book("语文", 12));
-
-                List<Book> books = iBookManager.getBookList();
-                Log.e("TAG", "所有book:" + books.toString());
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            Toast.makeText(MainActivity.this, "aa", Toast.LENGTH_LONG).show();
-        }
-    };
-
-
-    private IOnNewBookArrivedListener listener = new IOnNewBookArrivedListener.Stub() {
-        @Override
-        public void onNewBookArrived(Book book) throws RemoteException {
-            Log.e("TAG", "添加了book：" + book.toString());
-        }
-    };
 }
