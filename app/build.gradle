@@ -5,7 +5,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
-        applicationId "com.cyb.test.aa"
+        applicationId "com.cyb.test.mytest"
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 1
@@ -27,25 +27,25 @@ android {
 //        targetCompatibility 1.8
 //        sourceCompatibility 1.8
 //    }
+
+    dataBinding {
+        enabled true
+    }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-
     //retrofit
     //Gson converter
     //RxJava2 Adapter
     //okhttp
-
-//    compile 'com.github.bumptech.glide:glide:4.0.0-RC0'
-//    compile 'com.android.support:support-v4:25.3.1'
-//    annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0-RC0'
-
-//    provided 'javax.annotation:javax.annotation-api:1.2'
-
+    //    compile 'com.github.bumptech.glide:glide:4.0.0-RC0'
+    //    compile 'com.android.support:support-v4:25.3.1'
+    //    annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0-RC0'
+    //    provided 'javax.annotation:javax.annotation-api:1.2'
     //dagger2
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
@@ -59,7 +59,76 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.5.2'
     compile 'com.google.dagger:dagger:2.0'
     compile 'com.android.support:support-v4:25.3.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
     apt 'com.google.dagger:dagger-compiler:2.0'
     provided 'org.glassfish:javax.annotation:10.0-b28'
+    compile 'org.aspectj:aspectjrt:1.8.9'
+    compile files('libs/httpmime-4.1.3.jar')
+    compile files('libs/nineoldandroids-2.4.0.jar')
+}
+
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+//        classpath 'org.aspectj:aspectjtools:1.8.1'
+        classpath 'org.aspectj:aspectjtools:1.8.9'
+        classpath 'org.aspectj:aspectjweaver:1.8.9'
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+
+import org.aspectj.bridge.IMessage
+import org.aspectj.bridge.MessageHandler
+import org.aspectj.tools.ajc.Main
+
+
+final def log = project.logger
+final def variants = project.android.applicationVariants
+
+variants.all { variant ->
+    if (!variant.buildType.isDebuggable()) {
+        log.debug("Skipping non-debuggable build type '${variant.buildType.name}'.")
+        return;
+    }
+
+    JavaCompile javaCompile = variant.javaCompile
+    javaCompile.doLast {
+        String[] args = ["-showWeaveInfo",
+                         "-1.5",
+                         "-inpath", javaCompile.destinationDir.toString(),
+                         "-aspectpath", javaCompile.classpath.asPath,
+                         "-d", javaCompile.destinationDir.toString(),
+                         "-classpath", javaCompile.classpath.asPath,
+                         "-bootclasspath", project.android.bootClasspath.join(File.pathSeparator)]
+        log.debug "ajc args: " + Arrays.toString(args)
+
+        MessageHandler handler = new MessageHandler(true);
+        new Main().run(args, handler);
+        for (IMessage message : handler.getMessages(null, true)) {
+            switch (message.getKind()) {
+                case IMessage.ABORT:
+                case IMessage.ERROR:
+                case IMessage.FAIL:
+                    log.error message.message, message.thrown
+                    break;
+                case IMessage.WARNING:
+                    log.warn message.message, message.thrown
+                    break;
+                case IMessage.INFO:
+                    log.info message.message, message.thrown
+                    break;
+                case IMessage.DEBUG:
+                    log.debug message.message, message.thrown
+                    break;
+            }
+        }
+    }
 }

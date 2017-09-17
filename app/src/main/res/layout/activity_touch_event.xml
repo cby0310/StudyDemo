@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <!--<com.example.administrator.view.review.ParentView2-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:orientation="vertical"-->
+    <!--&gt;-->
+
+    <com.example.administrator.view.review.ParentView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <com.example.administrator.view.review.ChildView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#aa8888"
+            android:clickable="true"
+            android:onClick="click"
+            android:padding="20dp"
+            android:text="1111\n22222"
+            android:textColor="@color/abc_primary_text_material_light"
+            >
+        </com.example.administrator.view.review.ChildView>
+    </com.example.administrator.view.review.ParentView>
+    <!--   </com.example.administrator.view.review.ParentView2>-->
+</LinearLayout>
