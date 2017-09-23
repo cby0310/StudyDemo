@@ -2,6 +2,8 @@ package com.cyb.test.mytest;
 
 import android.app.Activity;
 import android.app.Application;
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -59,59 +61,60 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        LruCache lruCache = new LruCache<String, Bitmap>(120) {
-            @Override
-            protected int sizeOf(String key, Bitmap value) {
-                return super.sizeOf(key, value);
-            }
-        };
-        lruCache.put("", null);
-        lruCache.get("");
 
-        Map<String, String> map = new HashMap<>();
-        map.keySet();
-        map.entrySet().iterator().hasNext();
-        map.entrySet();
-        map.values();
-
-
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-
-            }
-        });
-
-        image = (ImageView) findViewById(R.id.image);
-
-        Glide.with(this).load("https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=3794371817,2637991827&fm=58").asGif()
-                .placeholder(R.mipmap.ic_launcher).into(image);
-
-        findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                looper.quitSafely();
-            }
-        });
-
-        findViewById(R.id.text).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                myThread = new MyThread();
-                myThread.start();
-            }
-        });
-
-
-        float widthPixels = getResources().getDisplayMetrics().widthPixels;
-        float heightPixels = getResources().getDisplayMetrics().heightPixels;
-
-        float desity = getResources().getDisplayMetrics().density;
-        int densityDpi = getResources().getDisplayMetrics().densityDpi;
-        float scaledDensity = getResources().getDisplayMetrics().scaledDensity;
-
-        Log.e("Terry", desity + "  " + densityDpi + "  " + scaledDensity);
-        Log.e("Terry", widthPixels + "  " + heightPixels);
+//        LruCache lruCache = new LruCache<String, Bitmap>(120) {
+//            @Override
+//            protected int sizeOf(String key, Bitmap value) {
+//                return super.sizeOf(key, value);
+//            }
+//        };
+//        lruCache.put("", null);
+//        lruCache.get("");
+//
+//        Map<String, String> map = new HashMap<>();
+//        map.keySet();
+//        map.entrySet().iterator().hasNext();
+//        map.entrySet();
+//        map.values();
+//
+//
+//        handler.post(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//            }
+//        });
+//
+//        image = (ImageView) findViewById(R.id.image);
+//
+//        Glide.with(this).load("https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=3794371817,2637991827&fm=58").asGif()
+//                .placeholder(R.mipmap.ic_launcher).into(image);
+//
+//        findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                looper.quitSafely();
+//            }
+//        });
+//
+//        findViewById(R.id.text).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                myThread = new MyThread();
+//                myThread.start();
+//            }
+//        });
+//
+//
+//        float widthPixels = getResources().getDisplayMetrics().widthPixels;
+//        float heightPixels = getResources().getDisplayMetrics().heightPixels;
+//
+//        float desity = getResources().getDisplayMetrics().density;
+//        int densityDpi = getResources().getDisplayMetrics().densityDpi;
+//        float scaledDensity = getResources().getDisplayMetrics().scaledDensity;
+//
+//        Log.e("Terry", desity + "  " + densityDpi + "  " + scaledDensity);
+//        Log.e("Terry", widthPixels + "  " + heightPixels);
 
     }
 
