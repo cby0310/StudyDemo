@@ -17,13 +17,6 @@ android {
 //        }
 
     }
-
-
-    aaptOptions{
-        cruncherEnabled = false
-        useNewCruncher = false
-    }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -54,7 +47,7 @@ dependencies {
     //    annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0-RC0'
     //    provided 'javax.annotation:javax.annotation-api:1.2'
     //dagger2
-//    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
     compile 'io.reactivex.rxjava2:rxjava:2.1.0'
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
