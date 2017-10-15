@@ -45,9 +45,9 @@ android {
             buildConfigField 'String', 'IM_SERVER_HOST', RELEASE_IM_SERVER_HOST
             buildConfigField 'int', 'IM_SERVER_PORT', RELEASE_IM_SERVER_PORT
             buildConfigField "boolean", "LEO_DEBUG", RELEASE_LEO_DEBUG
-            minifyEnabled true
-            zipAlignEnabled true
-            shrinkResources true
+            minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
@@ -87,17 +87,18 @@ android {
 
             if ("true".equals(IS_JENKINS)) {
                 timeNow = JENKINS_TIME
-                outDirectory = 'G:/Tomcat/webapps/jenkins/apk'
-                newName = 'yj-android-v' +
-                        APP_VERSION + '-' + variant.productFlavors[0].name + timeNow + '-' + variant.buildType.name + '.apk'
+                timeNow = getDate()
+                outDirectory = 'D:/JenkinsHome/jenkins/apk'
+                newName = 'studydemo-android-v' +
+                        APP_VERSION + '-' + variant.productFlavors[0].name /*+ timeNow*/ + '-' + variant.buildType.name + '.apk'
             } else {
                 timeNow = getDate()
-                if (variant.buildType.name.equals('debug')) {
-                    newName = "yj-android-v${APP_VERSION}-debug.apk"
-                } else {
-                    newName = 'yj-android-v' +
-                            APP_VERSION + '-' + variant.productFlavors[0].name + timeNow + '-' + variant.buildType.name + '.apk'
-                }
+//                if (variant.buildType.name.equals('debug')) {
+//                    newName = "studydemo-android-v${APP_VERSION}-debug.apk"
+//                } else {
+                newName = 'studydemo-android-v' +
+                        APP_VERSION + '-' + variant.productFlavors[0].name + timeNow + '-' + variant.buildType.name + '.apk'
+//                }
             }
 
             output.outputFile = new File(outDirectory, newName)
