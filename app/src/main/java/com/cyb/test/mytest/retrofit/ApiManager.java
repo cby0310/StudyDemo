@@ -40,6 +40,7 @@ public class ApiManager {
                 .baseUrl("")
                 .client(builder.build())
                 .addConverterFactory(GsonConverterFactory.create(new GsonBuilder().create()))
+//                .addConverterFactory(Fas)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
     }

@@ -5,9 +5,9 @@ package com.cyb.test.mytest.designpattern.proxy;
  * <p>
  * 代理模式：结构型
  *
- * 角色一：目标接口
- * 角色二：目标对象
- * 角色三：代理对象
+ * 角色一：目标接口  IService
+ * 角色二：目标对象  单身汪 Jesse
+ * 角色三：代理对象  老王
  */
 public class Test {
     public static void main(String[] args) {
