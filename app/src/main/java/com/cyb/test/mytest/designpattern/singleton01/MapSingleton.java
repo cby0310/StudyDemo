@@ -1,4 +1,4 @@
-package com.cyb.test.mytest.designpattern.singleton;
+package com.cyb.test.mytest.designpattern.singleton01;
 
 import java.util.HashMap;
 import java.util.Map;

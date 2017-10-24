@@ -1,4 +1,4 @@
-package com.cyb.test.mytest.designpattern.builder;
+package com.cyb.test.mytest.designpattern.builder02;
 
 /**
  * Created by pc on 2017/9/23.

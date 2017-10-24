@@ -1,4 +1,4 @@
-package com.cyb.test.mytest.designpattern.singleton;
+package com.cyb.test.mytest.designpattern.singleton01;
 
 /**
  * Created by pc on 2017/10/24.

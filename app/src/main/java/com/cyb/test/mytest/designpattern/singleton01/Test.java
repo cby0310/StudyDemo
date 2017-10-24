@@ -1,4 +1,4 @@
-package com.cyb.test.mytest.designpattern.singleton;
+package com.cyb.test.mytest.designpattern.singleton01;
 
 import java.util.ArrayList;
 import java.util.List;
