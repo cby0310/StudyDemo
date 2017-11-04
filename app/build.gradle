@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.neenbedankt.android-apt'
+//apply plugin: 'com.neenbedankt.android-apt'
 
 
 def getDate() {
@@ -14,8 +14,8 @@ android {
 //    aaptOptions.cruncherEnabled = false
 //    aaptOptions.useNewCruncher = false
 
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
     defaultConfig {
         applicationId "com.cyb.test.mytest"
         minSdkVersion 15
@@ -64,6 +64,7 @@ android {
         javaMaxHeapSize "2g"
     }
 
+    flavorDimensions "xiaomi"
     //渠道Flavors，我这里写了一些常用的
     productFlavors {
         xiaomi {
@@ -77,34 +78,43 @@ android {
         }
     }
 
-    //修改生成的apk名字
-    applicationVariants.all { variant ->
-        variant.outputs.each { output ->
-            def newName
-            def timeNow
-            def oldFile = output.outputFile
-            def outDirectory = oldFile.parent
+    //修改生成的apk名字  先屏蔽掉
+//    applicationVariants.all { variant ->
+//        variant.outputs.all { output ->
+//            def newName
+//            def timeNow
+//            def oldFile = output.outputFile
+//            def outDirectory = oldFile.parent
+//
+//            if ("true".equals(IS_JENKINS)) {
+//                timeNow = JENKINS_TIME
+//                timeNow = getDate()
+//                outDirectory = 'D:/JenkinsHome/jenkins/apk'
+//                newName = 'studydemo-android-v' +
+//                        APP_VERSION + '-' + variant.productFlavors[0].name /*+ timeNow*/ + '-' + variant.buildType.name + '.apk'
+//            } else {
+//                timeNow = getDate()
+////                if (variant.buildType.name.equals('debug')) {
+////                    newName = "studydemo-android-v${APP_VERSION}-debug.apk"
+////                } else {
+//                newName = 'studydemo-android-v' +
+//                        APP_VERSION + '-' + variant.productFlavors[0].name + timeNow + '-' + variant.buildType.name + '.apk'
+////                }
+//            }
+//
+//            outputFileName = new File(outDirectory, newName)
+//
+//        }
+//    }
 
-            if ("true".equals(IS_JENKINS)) {
-                timeNow = JENKINS_TIME
-                timeNow = getDate()
-                outDirectory = 'D:/JenkinsHome/jenkins/apk'
-                newName = 'studydemo-android-v' +
-                        APP_VERSION + '-' + variant.productFlavors[0].name /*+ timeNow*/ + '-' + variant.buildType.name + '.apk'
-            } else {
-                timeNow = getDate()
-//                if (variant.buildType.name.equals('debug')) {
-//                    newName = "studydemo-android-v${APP_VERSION}-debug.apk"
-//                } else {
-                newName = 'studydemo-android-v' +
-                        APP_VERSION + '-' + variant.productFlavors[0].name + timeNow + '-' + variant.buildType.name + '.apk'
-//                }
-            }
 
-            output.outputFile = new File(outDirectory, newName)
 
-        }
-    }
+//    android.applicationVariants.all { variant ->
+//        variant.outputs.all {
+//            outputFileName = rootProject.getName() + "-" + buildType.name + "-" + releaseTime() + "-v" + defaultConfig.versionName + "-" + defaultConfig.versionCode + ".apk";
+//        }
+//    }
+
 
 //    compileOptions {
 //        targetCompatibility 1.8
@@ -136,7 +146,7 @@ dependencies {
     compile files('libs/nineoldandroids-2.4.0.jar')
 
 
-    compile 'com.android.support:design:25.3.1'
+    compile 'com.android.support:design:26.0.1'
     compile 'io.reactivex.rxjava2:rxjava:2.1.0'
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
@@ -146,13 +156,24 @@ dependencies {
     compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
     compile 'com.github.bumptech.glide:glide:3.5.2'
     compile 'com.google.dagger:dagger:2.0'
-    compile 'com.android.support:support-v4:25.3.1'
+    compile 'com.android.support:support-v4:26.0.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'org.aspectj:aspectjrt:1.8.9'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
-    testCompile 'junit:junit:4.12'
-    apt 'com.google.dagger:dagger-compiler:2.0'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.0'
     provided 'org.glassfish:javax.annotation:10.0-b28'
+    compile 'org.jetbrains:annotations-java5:15.0'
+
+
+    //******** 单元测试相关START *********
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-core:2.7.22'
+    androidTestCompile 'org.mockito:mockito-android:2.7.22'
+    testCompile 'org.robolectric:robolectric:3.3.2'
+    testCompile 'org.robolectric:shadows-multidex:3.2.2'
+//    testCompile "org.robolectric:robolectric:3.6-SNAPSHOT"
+    //******** 单元测试相关 END **********
+
 }
 
 
@@ -169,6 +190,7 @@ buildscript {
 
 repositories {
     mavenCentral()
+    google()
 }
 
 

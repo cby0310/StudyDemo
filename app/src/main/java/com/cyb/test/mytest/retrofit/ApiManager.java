@@ -47,7 +47,7 @@ public class ApiManager {
 
     CompositeDisposable compositeDisposable = new CompositeDisposable();
 
-    private void test() {
+    public void test() {
         Api api = ApiManager.create().create(Api.class);
         api.login(100).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
