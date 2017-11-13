@@ -3,6 +3,8 @@ package com.cyb.test.mytest.designpattern.singleton01;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Singleton;
+
 /**
  * Created by pc on 2017/10/24.
  * 单例模式,若需要引用context则使用ApplicationContext，防止内存泄露
@@ -31,15 +33,15 @@ public class Test {
         objects.add(jingTaiNeiBuLeiSingleton1);
         objects.add(jingTaiNeiBuLeiSingleton2);
 
-        Resource meiJuSingleton1 = MeiJuSingleton.INSTANCE.getInstance();
-        Resource meiJuSingleton2 = MeiJuSingleton.INSTANCE.getInstance();
+        MeiJuSingleton meiJuSingleton1 = MeiJuSingleton.getInstance();
+        MeiJuSingleton meiJuSingleton2 = MeiJuSingleton.getInstance();
         objects.add(meiJuSingleton1);
         objects.add(meiJuSingleton2);
 
 
-        MapSingleton.registerService("resource", new Resource());
-        Resource mapSingleton1 = (Resource) MapSingleton.getInstence("resource");
-        Resource mapSingleton2 = (Resource) MapSingleton.getInstence("resource");
+        MapSingleton.registerService("resource", MeiJuSingleton.getInstance());
+        MeiJuSingleton mapSingleton1 = (MeiJuSingleton) MapSingleton.getInstence("resource");
+        MeiJuSingleton mapSingleton2 = (MeiJuSingleton) MapSingleton.getInstence("resource");
         objects.add(mapSingleton1);
         objects.add(mapSingleton2);
 

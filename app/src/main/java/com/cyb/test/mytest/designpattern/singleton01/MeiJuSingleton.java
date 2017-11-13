@@ -6,21 +6,28 @@ package com.cyb.test.mytest.designpattern.singleton01;
  * 默认枚举实例的创建是线程安全的，并且在任何情况下都是一个单例
  */
 
-class Resource {
-}
+public class MeiJuSingleton {
 
-public enum MeiJuSingleton {
 
-    INSTANCE;
-
-    private Resource instance;
-
-    MeiJuSingleton() {
-        instance = new Resource();
+    private MeiJuSingleton() {
     }
 
-    public Resource getInstance() {
-        return instance;
+    public static MeiJuSingleton getInstance() {
+        return Singleton.INSTANCE.getInstance();
     }
 
+    private enum Singleton {
+        INSTANCE;
+        private MeiJuSingleton instance;
+
+        Singleton() {
+            instance = new MeiJuSingleton();
+        }
+
+        public MeiJuSingleton getInstance() {
+            return instance;
+        }
+    }
 }
+
+
