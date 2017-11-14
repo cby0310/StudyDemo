@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.WindowManager;
 
 import com.cyb.test.mytest.MainActivity;
 import com.cyb.test.mytest.MyLog;
@@ -17,6 +18,14 @@ public class AopActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aop);
+
+
+//        getWindow().addFlags();
+//        getWindow().setFlags();
+
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+
+
         gotoDown();
 
         startActivity(new Intent(this, MainActivity.class));
@@ -30,7 +39,7 @@ public class AopActivity extends AppCompatActivity {
         MyLog.e("弹框");
 
         Dialog dialog = new ProgressDialog(this);
-        dialog.show();
+//        dialog.show();
 
 
     }

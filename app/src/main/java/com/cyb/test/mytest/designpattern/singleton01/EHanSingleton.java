@@ -1,13 +1,14 @@
 package com.cyb.test.mytest.designpattern.singleton01;
 
 import java.io.ObjectStreamException;
+import java.io.Serializable;
 
 /**
  * Created by pc on 2017/10/24.
  * 恶汉式单例
  */
 
-public class EHanSingleton {
+public class EHanSingleton implements Serializable{
 
     private static final EHanSingleton instance = new EHanSingleton();
 

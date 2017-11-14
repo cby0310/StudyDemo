@@ -19,8 +19,8 @@ public class MyApp extends Application {
         super.onCreate();
 
         L.e("MyApp -> onCreate()");
-        ApiManager apiManager = new ApiManager();
-        apiManager.test();
+//        ApiManager apiManager = new ApiManager();
+//        apiManager.test();
 
     }
 }

@@ -3,7 +3,7 @@ package com.cyb.test.mytest.designpattern.builder02;
 /**
  * Created by pc on 2017/9/23.
  * <p>
- * 建造者模式：创建型
+ * 建造者模式：创建型,   一步一步创建一个复杂对象，对外隐藏构建细节
  * <p>
  * 将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。
  * 在这里为什么用Builder模式呢
