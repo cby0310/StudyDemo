@@ -10,8 +10,8 @@ package com.cyb.test.mytest.designpattern.factory03.factorymethod;
 
 public class Test {
     public static void main(String[] args) {
-        BenzFactory benzFactory = new BenzFactory();
-        benzFactory.createCar().drive();
+        FactoryInterface factoryInterface = new BenzFactory();
+        factoryInterface.createCar().drive();
     }
 
 }

@@ -5,5 +5,5 @@ package com.cyb.test.mytest.designpattern.factory03.abstractfactory;
  */
 
 public interface ComputerInterface {
-    void print();
+    void create();
 }
