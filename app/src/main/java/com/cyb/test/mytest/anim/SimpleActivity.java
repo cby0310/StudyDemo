@@ -220,7 +220,6 @@ public class SimpleActivity extends AppCompatActivity {
 
 
     private void animationTest() {
-
         MyLog.e("前  imageView.getLeft() = " + imageView.getLeft());
         MyLog.e("前  imageView.getTranslationX() = " + imageView.getTranslationX());
         MyLog.e("前  imageView.getX() = " + imageView.getX());
@@ -234,7 +233,6 @@ public class SimpleActivity extends AppCompatActivity {
 
 //        animation.setStartOffset(1000);
         animation.setInterpolator(new LinearInterpolator());
-
         animation.setFillAfter(true);
 //        animation.setFillBefore(true);
 
