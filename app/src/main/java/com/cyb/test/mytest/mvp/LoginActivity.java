@@ -5,7 +5,7 @@ import android.os.Bundle;
 import com.cyb.test.mytest.R;
 import com.cyb.test.mytest.retrofit.UserInfo;
 
-public class LoginActivity extends MVPBaseAcitivity<LoginContract.View, LoginPresenter> /*implements LoginContract.View*/ {
+public class LoginActivity extends MVPBaseAcitivity<LoginContract.View, LoginPresenter> implements LoginContract.View {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,13 +20,13 @@ public class LoginActivity extends MVPBaseAcitivity<LoginContract.View, LoginPre
         return new LoginPresenter();
     }
 
-//    @Override
-//    public void getCodeSuccess() {
-//
-//    }
-//
-//    @Override
-//    public void loginSuccess(UserInfo userInfo) {
-//
-//    }
+    @Override
+    public void getCodeSuccess() {
+
+    }
+
+    @Override
+    public void loginSuccess(UserInfo userInfo) {
+
+    }
 }

@@ -2,15 +2,16 @@ package com.cyb.test.mytest.mvp;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 
 /**
  * Created by pc on 2017/10/24.
+ * V:view
+ * P:presenter
  */
 
-public abstract class MVPBaseAcitivity<V, T extends BasePresenter<V>> extends Activity {
-    protected T mPresenter;
+public abstract class MVPBaseAcitivity<V, P extends BasePresenter<V>> extends Activity {
+    protected P mPresenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -25,5 +26,5 @@ public abstract class MVPBaseAcitivity<V, T extends BasePresenter<V>> extends Ac
         mPresenter.detachView();
     }
 
-    protected abstract T createPresenter();
+    protected abstract P createPresenter();
 }
