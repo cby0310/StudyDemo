@@ -44,6 +44,8 @@
         <activity android:name=".db.DbTestActivity">
         </activity>
         <activity android:name=".aop.AopActivity">
+        </activity>
+        <activity android:name=".anim.SimpleActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

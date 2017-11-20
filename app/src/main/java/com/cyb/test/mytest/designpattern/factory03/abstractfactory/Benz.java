@@ -7,6 +7,6 @@ package com.cyb.test.mytest.designpattern.factory03.abstractfactory;
 public class Benz implements CarInterface {
     @Override
     public void drive() {
-        System.err.print("benz");
+        System.err.println("benz");
     }
 }

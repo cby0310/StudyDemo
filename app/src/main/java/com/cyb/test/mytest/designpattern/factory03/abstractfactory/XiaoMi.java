@@ -6,7 +6,7 @@ package com.cyb.test.mytest.designpattern.factory03.abstractfactory;
 
 public class XiaoMi implements ComputerInterface {
     @Override
-    public void print() {
+    public void create() {
         System.err.print("xiaomi");
     }
 }

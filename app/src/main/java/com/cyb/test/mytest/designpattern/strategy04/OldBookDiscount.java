@@ -1,4 +1,4 @@
-package com.cyb.test.mytest.designpattern.strategy;
+package com.cyb.test.mytest.designpattern.strategy04;
 
 /**
  * Created by pc on 2017/5/1.
