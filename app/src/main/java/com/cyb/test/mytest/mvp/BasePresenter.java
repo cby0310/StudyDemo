@@ -5,13 +5,14 @@ import java.lang.ref.WeakReference;
 
 /**
  * Created by pc on 2017/10/24.
- * P 基类
+ * P基类
+ * V:view
  */
 
-public abstract class BasePresenter<T> {
-    protected Reference<T> mViewRef;//view接口的弱引用
+public abstract class BasePresenter<V> {
+    protected Reference<V> mViewRef;//view接口的弱引用
 
-    protected T getView() {
+    protected V getView() {
         return mViewRef.get();
     }
 
@@ -20,8 +21,8 @@ public abstract class BasePresenter<T> {
      *
      * @param view
      */
-    protected void attachView(T view) {
-        mViewRef = new WeakReference<T>(view);
+    protected void attachView(V view) {
+        mViewRef = new WeakReference<V>(view);
     }
 
     protected boolean isViewAttached() {
