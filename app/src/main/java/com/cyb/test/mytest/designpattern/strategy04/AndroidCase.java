@@ -21,7 +21,7 @@ public class AndroidCase extends Activity {
         //view动画时间插值器Interpolator的实现，view动画是通过Matrix对view进行的转换，
         // 所以不影响点击事件的位置
         //是在view的draw()-> applyLegacyAnimation() -> Animation#getTransformation() ->
-        //getTransformation() -> Interpolator#getInterpolation() ->Animation#applyTransformation()
+        //getTransformation() -> Interpolator#getInterpolation() -> Animation#applyTransformation()
         //找到子类后执行对应的applyTransformation()方法进行matrix转换。
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.translate2);
         animation.setInterpolator(new LinearInterpolator());
