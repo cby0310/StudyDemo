@@ -1,15 +1,19 @@
 package com.cyb.test.mytest.anim;
 
-import android.animation.Animator;
-import android.animation.AnimatorSet;
-import android.animation.IntEvaluator;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
+import android.graphics.Bitmap;
 import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.Display;
 import android.view.View;
 import android.view.ViewConfiguration;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
@@ -22,12 +26,20 @@ import android.widget.Toast;
 
 import com.cyb.test.mytest.MyLog;
 import com.cyb.test.mytest.R;
+import com.nineoldandroids.animation.Animator;
+import com.nineoldandroids.animation.AnimatorSet;
+import com.nineoldandroids.animation.ArgbEvaluator;
+import com.nineoldandroids.animation.IntEvaluator;
+import com.nineoldandroids.animation.ObjectAnimator;
+import com.nineoldandroids.animation.ValueAnimator;
+
+import static com.nineoldandroids.view.ViewPropertyAnimator.animate;
 
 
 public class SimpleActivity extends AppCompatActivity {
 
 
-    ImageView imageView;
+    ImageView imageView, icon;
     RelativeLayout activity_simple;
     AnimatorSet animatorSet;
     Button btn;
@@ -35,8 +47,10 @@ public class SimpleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_simple);
         imageView = (ImageView) findViewById(R.id.imageview);
+        icon = (ImageView) findViewById(R.id.icon);
         btn = (Button) findViewById(R.id.btn);
         activity_simple = (RelativeLayout) findViewById(R.id.activity_simple);
     }
@@ -50,7 +64,14 @@ public class SimpleActivity extends AppCompatActivity {
 //        frameAnimalTest();
 //        viewAnimTest();
 
-        animationTest();
+//        animationTest();
+
+        icon.setImageResource(R.mipmap.device);
+        printBitmapSize(icon);
+
+
+        Log.d("Jesse", getResources().getDisplayMetrics().widthPixels + " x " + getResources().getDisplayMetrics()
+                .heightPixels);
     }
 
     public void start(View view) {
@@ -67,9 +88,22 @@ public class SimpleActivity extends AppCompatActivity {
         MyLog.e("前  imageView.getTranslationX() = " + imageView.getTranslationX());
         MyLog.e("前  imageView.getX() = " + imageView.getX());
 
-        ObjectAnimator objectAnimator = ObjectAnimator.ofInt(imageView, "translationX", 10);
+//        animate(imageView).setDuration(1000).rotationXBy(720).x(100).y(100);
+
+
+        final ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(imageView, "translationX", 100);
+        final ObjectAnimator objectAnimator2 = ObjectAnimator.ofFloat(imageView, "translationY", 100);
         objectAnimator.setDuration(2000);
-        objectAnimator.addListener(new Animator.AnimatorListener() {
+        objectAnimator.setEvaluator(new ArgbEvaluator());
+        objectAnimator2.setDuration(2000);
+        objectAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                valueAnimator.getAnimatedFraction();
+                MyLog.e("0000 value = " + valueAnimator.getAnimatedValue());
+            }
+        });
+        objectAnimator.addListener(new com.nineoldandroids.animation.Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
 
@@ -81,7 +115,7 @@ public class SimpleActivity extends AppCompatActivity {
                 MyLog.e("imageView.getTranslationX() = " + imageView.getTranslationX());
                 MyLog.e("imageView.getX() = " + imageView.getX());
 
-                imageView.setX(200);
+//                imageView.setX(200);
             }
 
             @Override
@@ -95,6 +129,18 @@ public class SimpleActivity extends AppCompatActivity {
             }
         });
         objectAnimator.start();
+        objectAnimator2.start();
+        new Thread() {
+
+            @Override
+            public void run() {
+                super.run();
+                Looper.prepare();
+
+
+                Looper.loop();
+            }
+        }.start();
 
 
 //        ObjectAnimator objectAnimator1 = ObjectAnimator.ofFloat(imageView, "translationX", 100,-100);
@@ -281,8 +327,21 @@ public class SimpleActivity extends AppCompatActivity {
     }
 
 
-    private void animationSetTest() {
-
+    private void printBitmapSize(ImageView imageView) {
+        if (imageView == null) return;
+        Drawable drawable = imageView.getDrawable();
+        if (drawable != null) {
+            BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
+            Bitmap bitmap = bitmapDrawable.getBitmap();
+            Log.d("Jesse", "w:" + bitmap.getWidth() + "  h:" + bitmap.getHeight());
+        } else {
+            Log.d("Jesse", "drawable null ");
+        }
     }
 
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+//        printBitmapSize(icon);
+    }
 }

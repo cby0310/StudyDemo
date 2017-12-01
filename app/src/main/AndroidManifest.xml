@@ -45,14 +45,19 @@
         </activity>
         <activity android:name=".aop.AopActivity">
         </activity>
-        <activity android:name=".anim.SimpleActivity">
+        <activity
+            android:name=".anim.SimpleActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+
+        </activity>
+        <activity android:name=".mvp.LoginActivity">
+        </activity>
+        <activity android:name=".designpattern.observer05.AndroidCase">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-        </activity>
-        <activity android:name=".mvp.LoginActivity">
         </activity>
     </application>
 
