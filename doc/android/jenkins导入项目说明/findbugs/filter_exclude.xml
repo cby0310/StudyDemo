@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter>
+    <Match>
+        <Class name="~.*\.R\$*[a-z]*"/>
+    </Match>
+    <Match>
+        <Class name="~.*\.Manifest\$*[a-z]*"/>
+    </Match>
+    <Match>
+        <Class name="~.*\.*Test"/>
+        <!-- test classes are suffixed by 'Test' -->
+        <Not>
+            <Bug code="IJU"/> <!-- 'IJU' is the code for bugs related to JUnit test code -->
+        </Not>
+    </Match>
+</FindBugsFilter>

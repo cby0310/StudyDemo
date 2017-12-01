@@ -1,17 +1,10 @@
 package com.cyb.test.mytest.rxjave2;
 
-import android.content.Intent;
-import android.graphics.drawable.ShapeDrawable;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.ButtonBarLayout;
-import android.util.Log;
-import android.util.TypedValue;
 import android.view.View;
-import android.widget.Button;
 
-import com.cyb.test.mytest.MainActivity;
 import com.cyb.test.mytest.MyLog;
 import com.cyb.test.mytest.R;
 
@@ -19,7 +12,6 @@ import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
 import java.io.InterruptedIOException;
-import java.util.concurrent.TimeUnit;
 
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
@@ -30,14 +22,11 @@ import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.BiFunction;
 import io.reactivex.functions.Consumer;
 import io.reactivex.plugins.RxJavaPlugins;
 import io.reactivex.schedulers.Schedulers;
-
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
 
 public class Rxjava2Activity extends AppCompatActivity {
 

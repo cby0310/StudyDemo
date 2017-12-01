@@ -1,12 +1,17 @@
 package com.cyb.test.mytest;
 
+import android.text.Editable;
+import android.text.Spanned;
+
 import com.cyb.test.mytest.retrofit.ApiManager;
+import com.cyb.test.mytest.retrofit.OkHttpActivity;
 import com.google.gson.Gson;
 
 import org.junit.AfterClass;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -43,6 +48,32 @@ public class ExampleUnitTest {
         return null;
     }
 
+    public static <T> void copy(List<? super T> dest, List<? extends T> src) {
+
+    }
+
+    @Test
+    public void listTest() {
+        List<Object> list = new ArrayList<Object>();
+        list.add("ss");
+        list.add(22);
+
+        List<Editable> src = new ArrayList<>();//T Spannable
+        List<Spanned> des = new ArrayList<>();
+        copy(des, src);
+
+        List<String> list1 = new ArrayList<>();
+        List<? extends CharSequence> list2 = list1;
+
+//        list2.add("ss");
+
+    }
+
+    class Bean<T extends String>
+
+    {
+
+    }
 
     @Test
     public void cloneTest() {
@@ -128,7 +159,7 @@ public class ExampleUnitTest {
 
         @Override
         public void onSubscribe(Disposable d) {
-d.dispose();
+            d.dispose();
         }
 
         @Override
@@ -144,6 +175,31 @@ d.dispose();
         @Override
         public void onComplete() {
 
+        }
+    }
+
+    @Test
+    public void okHttpTest() {
+        new OkHttpActivity().okHttpTest();
+    }
+
+    static class Test2 {
+
+        public static void main(String[] args) {
+            /**不指定泛型的时候*/
+            Object i = Test2.add(1 + "", 2); //这两个参数都是Integer，所以T为Integer类型
+            Number f = Test2.add(1, 1.2);//这两个参数一个是Integer，以风格是Float，所以取同一父类的最小级，为Number
+            Object o = Test2.add(1, "asd");//这两个参数一个是Integer，以风格是Float，所以取同一父类的最小级，为Object
+
+            /**指定泛型的时候*/
+            int a = Test2.<Integer>add(1, 2);//指定了Integer，所以只能为Integer类型或者其子类
+//            int b = Test2.<Integer>add(1, 2.2);//编译错误，指定了Integer，不能为Float
+            Number c = Test2.<Number>add(1, 2.2); //指定为Number，所以可以为Integer和Float
+        }
+
+        //这是一个简单的泛型方法
+        public static <T> T add(T x, T y) {
+            return y;
         }
     }
 
