@@ -18,3 +18,8 @@ package com.cyb.test.mytest.designpattern;
 
 public class OverView {
 }
+
+
+//http://www.uml.org.cn/oobject/201104212.asp
+class UML {
+}

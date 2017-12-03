@@ -1,4 +1,4 @@
-package com.cyb.test.mytest.designpattern.proxy.other;
+package com.cyb.test.mytest.designpattern.proxy07.dynamicproxy;
 
 /**
  * Created by pc on 2017/9/20.
@@ -11,6 +11,8 @@ public class DynamicProxyTest {
         MyInvocationHandler invocationHandler = new MyInvocationHandler(userService);
 
         UserService proxy = (UserService) invocationHandler.getProxy();
-        proxy.add();
+        UserService p2 = MyInvocationHandler.create(UserService.class);
+//        proxy.add();
+        p2.add();
     }
 }

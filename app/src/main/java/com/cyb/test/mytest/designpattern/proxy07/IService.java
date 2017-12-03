@@ -1,4 +1,4 @@
-package com.cyb.test.mytest.designpattern.proxy;
+package com.cyb.test.mytest.designpattern.proxy07;
 
 /**
  * Created by pc on 2017/9/20.

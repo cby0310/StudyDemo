@@ -1,6 +1,4 @@
-package com.cyb.test.mytest.designpattern.proxy;
-
-import android.widget.Toast;
+package com.cyb.test.mytest.designpattern.proxy07;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
