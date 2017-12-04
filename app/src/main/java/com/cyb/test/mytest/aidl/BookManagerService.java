@@ -4,6 +4,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
+import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 import android.util.Log;
 
@@ -13,8 +14,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class BookManagerService extends Service {
 
     private CopyOnWriteArrayList<Book> bookArrayList = new CopyOnWriteArrayList();
-    private CopyOnWriteArrayList<IOnNewBookArrivedListener> listeners = new CopyOnWriteArrayList();
-
+    private RemoteCallbackList<IOnNewBookArrivedListener> listeners = new RemoteCallbackList();
 
 
     public BookManagerService() {
@@ -56,29 +56,36 @@ public class BookManagerService extends Service {
         @Override
         public void addBook(Book book) throws RemoteException {
             bookArrayList.add(book);
-            for (IOnNewBookArrivedListener listener : listeners) {
-                listener.onNewBookArrived(book);
+            int size = listeners.beginBroadcast();
+
+            for (int i = 0; i < size; i++) {
+                listeners.getBroadcastItem(i).onNewBookArrived(book);
             }
+            listeners.finishBroadcast();
         }
 
         @Override
         public void addListener(IOnNewBookArrivedListener listener) throws RemoteException {
-            if (listeners.contains(listener)) {
-                Log.e("TAG", "已经有了");
-            } else {
-                listeners.add(listener);
-                Log.e("TAG", "添加成功：" + listeners.size());
-            }
+//            if (listeners.contains(listener)) {
+//                Log.e("TAG", "已经有了");
+//            } else {
+                listeners.register(listener);
+                int size = listeners.beginBroadcast();
+                Log.e("TAG", "添加成功：" + size);
+                listeners.finishBroadcast();
+//            }
         }
 
         @Override
         public void cancelListener(IOnNewBookArrivedListener listener) throws RemoteException {
-            if (listeners.contains(listener)) {
-                listeners.remove(listener);
-                Log.e("TAG", "移除成功：" + listeners.size());
-            } else {
-                Log.e("TAG", "移除失败，不存在");
-            }
+//            if (listeners.contains(listener)) {
+                listeners.unregister(listener);
+                int size = listeners.beginBroadcast();
+                Log.e("TAG", "移除成功：" + size);
+                listeners.finishBroadcast();
+//            } else {
+//                Log.e("TAG", "移除失败，不存在");
+//            }
         }
     };
 }

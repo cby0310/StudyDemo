@@ -31,7 +31,6 @@ public class MyInvocationHandler implements InvocationHandler {
     public static <T> T create(final Class<T> service) {
         return (T) Proxy.newProxyInstance(service.getClassLoader(), new Class<?>[]{service},
                 new InvocationHandler() {
-                    private final Platform platform = Platform.get();
 
                     @Override
                     public Object invoke(Object proxy, Method method, Object... args)
