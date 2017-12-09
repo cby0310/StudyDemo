@@ -1,9 +1,13 @@
 package com.cyb.test.mytest.mvp;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import com.cyb.test.mytest.R;
 import com.cyb.test.mytest.retrofit.UserInfo;
+
+import java.lang.ref.ReferenceQueue;
 
 public class LoginActivity extends MVPBaseAcitivity<LoginContract.View, LoginPresenter> implements LoginContract.View {
 

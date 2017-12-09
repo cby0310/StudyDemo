@@ -7,14 +7,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.administrator.httptest.R;
+import com.cyb.test.mytest.R;
+
 
 public class AppleProviderActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_apple_provider);
+        setContentView(R.layout.activity_battery_view);
 
         Uri appleUri = Uri.parse("content://com.cyb.appleprovider/apple1");
         ContentValues contentValues = new ContentValues();

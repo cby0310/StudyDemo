@@ -28,22 +28,22 @@ public class SmoothScrollView extends android.support.v7.widget.AppCompatButton 
 
     Scroller scroller;
 
-public void startScroll(int destX, int destY) {
-    int delta = destX - getScrollX();
-    scroller.startScroll(getScrollX(), getScrollY(), delta, 0, 2000);
-    invalidate();
-}
-
-@Override
-public void computeScroll() {
-    if (scroller.computeScrollOffset()) {
-        scrollTo(scroller.getCurrX(), scroller.getCurrY());
-        postInvalidate();
-    } else {
-        MyLog.e("hou");
-        ViewPrint.print(this);
+    public void startScroll(int destX, int destY) {
+        int delta = destX - getScrollX();
+        scroller.startScroll(getScrollX(), getScrollY(), delta, 0, 2000);
+        invalidate();
     }
 
+    @Override
+    public void computeScroll() {
+        if (scroller.computeScrollOffset()) {
+            scrollTo(scroller.getCurrX(), scroller.getCurrY());
+            postInvalidate();
+        } else {
+            MyLog.e("hou");
+            ViewPrint.print(this);
+        }
 
-}
+
+    }
 }

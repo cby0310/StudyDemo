@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -72,6 +73,19 @@ public class OkHttpActivity extends AppCompatActivity {
             Response response = call.execute();
             String result = response.body().string();
             System.err.println(result);
+
+            call.enqueue(new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+                    System.err.println("44444444:" + e.toString());
+                }
+
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    System.err.println("44444444:" + response.body().string());
+                }
+            });
+
         } catch (IOException e) {
             e.printStackTrace();
         }
