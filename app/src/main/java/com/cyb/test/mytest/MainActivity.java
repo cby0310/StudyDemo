@@ -61,15 +61,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-//        LruCache lruCache = new LruCache<String, Bitmap>(120) {
-//            @Override
-//            protected int sizeOf(String key, Bitmap value) {
-//                return super.sizeOf(key, value);
-//            }
-//        };
-//        lruCache.put("", null);
-//        lruCache.get("");
+        LruCache lruCache = new LruCache<String, Bitmap>(120) {
+            @Override
+            protected int sizeOf(String key, Bitmap value) {
+                return super.sizeOf(key, value);
+            }
+        };
+        lruCache.put("", null);
+        lruCache.get("");
 //
 //        Map<String, String> map = new HashMap<>();
 //        map.keySet();
