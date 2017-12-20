@@ -23,4 +23,9 @@ public class MyApp extends Application {
 //        apiManager.test();
 
     }
+
+    @Override
+    public void onTerminate() {
+        super.onTerminate();
+    }
 }

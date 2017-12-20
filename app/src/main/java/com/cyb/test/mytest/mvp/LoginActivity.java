@@ -17,6 +17,7 @@ public class LoginActivity extends MVPBaseAcitivity<LoginContract.View, LoginPre
         setContentView(R.layout.activity_login);
 
         mPresenter.getCode("110");
+
     }
 
     @Override

@@ -1,6 +1,13 @@
 package com.cyb.test.mytest;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -59,4 +66,52 @@ public class Test {
         t.join();
         System.out.println("执行结束");
     }
+
+    @org.junit.Test
+    public void testAsList() {
+        Integer a[] = {2, 3, 44, 555, 9};
+        System.out.println(Arrays.asList(a).toArray());
+        //asList(a)返回的是Arrays中的一个内部类ArrayList，不支持add和remove方法
+//        System.out.println(Arrays.asList(a).add(4));
+        List<Student> list = new ArrayList<>();
+        list.add(new Student("xiaoming", 25));
+        list.add(new Student("xiaohua", 22));
+
+        List<Student> list1 = new ArrayList<>(list);
+        list1.get(0).age = 0;
+
+        //subList的操作是在原来对象上的操作
+        List<Student> list2 = list.subList(0, list.size());
+
+//        list2.add("c");
+
+        System.out.println(list.equals(list1));
+        System.out.println(list.equals(list2));
+        print(list);
+        System.out.println(list.size() + "   " + list1.size() + "   " + list2.size());
+
+    }
+
+    private void print(List<Student> list) {
+        for (Student s : list) {
+            System.out.print(s + "  ");
+        }
+    }
+
+
+    public void testHttp() throws IOException {
+
+        URL url = new URL("");
+        HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+        httpURLConnection.setConnectTimeout(10000);
+        httpURLConnection.setRequestMethod("GET");
+        httpURLConnection.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
+        if (httpURLConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+            BufferedInputStream bufferedInputStream = new BufferedInputStream(httpURLConnection.getInputStream());
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(bufferedInputStream));
+            bufferedReader.readLine();
+        }
+    }
+
+
 }
