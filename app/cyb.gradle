@@ -42,7 +42,7 @@ task myTask() {
 myTask.dependsOn printTest
 
 def square1(def num) {
-    println '11111111111111'
+    println '11111111111111222'
     num * num
 }
 
