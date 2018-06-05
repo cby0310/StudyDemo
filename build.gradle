@@ -28,3 +28,12 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+
+
+def overrideList = ["apppp"+1,"apppp"+2,"apppp"+3,"apppp"+4]
+def exist = false
+for (int i = 0; i < overrideList.size(); i++) {
+    def override = overrideList[i]
+    println 'override: ' + override
+}
