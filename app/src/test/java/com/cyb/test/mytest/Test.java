@@ -38,6 +38,13 @@ public class Test {
 
 
     @org.junit.Test
+    public void test() {
+        char a = 'a';
+        System.err.print(++a);
+        System.err.print(a + 1);
+    }
+
+    @org.junit.Test
     public void testInteger() throws InterruptedException {
         Integer a = Integer.valueOf(121);
         Integer a1 = Integer.valueOf(121);

@@ -1,5 +1,8 @@
 package com.cyb.test.mytest.designpattern.strategy04;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by pc on 2017/5/1.
  * <p>
@@ -18,6 +21,15 @@ public class Test {
     public static void main(String[] args) {
         Test main = new Test();
         main.test();
+
+        List<String> strings = new ArrayList<>(2);
+        try {
+            strings.set(1, "1111111111");
+            strings.set(0, "00000000");
+            strings.size();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void test() {

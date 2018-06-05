@@ -169,8 +169,9 @@ dependencies {
     testCompile 'org.robolectric:shadows-multidex:3.2.2'
 //    testCompile "org.robolectric:robolectric:3.6-SNAPSHOT"
     //******** 单元测试相关 END **********
-}
 
+//    compile 'com.beibei.android:bdbase:3.5.01-SNAPSHOT'
+}
 
 andResGuard {
     // mappingFile = file("./resource_mapping.txt")
@@ -218,7 +219,6 @@ andResGuard {
     digestalg = "SHA256"
 }
 
-
 buildscript {
     repositories {
         mavenCentral()
@@ -235,15 +235,12 @@ repositories {
     google()
 }
 
-
 import org.aspectj.bridge.IMessage
 import org.aspectj.bridge.MessageHandler
 import org.aspectj.tools.ajc.Main
 
-
 final def log = project.logger
 final def variants = project.android.applicationVariants
-
 variants.all { variant ->
     if (!variant.buildType.isDebuggable()) {
         log.debug("Skipping non-debuggable build type '${variant.buildType.name}'.")
@@ -283,3 +280,22 @@ variants.all { variant ->
         }
     }
 }
+
+
+class MyPlugin implements Plugin<Project> {
+    @Override
+    void apply(Project project) {
+        project.task("helloPlugin") {
+            doLast {
+                println "hello from the cyb-plugin"
+            }
+        }
+    }
+}
+
+
+apply from: "../config.gradle"
+apply plugin: MyPlugin
+
+
+apply plugin: 'cyb.standaloneplugin'

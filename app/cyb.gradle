@@ -1,12 +1,3 @@
-class MyPlugin implements Plugin<Project> {
-    @Override
-    void apply(Project project) {
-        project.task hello << {
-            println "hello from the cyb-plugin"
-        }
-    }
-}
-
 //以下为测试内容
 ext {
     local = 'Hello from build.gradle'

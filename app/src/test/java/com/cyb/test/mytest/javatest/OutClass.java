@@ -13,6 +13,15 @@ public class OutClass {
         InnerClass.InnerClass2 innerClass2 = innerClass.new InnerClass2();
     }
 
+    private void cun(final String name1) {
+        InnerClass innerClass = new InnerClass() {
+            void aa() {
+                String a = name1;
+            }
+
+        };
+    }
+
     interface Callback {
         void call(int a);
     }
@@ -42,13 +51,10 @@ public class OutClass {
 
         public class InnerClass2 {
 
-            public void method2() {
+            public void method2(int height) {
                 OutClass.this.age = 2;
                 age = 1;
-            }
-
-            public class InnerClass3 {
-
+                age = height;
             }
         }
     }
