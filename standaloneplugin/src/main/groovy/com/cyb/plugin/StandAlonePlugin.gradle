@@ -1,0 +1,13 @@
+import org.gradle.api.Plugin
+import org.gradle.api.Project
+
+class StandAlonePlugin implements Plugin<Project> {
+    @Override
+    void apply(Project project) {
+        project.task("helloPlugin3") {
+            doLast {
+                println "hello from the cyb-plugin3"
+            }
+        }
+    }
+}

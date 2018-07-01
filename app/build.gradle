@@ -283,12 +283,3 @@ variants.all { variant ->
         }
     }
 }
-
-
-
-
-def overrideList = ["qqq"+1,"qqq"+2,"qqq"+3,"qqq"+4]
-for (int i = 0; i < overrideList.size(); i++) {
-    def override = overrideList[i]
-    println 'override: ' + override
-}

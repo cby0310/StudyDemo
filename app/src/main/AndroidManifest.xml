@@ -48,7 +48,11 @@
         <activity
             android:name=".anim.SimpleActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
 
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity android:name=".mvp.LoginActivity">
         </activity>
@@ -57,11 +61,7 @@
         <activity android:name=".designpattern.adapter06.AndroidCase">
         </activity>
         <activity android:name=".view.review.ScrollActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
 
 

@@ -4,16 +4,15 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Display;
 import android.view.View;
 import android.view.ViewConfiguration;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
@@ -33,8 +32,6 @@ import com.nineoldandroids.animation.IntEvaluator;
 import com.nineoldandroids.animation.ObjectAnimator;
 import com.nineoldandroids.animation.ValueAnimator;
 
-import static com.nineoldandroids.view.ViewPropertyAnimator.animate;
-
 
 public class SimpleActivity extends AppCompatActivity {
 
@@ -44,6 +41,11 @@ public class SimpleActivity extends AppCompatActivity {
     AnimatorSet animatorSet;
     Button btn;
 
+    Handler mHandler = new Handler(Looper.getMainLooper());
+    Handler mHandler1 = new Handler(Looper.getMainLooper());
+    Toast t;
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +55,32 @@ public class SimpleActivity extends AppCompatActivity {
         icon = (ImageView) findViewById(R.id.icon);
         btn = (Button) findViewById(R.id.btn);
         activity_simple = (RelativeLayout) findViewById(R.id.activity_simple);
+
+        if (mHandler == mHandler1) {
+        }
+        if (mHandler.getLooper().getQueue() == mHandler1.getLooper().getQueue()) {
+
+        }
+
+//        mHandler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                Toast.makeText(SimpleActivity.this, "3000", Toast.LENGTH_SHORT).show();
+//                mHandler.removeCallbacksAndMessages(null);
+//            }
+//        }, 3000);
+        new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                Looper.prepare();
+                t = Toast.makeText(SimpleActivity.this, "sssss", Toast.LENGTH_SHORT);
+                t.show();
+                t.setText(Thread.currentThread().getName() + "");
+                Looper.loop();
+            }
+        }.start();
+
     }
 
     public void click(View view) {
@@ -66,12 +94,22 @@ public class SimpleActivity extends AppCompatActivity {
 
 //        animationTest();
 
-        icon.setImageResource(R.mipmap.device);
-        printBitmapSize(icon);
+//        icon.setImageResource(R.mipmap.device);
+//        printBitmapSize(icon);
+//
+//        Toast.makeText(SimpleActivity.this, getResources().getDisplayMetrics().widthPixels + " x " + getResources().getDisplayMetrics()
+//                .heightPixels + " " + getResources().getDisplayMetrics().density, Toast.LENGTH_SHORT).show();
+//        Log.d("Jesse", getResources().getDisplayMetrics().widthPixels + " x " + getResources().getDisplayMetrics()
+//                .heightPixels);
 
 
-        Log.d("Jesse", getResources().getDisplayMetrics().widthPixels + " x " + getResources().getDisplayMetrics()
-                .heightPixels);
+        new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                t.setText("48484");
+            }
+        }.start();
     }
 
     public void start(View view) {
