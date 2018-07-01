@@ -298,4 +298,4 @@ apply from: "../config.gradle"
 apply plugin: MyPlugin
 
 
-apply plugin: 'cyb.standaloneplugin'
+//apply plugin: 'cyb.standaloneplugin'
