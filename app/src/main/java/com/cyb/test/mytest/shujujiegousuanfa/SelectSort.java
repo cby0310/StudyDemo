@@ -9,6 +9,8 @@ public class SelectSort {
         int[] datas = new int[]{1, 3, 2, 3, 2, 13, 44};
         selectSort(datas);
         SortUtil.printArray(datas);
+
+        System.gc();
     }
 
     /**

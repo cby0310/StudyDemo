@@ -38,6 +38,16 @@ public class Test {
 
 
     @org.junit.Test
+    public void internTest() {
+        String s1 = new StringBuilder("计算机").append("软件").toString();
+        System.err.println(s1.intern() == s1);
+
+//        String java = "java";
+        String s2 = new StringBuilder("ja").append("va").toString();
+        System.err.println(s2.intern() == s2);
+    }
+
+    @org.junit.Test
     public void test() {
         char a = 'a';
         System.err.print(++a);

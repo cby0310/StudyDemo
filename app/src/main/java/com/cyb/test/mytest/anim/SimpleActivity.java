@@ -1,6 +1,7 @@
 package com.cyb.test.mytest.anim;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -23,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.cyb.test.mytest.MyLog;
 import com.cyb.test.mytest.R;
 import com.nineoldandroids.animation.Animator;
@@ -31,6 +33,8 @@ import com.nineoldandroids.animation.ArgbEvaluator;
 import com.nineoldandroids.animation.IntEvaluator;
 import com.nineoldandroids.animation.ObjectAnimator;
 import com.nineoldandroids.animation.ValueAnimator;
+
+import java.io.ByteArrayOutputStream;
 
 
 public class SimpleActivity extends AppCompatActivity {
@@ -103,13 +107,21 @@ public class SimpleActivity extends AppCompatActivity {
 //                .heightPixels);
 
 
-        new Thread() {
-            @Override
-            public void run() {
-                super.run();
-                t.setText("48484");
-            }
-        }.start();
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.mipmap.a86833b6fae5a688ecbb1448e00bd69174bc8ed187cfa4a52626d297785eef9);
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 10, baos);
+        byte[] datas = baos.toByteArray();
+        Glide.with(this).load(datas).into(icon);
+
+//        new Thread() {
+//            @Override
+//            public void run() {
+//                super.run();
+//                t.setText("48484");
+//            }
+//        }.start();
     }
 
     public void start(View view) {
