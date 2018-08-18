@@ -23,9 +23,10 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }
 
+    private static volatile DBHelper helper = null;
 
     public static DBHelper getDBHelper(Context context) {
-        DBHelper helper = null;
+
         if (helper == null) {
             synchronized (DBHelper.class) {
                 if (helper == null) {

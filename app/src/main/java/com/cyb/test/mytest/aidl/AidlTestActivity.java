@@ -4,14 +4,13 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.cyb.test.mytest.MainActivity;
 import com.cyb.test.mytest.R;
 
 import java.util.List;
@@ -23,7 +22,6 @@ public class AidlTestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aidl_test2);
-
 
         Intent intent = new Intent(this, BookManagerService.class);
         bindService(intent, MyServiceConn, Context.BIND_AUTO_CREATE);

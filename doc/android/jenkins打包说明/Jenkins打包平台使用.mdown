@@ -1,0 +1,15 @@
+# Jenkins打包平台使用
+| 版本 | 修改人 | 说明 |
+| -- | -- | -- |
+| V1.0 | 熊艺凯 | 基本使用 |
+
+
+### 1.账号密码
+访问网址：http://jenkins.zhuolipu.com:8080/<br/>用户名：android<br/>密码：123456
+### 2.打包过程
+1. Dashbord界面<br/>登录成功之后会看到如下界面<br/>![Jenkins_dashbord.png](./Jenkins_dashbord.png "Jenkins_Dashbord")
+2. 工程界面<br/>点击`HZMSQ-Android`,进入工程界面<br/>![工程界面](./Jenkins_project.png)`Build History`是构建版本的历史记录，下载链接可以把打包好的apk下载到本地，手机扫描二维码可以直接下载应用
+3. 打包<br/>点击`Build with Parameters`进入打包界面，如下图<br/>![打包界面](./Jenkins_build.png)<br/>`ENVIRONMENT`环境选择，可以选择发布环境，测试环境，开发环境，根据具体环境去选择<br/>`PRODUCT_FLAVORTS`打包渠道选择，现在只有默认DEFAULT的选择<br/>`IS_JENKINS`是否是通过jenkins平台打包的<br/>`BUILD_DATE`打包日期，默认就好，不用操作<br/>`GIT_TAG`可以根据标签打包，应用上线后，会在master分支上打上tag版本标签，可根据tag选择要打什么版本的包<br/>`GIT_BRANCHE`选择打包分支，开发的时候选择`origin/develop`分支，测试的时候选择`origin/test`分支，如果要打包线上版本，选择`origin/master`分支<br/>`BUILD_TIME`打包时间，默认就好，不用操作<br/><br/>一般情况下，测试只需要选择环境，选择分支，其他默认就行，然后点击`开始构建`进行打包，打包成功后，在`Build History`中会有展示，可通过下载链接或者二维码自行下载。
+
+### 3.其他
+目前只接入了嘿芝麻社区的打包功能，后续有时间会接入智警的打包功能，再慢慢接入代码检测和自动化测试等功能。

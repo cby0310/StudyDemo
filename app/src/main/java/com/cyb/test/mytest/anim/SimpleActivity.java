@@ -1,13 +1,17 @@
 package com.cyb.test.mytest.anim;
 
-import android.animation.Animator;
-import android.animation.AnimatorSet;
-import android.animation.IntEvaluator;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.animation.AlphaAnimation;
@@ -20,25 +24,75 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.cyb.test.mytest.MyLog;
 import com.cyb.test.mytest.R;
+import com.nineoldandroids.animation.Animator;
+import com.nineoldandroids.animation.AnimatorSet;
+import com.nineoldandroids.animation.ArgbEvaluator;
+import com.nineoldandroids.animation.IntEvaluator;
+import com.nineoldandroids.animation.ObjectAnimator;
+import com.nineoldandroids.animation.ValueAnimator;
+
+import java.io.ByteArrayOutputStream;
+
+import io.reactivex.Scheduler;
+import io.reactivex.plugins.RxJavaPlugins;
 
 
 public class SimpleActivity extends AppCompatActivity {
 
 
-    ImageView imageView;
+    ImageView imageView, icon;
     RelativeLayout activity_simple;
     AnimatorSet animatorSet;
     Button btn;
 
+    Handler mHandler = new Handler(Looper.getMainLooper());
+    Handler mHandler1 = new Handler(Looper.getMainLooper());
+    Toast t;
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_simple);
+
+        //
+        Scheduler scheduler = RxJavaPlugins.createComputationScheduler(null);
+
+
         imageView = (ImageView) findViewById(R.id.imageview);
+        icon = (ImageView) findViewById(R.id.icon);
         btn = (Button) findViewById(R.id.btn);
         activity_simple = (RelativeLayout) findViewById(R.id.activity_simple);
+
+        if (mHandler == mHandler1) {
+        }
+        if (mHandler.getLooper().getQueue() == mHandler1.getLooper().getQueue()) {
+
+        }
+
+//        mHandler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                Toast.makeText(SimpleActivity.this, "3000", Toast.LENGTH_SHORT).show();
+//                mHandler.removeCallbacksAndMessages(null);
+//            }
+//        }, 3000);
+        new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                Looper.prepare();
+                t = Toast.makeText(SimpleActivity.this, "sssss", Toast.LENGTH_SHORT);
+                t.show();
+                t.setText(Thread.currentThread().getName() + "");
+                Looper.loop();
+            }
+        }.start();
+
     }
 
     public void click(View view) {
@@ -50,7 +104,34 @@ public class SimpleActivity extends AppCompatActivity {
 //        frameAnimalTest();
 //        viewAnimTest();
 
-        animationTest();
+//        animationTest();
+
+//        icon.setImageResource(R.mipmap.device);
+//        printBitmapSize(icon);
+//
+//        Toast.makeText(SimpleActivity.this, getResources().getDisplayMetrics().widthPixels + " x " + getResources()
+// .getDisplayMetrics()
+//                .heightPixels + " " + getResources().getDisplayMetrics().density, Toast.LENGTH_SHORT).show();
+//        Log.d("Jesse", getResources().getDisplayMetrics().widthPixels + " x " + getResources().getDisplayMetrics()
+//                .heightPixels);
+
+
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap
+                .a86833b6fae5a688ecbb1448e00bd69174bc8ed187cfa4a52626d297785eef9);
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 10, baos);
+        byte[] datas = baos.toByteArray();
+        Glide.with(this).load(datas).into(icon);
+
+//        new Thread() {
+//            @Override
+//            public void run() {
+//                super.run();
+//                t.setText("48484");
+//            }
+//        }.start();
     }
 
     public void start(View view) {
@@ -67,9 +148,22 @@ public class SimpleActivity extends AppCompatActivity {
         MyLog.e("前  imageView.getTranslationX() = " + imageView.getTranslationX());
         MyLog.e("前  imageView.getX() = " + imageView.getX());
 
-        ObjectAnimator objectAnimator = ObjectAnimator.ofInt(imageView, "translationX", 10);
+//        animate(imageView).setDuration(1000).rotationXBy(720).x(100).y(100);
+
+
+        final ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(imageView, "translationX", 100);
+        final ObjectAnimator objectAnimator2 = ObjectAnimator.ofFloat(imageView, "translationY", 100);
         objectAnimator.setDuration(2000);
-        objectAnimator.addListener(new Animator.AnimatorListener() {
+        objectAnimator.setEvaluator(new ArgbEvaluator());
+        objectAnimator2.setDuration(2000);
+        objectAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                valueAnimator.getAnimatedFraction();
+                MyLog.e("0000 value = " + valueAnimator.getAnimatedValue());
+            }
+        });
+        objectAnimator.addListener(new com.nineoldandroids.animation.Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
 
@@ -81,7 +175,7 @@ public class SimpleActivity extends AppCompatActivity {
                 MyLog.e("imageView.getTranslationX() = " + imageView.getTranslationX());
                 MyLog.e("imageView.getX() = " + imageView.getX());
 
-                imageView.setX(200);
+//                imageView.setX(200);
             }
 
             @Override
@@ -95,6 +189,18 @@ public class SimpleActivity extends AppCompatActivity {
             }
         });
         objectAnimator.start();
+        objectAnimator2.start();
+        new Thread() {
+
+            @Override
+            public void run() {
+                super.run();
+                Looper.prepare();
+
+
+                Looper.loop();
+            }
+        }.start();
 
 
 //        ObjectAnimator objectAnimator1 = ObjectAnimator.ofFloat(imageView, "translationX", 100,-100);
@@ -220,7 +326,6 @@ public class SimpleActivity extends AppCompatActivity {
 
 
     private void animationTest() {
-
         MyLog.e("前  imageView.getLeft() = " + imageView.getLeft());
         MyLog.e("前  imageView.getTranslationX() = " + imageView.getTranslationX());
         MyLog.e("前  imageView.getX() = " + imageView.getX());
@@ -234,7 +339,6 @@ public class SimpleActivity extends AppCompatActivity {
 
 //        animation.setStartOffset(1000);
         animation.setInterpolator(new LinearInterpolator());
-
         animation.setFillAfter(true);
 //        animation.setFillBefore(true);
 
@@ -283,8 +387,21 @@ public class SimpleActivity extends AppCompatActivity {
     }
 
 
-    private void animationSetTest() {
-
+    private void printBitmapSize(ImageView imageView) {
+        if (imageView == null) return;
+        Drawable drawable = imageView.getDrawable();
+        if (drawable != null) {
+            BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
+            Bitmap bitmap = bitmapDrawable.getBitmap();
+            Log.d("Jesse", "w:" + bitmap.getWidth() + "  h:" + bitmap.getHeight());
+        } else {
+            Log.d("Jesse", "drawable null ");
+        }
     }
 
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+//        printBitmapSize(icon);
+    }
 }

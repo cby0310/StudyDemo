@@ -1,17 +1,10 @@
 package com.cyb.test.mytest.rxjave2;
 
-import android.content.Intent;
-import android.graphics.drawable.ShapeDrawable;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.ButtonBarLayout;
-import android.util.Log;
-import android.util.TypedValue;
 import android.view.View;
-import android.widget.Button;
 
-import com.cyb.test.mytest.MainActivity;
 import com.cyb.test.mytest.MyLog;
 import com.cyb.test.mytest.R;
 
@@ -19,7 +12,8 @@ import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
 import java.io.InterruptedIOException;
-import java.util.concurrent.TimeUnit;
+import java.util.ArrayList;
+import java.util.List;
 
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
@@ -28,16 +22,15 @@ import io.reactivex.FlowableOnSubscribe;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.BiFunction;
 import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
 import io.reactivex.plugins.RxJavaPlugins;
 import io.reactivex.schedulers.Schedulers;
-
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
 
 public class Rxjava2Activity extends AppCompatActivity {
 
@@ -63,6 +56,110 @@ public class Rxjava2Activity extends AppCompatActivity {
                 testZip();
             }
         });
+    }
+
+
+    public static void testMap() {
+
+        Observable<Integer> observable = Observable.create(new ObservableOnSubscribe<Integer>() {
+            @Override
+            public void subscribe(ObservableEmitter<Integer> e) throws Exception {
+                e.onNext(1);
+                e.onNext(2);
+                e.onNext(3);
+                e.onNext(4);
+            }
+        });
+
+        System.err.println("Integer : ");
+        Observer<String> observer = new Observer<String>() {
+
+            @Override
+            public void onSubscribe(Disposable d) {
+                System.err.println("onSubscribe ");
+            }
+
+            @Override
+            public void onNext(String i) {
+                System.err.println("Integer : " + i);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                System.err.println("e ");
+            }
+
+            @Override
+            public void onComplete() {
+                System.err.println("onComplete ");
+            }
+        };
+
+
+        observable/*.subscribeOn(Schedulers.io()).observeOn(Schedulers.io())*/
+                .map(new Function<Integer, String>() {
+                    @Override
+                    public String apply(Integer integer) throws Exception {
+                        return "i am " + integer;
+                    }
+                })
+                .subscribe(observer);
+    }
+
+
+    public static void testFlatMap() {
+
+        final Observable<Integer> observable = Observable.create(new ObservableOnSubscribe<Integer>() {
+            @Override
+            public void subscribe(ObservableEmitter<Integer> e) throws Exception {
+                e.onNext(1);
+                e.onNext(2);
+                e.onNext(3);
+                e.onNext(4);
+            }
+        });
+
+        Observer<String> observer = new Observer<String>() {
+
+            @Override
+            public void onSubscribe(Disposable d) {
+                System.err.println("onSubscribe ");
+            }
+
+            @Override
+            public void onNext(String i) {
+                System.err.println("Integer : " + i);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                System.err.println("e ");
+            }
+
+            @Override
+            public void onComplete() {
+                System.err.println("onComplete ");
+            }
+        };
+
+
+        observable.subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
+                .flatMap(new Function<Integer, ObservableSource<String>>() {
+                    @Override
+                    public ObservableSource<String> apply(Integer integer) throws Exception {
+                        List<String> list = new ArrayList();
+                        for (int i = 0; i < 3; i++) {
+                            list.add("i am " + integer);
+                        }
+                        return Observable.fromIterable(list);
+                    }
+                })
+                .subscribe(observer);
+    }
+
+
+    public static void main(String[] args){
+        testFlatMap();
     }
 
 

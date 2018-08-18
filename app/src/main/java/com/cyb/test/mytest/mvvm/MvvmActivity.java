@@ -1,8 +1,9 @@
 package com.cyb.test.mytest.mvvm;
 
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-
 
 
 public class MvvmActivity extends AppCompatActivity {
@@ -17,5 +18,6 @@ public class MvvmActivity extends AppCompatActivity {
 //        user.setUsername("zhangsan");
 //        user.setNickname("张三");
 //        mvvmActivity.setUser(user);
+
     }
 }

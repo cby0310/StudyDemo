@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter>
+    <!--包过滤-->
+    <Match>
+        <Package name="~com\.heyzhima\.yw.*"/>
+    </Match>
+    <Match>
+        <Package name="~com\.zhuolipu\.yunxin.*"/>
+    </Match>
+    <Match>
+        <Package name="~com\.zhuolipu\.websocket.*"/>
+    </Match>
+</FindBugsFilter>
