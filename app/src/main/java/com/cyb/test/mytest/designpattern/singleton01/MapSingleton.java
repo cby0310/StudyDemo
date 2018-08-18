@@ -15,6 +15,7 @@ public class MapSingleton {
         if (!objectMap.containsKey(key)) {
             objectMap.put(key, instance);
         }
+        Integer integer = 2;
     }
 
     public static Object getInstence(String key) {

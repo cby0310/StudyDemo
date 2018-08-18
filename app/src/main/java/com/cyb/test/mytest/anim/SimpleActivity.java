@@ -36,6 +36,9 @@ import com.nineoldandroids.animation.ValueAnimator;
 
 import java.io.ByteArrayOutputStream;
 
+import io.reactivex.Scheduler;
+import io.reactivex.plugins.RxJavaPlugins;
+
 
 public class SimpleActivity extends AppCompatActivity {
 
@@ -55,6 +58,11 @@ public class SimpleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_simple);
+
+        //
+        Scheduler scheduler = RxJavaPlugins.createComputationScheduler(null);
+
+
         imageView = (ImageView) findViewById(R.id.imageview);
         icon = (ImageView) findViewById(R.id.icon);
         btn = (Button) findViewById(R.id.btn);
@@ -101,14 +109,16 @@ public class SimpleActivity extends AppCompatActivity {
 //        icon.setImageResource(R.mipmap.device);
 //        printBitmapSize(icon);
 //
-//        Toast.makeText(SimpleActivity.this, getResources().getDisplayMetrics().widthPixels + " x " + getResources().getDisplayMetrics()
+//        Toast.makeText(SimpleActivity.this, getResources().getDisplayMetrics().widthPixels + " x " + getResources()
+// .getDisplayMetrics()
 //                .heightPixels + " " + getResources().getDisplayMetrics().density, Toast.LENGTH_SHORT).show();
 //        Log.d("Jesse", getResources().getDisplayMetrics().widthPixels + " x " + getResources().getDisplayMetrics()
 //                .heightPixels);
 
 
         BitmapFactory.Options options = new BitmapFactory.Options();
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.mipmap.a86833b6fae5a688ecbb1448e00bd69174bc8ed187cfa4a52626d297785eef9);
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap
+                .a86833b6fae5a688ecbb1448e00bd69174bc8ed187cfa4a52626d297785eef9);
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 10, baos);

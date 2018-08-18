@@ -30,6 +30,13 @@ public class Test {
     }
 
 
+    static int s = 2;
+
+    static {
+        s = 8;
+        System.err.println(s);
+    }
+
     //    @org.junit.Test
     public void testInstanceOf() {
         List<String> list = new ArrayList<>();
@@ -45,6 +52,13 @@ public class Test {
 //        String java = "java";
         String s2 = new StringBuilder("ja").append("va").toString();
         System.err.println(s2.intern() == s2);
+
+//        System.err.println((-9 >>> 3) + "");// 正数时>>和>>>前面补0,负数>>>补0，>>补1   无符号（三个的，符号位也跟着移动）右移正负数都是补0，有符号正数补0，负数补1
+//        System.err.println(Integer.toBinaryString(-2));
+//        System.err.println(Integer.toBinaryString(-8));
+//        System.err.println((-2 << 3) + "");// 所有的左移都是补0
+//        System.err.println(Integer.toBinaryString(-2));
+//        System.err.println(Integer.toBinaryString(-16));
     }
 
     @org.junit.Test
@@ -52,6 +66,18 @@ public class Test {
         char a = 'a';
         System.err.print(++a);
         System.err.print(a + 1);
+
+
+        Integer a11 = 9;
+        int a2 = 9;
+        System.err.print(a11 == a2);
+    }
+
+    class MyClassLoader extends ClassLoader {
+        @Override
+        protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
+            return super.loadClass(name, resolve);
+        }
     }
 
     @org.junit.Test
