@@ -4,8 +4,8 @@ import android.util.Log;
 
 public class MyLog {
 
-
     
+
     private MyLog() {
         /* cannot be instantiated */
         throw new UnsupportedOperationException("cannot be instantiated");
