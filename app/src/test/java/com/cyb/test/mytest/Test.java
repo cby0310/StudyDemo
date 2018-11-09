@@ -1,5 +1,7 @@
 package com.cyb.test.mytest;
 
+import com.cyb.test.mytest.kotlin.KoTest;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,13 +12,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.FutureTask;
 
 /**
  * Created by chaoyongbing on 2017/12/1 10:31.
  */
 
 public class Test {
-    public static void main(String[] args) {
+    @org.junit.Test
+    public void main() {
         ArrayList<Date> list = new ArrayList<Date>();
         list.add(new Date());
         Date myDate = list.get(0);
@@ -37,10 +43,14 @@ public class Test {
         System.err.println(s);
     }
 
-    //    @org.junit.Test
+    @org.junit.Test
     public void testInstanceOf() {
         List<String> list = new ArrayList<>();
         System.err.println(list instanceof List<?>);
+
+
+        KoTest koTest = new KoTest();
+        koTest.printTest();
     }
 
 
@@ -157,4 +167,40 @@ public class Test {
     }
 
 
+    @org.junit.Test
+    public void testFutureTask() {
+        Callable<String> callable = new Callable<String>() {
+            @Override
+            public String call() throws Exception {
+                Thread.sleep(5 * 1000);
+                System.err.println("wwwwww");
+                return "123";
+            }
+        };
+        FutureTask futureTask = new FutureTask(callable) {
+            @Override
+            protected void done() {
+                super.done();
+                if (isCancelled()) return;
+                try {
+                    System.err.println(get());
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        new Thread(futureTask).start();
+
+
+        try {
+            Thread.sleep(3 * 1000);
+            System.err.println("3s end");
+            futureTask.cancel(false);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+    }
 }

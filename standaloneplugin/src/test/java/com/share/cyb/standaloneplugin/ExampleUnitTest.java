@@ -1,8 +1,8 @@
 package com.share.cyb.standaloneplugin;
 
-import org.junit.Test;
+import org.gradle.internal.impldep.org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.gradle.internal.impldep.org.junit.Assert.assertEquals;
 
 /**
  * Example local unit test, which will execute on the development machine (host).

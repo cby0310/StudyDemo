@@ -15,7 +15,7 @@ public class ProducerConsumerReentrantLock {
     private Condition full = lock.newCondition();//容量满时进入等待
     private Condition empty = lock.newCondition();//容量空时进入等待
 
-    private static final int CAPACITY = 100;
+    private static final int CAPACITY = 2;
 
     private Object[] items = new Object[CAPACITY];
     private int count, putIndex, takeIndex;
@@ -71,14 +71,14 @@ public class ProducerConsumerReentrantLock {
         };
         putThread.setName("生产线程1");
         putThread.start();
-//        putThread2.setName("生产线程2");
-//        putThread2.start();
+        putThread2.setName("生产线程2");
+        putThread2.start();
 //        putThread3.setName("生产线程3");
 //        putThread3.start();
         takeThread.setName("消费线程1");
         takeThread.start();
-        takeThread2.setName("消费线程2");
-        takeThread2.start();
+//        takeThread2.setName("消费线程2");
+//        takeThread2.start();
     }
 
     /**
@@ -100,6 +100,7 @@ public class ProducerConsumerReentrantLock {
         try {
             while (count == CAPACITY) {//多个消费者时这里需要用while
                 System.err.println(Thread.currentThread().getName() + "容量满了，进入等待");
+//                Thread.sleep(2000000);//若是sleep了则会发生死锁，因为sleep不会释放锁
                 full.await();//这一句会释放掉锁，把资源给其它线程
                 System.err.println(Thread.currentThread().getName() + "被唤醒,当前数量" + count);
             }

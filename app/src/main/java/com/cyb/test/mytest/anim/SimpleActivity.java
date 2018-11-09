@@ -60,7 +60,7 @@ public class SimpleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_simple);
 
         //
-        Scheduler scheduler = RxJavaPlugins.createComputationScheduler(null);
+//        Scheduler scheduler = RxJavaPlugins.createComputationScheduler(null);
 
 
         imageView = (ImageView) findViewById(R.id.imageview);
