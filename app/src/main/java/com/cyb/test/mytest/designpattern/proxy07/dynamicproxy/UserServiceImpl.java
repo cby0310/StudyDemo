@@ -7,7 +7,8 @@ package com.cyb.test.mytest.designpattern.proxy07.dynamicproxy;
 public class UserServiceImpl implements UserService {
 
     @Override
-    public void add() {
+    public boolean add() {
         System.out.println("----- add -----");
+        return true;
     }
 }

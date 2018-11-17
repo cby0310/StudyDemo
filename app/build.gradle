@@ -174,7 +174,6 @@ dependencies {
 //    testCompile "org.robolectric:robolectric:3.6-SNAPSHOT"
     //******** 单元测试相关 END **********
 
-
 //    api "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 //    api "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

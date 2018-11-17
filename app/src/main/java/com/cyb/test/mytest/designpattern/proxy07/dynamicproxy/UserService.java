@@ -5,5 +5,5 @@ package com.cyb.test.mytest.designpattern.proxy07.dynamicproxy;
  */
 
 public interface UserService {
-    void add();
+    boolean add();
 }

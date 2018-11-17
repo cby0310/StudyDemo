@@ -1,6 +1,5 @@
 package com.cyb.test.mytest;
 
-import com.cyb.test.mytest.kotlin.KoTest;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -49,8 +48,6 @@ public class Test {
         System.err.println(list instanceof List<?>);
 
 
-        KoTest koTest = new KoTest();
-        koTest.printTest();
     }
 
 
