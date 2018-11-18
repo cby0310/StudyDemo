@@ -5,10 +5,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
+import android.os.*;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -48,7 +45,13 @@ public class SimpleActivity extends AppCompatActivity {
     AnimatorSet animatorSet;
     Button btn;
 
-    Handler mHandler = new Handler(Looper.getMainLooper());
+    Handler mHandler = new Handler(Looper.getMainLooper()){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            Log.e("Terry","handleMessage  handleMessage");
+        }
+    };
     Handler mHandler1 = new Handler(Looper.getMainLooper());
     Toast t;
 
@@ -67,6 +70,11 @@ public class SimpleActivity extends AppCompatActivity {
         icon = (ImageView) findViewById(R.id.icon);
         btn = (Button) findViewById(R.id.btn);
         activity_simple = (RelativeLayout) findViewById(R.id.activity_simple);
+
+        Log.e("Terry","sendEmptyMessage before");
+        mHandler.sendEmptyMessage(10);
+        Log.e("Terry","sendEmptyMessage end");
+
 
         if (mHandler == mHandler1) {
         }
@@ -92,7 +100,14 @@ public class SimpleActivity extends AppCompatActivity {
                 Looper.loop();
             }
         }.start();
+        Log.e("Terry","sendEmptyMessage oncreate  end");
+    }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e("Terry","sendEmptyMessage onresume end");
     }
 
     public void click(View view) {

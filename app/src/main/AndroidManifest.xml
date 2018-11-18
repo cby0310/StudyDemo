@@ -72,8 +72,6 @@
                 android:name=".provider.preview.AppleProvider"
                 android:authorities="com.cyb.appleprovider"/>
 
-        <activity android:name=".KotlinActivity">
-        </activity>
     </application>
 
 </manifest>
