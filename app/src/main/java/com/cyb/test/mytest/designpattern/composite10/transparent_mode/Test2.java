@@ -1,7 +1,7 @@
 package com.cyb.test.mytest.designpattern.composite10.transparent_mode;
 
 /**
- * 透明的组合模式，将抽象进行到底
+ * 透明的组合模式，将抽象进行到底，面向接口编程
  */
 public class Test2 {
     public static void main(String[] args) {
