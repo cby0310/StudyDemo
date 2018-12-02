@@ -22,5 +22,11 @@ public class Test {
         Decorator decoratorB = new ConcreteDecoratorB(component);
         decoratorB.operate();
         System.out.println();
+
+        Decorator decoratorAB = new ConcreteDecoratorB(decoratorA);
+        decoratorAB.operate();
+        System.out.println();
+
+
     }
 }
