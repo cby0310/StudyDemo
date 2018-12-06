@@ -32,6 +32,7 @@ public class CollectionTest {
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add("00");
         arrayList.add("11");
+        arrayList.get(1);
         print(arrayList);
 
         Vector<String> vector = new Vector<>();
@@ -51,6 +52,7 @@ public class CollectionTest {
         linkedList.add("0");
         linkedList.addFirst("1");
         linkedList.addLast("2");
+        linkedList.get(1);//分开两段去遍历
         print(linkedList);
 
     }

@@ -23,7 +23,7 @@ android {
     defaultConfig {
         applicationId "com.cyb.test.mytest"
         minSdkVersion 15
-        targetSdkVersion 23
+        targetSdkVersion 21
         versionCode verCode
         versionName APP_VERSION
         resValue("string", 'app_version', APP_VERSION)

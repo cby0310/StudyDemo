@@ -5,6 +5,11 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.intent.action.cyb.permission"/>
+    <permission android:name="android.intent.action.cyb.permission"/>
 
     <application
             android:name=".MyApp"
@@ -72,6 +77,17 @@
                 android:name=".provider.preview.AppleProvider"
                 android:authorities="com.cyb.appleprovider"/>
 
+        <receiver android:name=".broadcastreceiver.BroadcastReceiverA"
+                  android:permission="android.intent.action.cyb.permission">
+            <intent-filter android:priority="100">
+                <action android:name="android.intent.action.cyb"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".broadcastreceiver.BroadcastReceiverB">
+            <intent-filter android:priority="100">
+                <action android:name="android.intent.action.cyb"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
