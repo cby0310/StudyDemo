@@ -1,7 +1,8 @@
 package com.cyb.test.mytest.anim;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -11,30 +12,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewConfiguration;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
-import android.view.animation.AnimationUtils;
-import android.view.animation.LinearInterpolator;
+import android.view.animation.*;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-
-import com.bumptech.glide.Glide;
 import com.cyb.test.mytest.MyLog;
 import com.cyb.test.mytest.R;
-import com.nineoldandroids.animation.Animator;
-import com.nineoldandroids.animation.AnimatorSet;
-import com.nineoldandroids.animation.ArgbEvaluator;
-import com.nineoldandroids.animation.IntEvaluator;
-import com.nineoldandroids.animation.ObjectAnimator;
-import com.nineoldandroids.animation.ValueAnimator;
+import com.nineoldandroids.animation.*;
 
-import java.io.ByteArrayOutputStream;
+import java.io.*;
+import java.util.ArrayList;
 
-import io.reactivex.Scheduler;
-import io.reactivex.plugins.RxJavaPlugins;
+import static android.os.Environment.DIRECTORY_DOWNLOADS;
 
 
 public class SimpleActivity extends AppCompatActivity {
@@ -45,11 +35,11 @@ public class SimpleActivity extends AppCompatActivity {
     AnimatorSet animatorSet;
     Button btn;
 
-    Handler mHandler = new Handler(Looper.getMainLooper()){
+    Handler mHandler = new Handler(Looper.getMainLooper()) {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            Log.e("Terry","handleMessage  handleMessage");
+            Log.e("Terry", "handleMessage  handleMessage");
         }
     };
     Handler mHandler1 = new Handler(Looper.getMainLooper());
@@ -71,9 +61,9 @@ public class SimpleActivity extends AppCompatActivity {
         btn = (Button) findViewById(R.id.btn);
         activity_simple = (RelativeLayout) findViewById(R.id.activity_simple);
 
-        Log.e("Terry","sendEmptyMessage before");
+        Log.e("Terry", "sendEmptyMessage before");
         mHandler.sendEmptyMessage(10);
-        Log.e("Terry","sendEmptyMessage end");
+        Log.e("Terry", "sendEmptyMessage end");
 
 
         if (mHandler == mHandler1) {
@@ -100,15 +90,54 @@ public class SimpleActivity extends AppCompatActivity {
                 Looper.loop();
             }
         }.start();
-        Log.e("Terry","sendEmptyMessage oncreate  end");
+        Log.e("Terry", "sendEmptyMessage oncreate  end");
     }
 
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.e("Terry","sendEmptyMessage onresume end");
+        Log.e("Terry", "sendEmptyMessage onresume end");
     }
+
+
+    public static File externalStorageDirectory(Context context) {
+        File downloadsDirectory = Environment.getExternalStoragePublicDirectory(DIRECTORY_DOWNLOADS);
+        return new File(downloadsDirectory, "leakcanary-com.husor.beidian");
+    }
+
+
+    private static final String FILE_NAME = "fixed_list";
+
+    public static void saveResultNameList(Context context, ArrayList<String> list) {
+        try {
+            File storageDirectory = externalStorageDirectory(context);
+            File fixed = new File(storageDirectory, FILE_NAME);
+            ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(fixed));
+            outputStream.writeObject(list);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static ArrayList getResultNameList(Context context) {
+
+        try {
+            File storageDirectory = externalStorageDirectory(context);
+            File fixed = new File(storageDirectory, FILE_NAME);
+            ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(fixed));
+            return (ArrayList) objectInputStream.readObject();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return new ArrayList();
+    }
+
 
     public void click(View view) {
 //        if (null != animatorSet) {
@@ -131,14 +160,14 @@ public class SimpleActivity extends AppCompatActivity {
 //                .heightPixels);
 
 
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap
-                .a86833b6fae5a688ecbb1448e00bd69174bc8ed187cfa4a52626d297785eef9);
-
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 10, baos);
-        byte[] datas = baos.toByteArray();
-        Glide.with(this).load(datas).into(icon);
+//        BitmapFactory.Options options = new BitmapFactory.Options();
+//        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap
+//                .a86833b6fae5a688ecbb1448e00bd69174bc8ed187cfa4a52626d297785eef9);
+//
+//        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//        bitmap.compress(Bitmap.CompressFormat.PNG, 10, baos);
+//        byte[] datas = baos.toByteArray();
+//        Glide.with(this).load(datas).into(icon);
 
 //        new Thread() {
 //            @Override
@@ -147,6 +176,11 @@ public class SimpleActivity extends AppCompatActivity {
 //                t.setText("48484");
 //            }
 //        }.start();
+
+//        sendBroadcast(new Intent("android.intent.action.cyb"),"android.intent.action.cyb.permission");
+        Intent intent = new Intent("android.intent.action.cyb");
+        intent.putExtra("key","origin");
+        sendBroadcast(intent, "android.intent.action.cyb.permission");
     }
 
     public void start(View view) {
