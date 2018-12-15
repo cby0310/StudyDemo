@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <com.mercury.alihomepage.HeaderView
+        android:id="@+id/headerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <com.mercury.alihomepage.SnapView
+            android:id="@+id/snapView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#2484CF" >
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:src="@drawable/snap" />
+        </com.mercury.alihomepage.SnapView >
+
+        <com.mercury.alihomepage.BarView
+            android:id="@+id/barView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#2484CF" >
+
+            <ImageView
+                android:id="@+id/bar2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/bar2" />
+
+            <ImageView
+                android:id="@+id/bar1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/bar1" />
+
+        </com.mercury.alihomepage.BarView >
+    </com.mercury.alihomepage.HeaderView>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/scrolling_view_behavior" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:text="@string/text"
+            android:textSize="16sp" />
+
+    </android.support.v4.widget.NestedScrollView >
+
+</android.support.design.widget.CoordinatorLayout >

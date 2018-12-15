@@ -1,1 +1,7 @@
-include ':app',':buildSrc', ':standaloneplugin'
+include ':app', ':buildSrc', ':standaloneplugin', ':alihomepage'
+
+apply from: './config.gradle'
+
+//gradle.ext {
+//    var = var
+//}

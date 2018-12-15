@@ -1,5 +1,6 @@
-project.task("showConfig") {
-    doLast {
-        println("$project.name:showConfig")
-    }
-}
+gradle.ext.var = [
+        compileSdkVersion: 26,
+        minSdkVersion    : 15,
+        targetSdkVersion : 21,
+        supportVersion   : "26.0.1"
+]
