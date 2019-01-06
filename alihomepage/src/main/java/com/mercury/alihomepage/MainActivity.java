@@ -1,16 +1,15 @@
 package com.mercury.alihomepage;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.widget.NestedScrollView;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-
 import com.mercury.material_design.R;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     NestedScrollView mScrollView;
-    HeaderView       mHeaderView;
+    HeaderView mHeaderView;
 
     public static final String TAG = "MainActivity";
 

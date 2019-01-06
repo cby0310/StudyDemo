@@ -1,5 +1,5 @@
 gradle.ext.var = [
-        compileSdkVersion: 26,
+        compileSdkVersion: 22,
         minSdkVersion    : 15,
         targetSdkVersion : 21,
         supportVersion   : "26.0.1"

@@ -2,7 +2,6 @@ package com.cyb.test.mytest.aidl;
 
 import android.app.Service;
 import android.content.Intent;
-import android.os.Binder;
 import android.os.IBinder;
 import android.os.RemoteCallbackList;
 import android.os.RemoteException;
@@ -46,7 +45,12 @@ public class BookManagerService extends Service {
     }
 
 
-    private Binder mBinder = new IBookManager.Stub() {
+    private IBinder mBinder = new IBookManager.Stub() {
+
+        @Override
+        public IBinder asBinder() {
+            return super.asBinder();
+        }
 
         @Override
         public List<Book> getBookList() throws RemoteException {
@@ -69,20 +73,20 @@ public class BookManagerService extends Service {
 //            if (listeners.contains(listener)) {
 //                Log.e("TAG", "已经有了");
 //            } else {
-                listeners.register(listener);
-                int size = listeners.beginBroadcast();
-                Log.e("TAG", "添加成功：" + size);
-                listeners.finishBroadcast();
+            listeners.register(listener);
+            int size = listeners.beginBroadcast();
+            Log.e("TAG", "添加成功：" + size);
+            listeners.finishBroadcast();
 //            }
         }
 
         @Override
         public void cancelListener(IOnNewBookArrivedListener listener) throws RemoteException {
 //            if (listeners.contains(listener)) {
-                listeners.unregister(listener);
-                int size = listeners.beginBroadcast();
-                Log.e("TAG", "移除成功：" + size);
-                listeners.finishBroadcast();
+            listeners.unregister(listener);
+            int size = listeners.beginBroadcast();
+            Log.e("TAG", "移除成功：" + size);
+            listeners.finishBroadcast();
 //            } else {
 //                Log.e("TAG", "移除失败，不存在");
 //            }

@@ -1,16 +1,15 @@
 package com.cyb.test.mytest;
 
 
+import android.support.annotation.NonNull;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
@@ -19,7 +18,21 @@ import java.util.concurrent.FutureTask;
  * Created by chaoyongbing on 2017/12/1 10:31.
  */
 
-public class Test {
+public class Test implements Comparable{
+    @Override
+    public int compareTo(@NonNull Object o) {
+        return 0;
+    }
+
+    @org.junit.Test
+    public void testInteger2() {
+
+        int a = 2;
+        int rusult = a++ + 4 << 2;
+        System.err.println(rusult);
+//Collections.sort();
+    }
+
     @org.junit.Test
     public void main() {
         ArrayList<Date> list = new ArrayList<Date>();

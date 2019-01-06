@@ -1,6 +1,6 @@
 //以下为测试内容
 ext {
-    local = 'Hello from build.gradle'
+    local = 'InvokeDynamicHello from build.gradle'
 }
 //<< 相当于使用了doLast
 task printProperties << {
@@ -13,7 +13,7 @@ task printProperties << {
 
 
 def name = 'Andy'
-def greeting = "Hello, $name!"
+def greeting = "InvokeDynamicHello, $name!"
 def name_size = "Your name is ${name.size()} characters long."
 def result = square1 2
 task printTest << {

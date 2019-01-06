@@ -179,8 +179,17 @@ public class SimpleActivity extends AppCompatActivity {
 
 //        sendBroadcast(new Intent("android.intent.action.cyb"),"android.intent.action.cyb.permission");
         Intent intent = new Intent("android.intent.action.cyb");
-        intent.putExtra("key","origin");
+        intent.putExtra("key", "origin");
         sendBroadcast(intent, "android.intent.action.cyb.permission");
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent("com.cyb.test.mytest.broadcastreceiver.dynamic_br");
+                sendBroadcast(intent);
+            }
+        }, 2000);
+
     }
 
     public void start(View view) {

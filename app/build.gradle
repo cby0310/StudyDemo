@@ -126,6 +126,12 @@ android {
     dataBinding {
         enabled true
     }
+//    compileOptions {
+//        sourceCompatibility = '1.8'
+//        targetCompatibility = '1.8'
+//        sourceCompatibility JavaVersion.VERSION_1_8
+//        targetCompatibility JavaVersion.VERSION_1_8
+//    }
 }
 
 dependencies {
@@ -142,11 +148,9 @@ dependencies {
     //    annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0-RC0'
     //    provided 'javax.annotation:javax.annotation-api:1.2'
     //dagger2
-//    compile 'com.android.support:appcompat-v7:25.3.1'
+    //    compile 'com.android.support:appcompat-v7:25.3.1'
     implementation files('libs/httpmime-4.1.3.jar')
     implementation files('libs/nineoldandroids-2.4.0.jar')
-
-
     implementation 'com.android.support:design:26.1.0'
     implementation 'io.reactivex.rxjava2:rxjava:2.1.0'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
@@ -164,22 +168,23 @@ dependencies {
     annotationProcessor 'com.google.dagger:dagger-compiler:2.0'
     provided 'org.glassfish:javax.annotation:10.0-b28'
     implementation 'org.jetbrains:annotations-java5:15.0'
-
+    implementation 'org.ow2.asm:asm-all:5.2'
+    compile 'cglib:cglib:3.0'
     //******** 单元测试相关START *********
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:2.7.22'
     androidTestCompile 'org.mockito:mockito-android:2.7.22'
     testCompile 'org.robolectric:robolectric:3.3.2'
     testCompile 'org.robolectric:shadows-multidex:3.2.2'
-//    compile 'com.android.tools.build:gradle:2.3.3'
-//    testCompile "org.robolectric:robolectric:3.6-SNAPSHOT"
+    //    compile 'com.android.tools.build:gradle:2.3.3'
+    //    testCompile "org.robolectric:robolectric:3.6-SNAPSHOT"
     //******** 单元测试相关 END **********
-
-//    api "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-//    api "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
-    api ("org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"){
+    //    api "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    //    api "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+    api("org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version") {
         exclude group: 'org.jetbrains', module: 'annotations'
     }
+    compile 'me.weishu:epic:0.3.6'
 }
 
 

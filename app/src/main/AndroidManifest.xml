@@ -53,6 +53,14 @@
         <activity
                 android:name=".anim.SimpleActivity"
                 android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+        </activity>
+        <activity
+                android:name=".broadcastreceiver.BroadcastReceiverActivity"
+                android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+        </activity>
+        <activity
+                android:name=".popupwindow.PopupWindowTestActivty"
+                android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -77,9 +85,8 @@
                 android:name=".provider.preview.AppleProvider"
                 android:authorities="com.cyb.appleprovider"/>
 
-        <receiver android:name=".broadcastreceiver.BroadcastReceiverA"
-                  android:permission="android.intent.action.cyb.permission">
-            <intent-filter android:priority="100">
+        <receiver android:name=".broadcastreceiver.BroadcastReceiverA">
+            <intent-filter android:priority="80">
                 <action android:name="android.intent.action.cyb"/>
             </intent-filter>
         </receiver>
