@@ -1,4 +1,4 @@
-include ':app', ':buildSrc', ':standaloneplugin', ':alihomepage'
+include ':app', ':buildSrc', ':standaloneplugin'//, ':alihomepage'
 
 apply from: './config.gradle'
 

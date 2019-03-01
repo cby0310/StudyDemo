@@ -21,7 +21,7 @@ android {
     compileSdkVersion 26
     buildToolsVersion "26.0.2"
     defaultConfig {
-        applicationId "com.cyb.test.mytest"
+        applicationId "com.cyb.test.mytest.fuck"
         minSdkVersion 15
         targetSdkVersion 21
         versionCode verCode
@@ -31,13 +31,21 @@ android {
         buildConfigField 'String', 'API_SERVER_URL', RELEASE_API_SERVER_URL
         buildConfigField 'String', 'API_SERVER_URL_MALL', RELEASE_API_SERVER_URL_MALL
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
 //        jackOptions {
 //            enabled true
 //        }
 
     }
 
+
+    splits {
+        abi {
+            enable true
+            reset()
+            include 'x86', 'armeabi-v7a','x86_64'
+            universalApk true
+        }
+    }
 //    aaptOptions {
 //        cruncherEnabled = false
 //    }
@@ -169,12 +177,16 @@ dependencies {
     provided 'org.glassfish:javax.annotation:10.0-b28'
     implementation 'org.jetbrains:annotations-java5:15.0'
     implementation 'org.ow2.asm:asm-all:5.2'
-    compile 'cglib:cglib:3.0'
+    compile ('cglib:cglib:3.0'){
+        exclude group: 'org.ow2.asm', module: 'asm'
+    }
     //******** 单元测试相关START *********
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:2.7.22'
     androidTestCompile 'org.mockito:mockito-android:2.7.22'
-    testCompile 'org.robolectric:robolectric:3.3.2'
+    testCompile ('org.robolectric:robolectric:3.3.2'){
+        exclude group: 'org.ow2.asm', module: 'asm'
+    }
     testCompile 'org.robolectric:shadows-multidex:3.2.2'
     //    compile 'com.android.tools.build:gradle:2.3.3'
     //    testCompile "org.robolectric:robolectric:3.6-SNAPSHOT"
