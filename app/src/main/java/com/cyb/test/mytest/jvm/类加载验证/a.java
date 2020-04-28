@@ -9,7 +9,7 @@ public class a {
 
     public a() {
         i = 9;
-        String a1 = "444";
-        String a = "s" + "dd" + a1;
+        String a1 = "666"+"cyb";
+        a1 = "s" + "dd" + a1;
     }
 }
