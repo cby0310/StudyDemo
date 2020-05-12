@@ -14,13 +14,13 @@
     <!--android:orientation="vertical"-->
     <!--&gt;-->
 
-    <com.example.administrator.view.review.ParentView
+    <com.cyb.test.mytest.view.review.ParentView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         >
 
-        <com.example.administrator.view.review.ChildView
+        <com.cyb.test.mytest.view.review.ChildView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#aa8888"
@@ -30,7 +30,7 @@
             android:text="1111\n22222"
             android:textColor="@color/abc_primary_text_material_light"
             >
-        </com.example.administrator.view.review.ChildView>
-    </com.example.administrator.view.review.ParentView>
+        </com.cyb.test.mytest.view.review.ChildView>
+    </com.cyb.test.mytest.view.review.ParentView>
     <!--   </com.example.administrator.view.review.ParentView2>-->
 </LinearLayout>

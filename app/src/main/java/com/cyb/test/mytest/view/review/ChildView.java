@@ -25,7 +25,21 @@ public class ChildView extends android.support.v7.widget.AppCompatTextView {
         super(context, attrs, defStyleAttr);
     }
 
+    static int layoutCount = 0;
 
+    @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        super.onLayout(changed, l, t, r, b);
+
+        MyLog.e("onLayout " + ++layoutCount);
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+        MyLog.e("onMeasure " + ++layoutCount);
+    }
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
         switch (event.getAction()) {

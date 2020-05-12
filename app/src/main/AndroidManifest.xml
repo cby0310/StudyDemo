@@ -1,98 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.cyb.test.mytest">
+    package="com.cyb.test.mytest">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.intent.action.cyb.permission" />
 
-    <uses-permission android:name="android.intent.action.cyb.permission"/>
-    <permission android:name="android.intent.action.cyb.permission"/>
+    <permission android:name="android.intent.action.cyb.permission" />
 
     <application
-            android:name=".MyApp"
-            android:allowBackup="true"
-            android:icon="@mipmap/ic_launcher"
-            android:label="@string/app_name"
-            android:supportsRtl="true"
-            android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
-        </activity>
-
-        <service
-                android:name=".aidl.BookManagerService"
-                android:enabled="true"
-                android:exported="true"
-                android:process=":remotecyb">
-        </service>
-
-        <activity
-                android:name=".rxjave2.Rxjava2Activity"
-                android:theme="@style/AppTheme.cyb">
-        </activity>
-        <activity android:name=".myview.BatteryViewActivity">
-        </activity>
-        <activity android:name=".myview.JustifyTextViewActivity">
-        </activity>
-        <activity android:name=".dagger2.Dagger2Activity">
-        </activity>
-        <activity android:name=".slideback.BaseSlideBackActivity">
-        </activity>
-        <activity android:name=".thread.ThreadTestActivity">
-        </activity>
-        <activity android:name=".aidl.AidlTestActivity">
-        </activity>
-        <activity android:name=".android60_23.Main2Activity">
-        </activity>
-        <activity android:name=".db.DbTestActivity">
-        </activity>
-        <activity android:name=".aop.AopActivity">
-        </activity>
-        <activity
-                android:name=".anim.SimpleActivity"
-                android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
-        </activity>
-        <activity
-                android:name=".broadcastreceiver.BroadcastReceiverActivity"
-                android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
-        </activity>
-        <activity
-                android:name=".popupwindow.PopupWindowTestActivty"
-                android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+        android:name=".MyApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".view.RecyclerViewActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".mvp.LoginActivity">
-        </activity>
-        <activity android:name=".designpattern.observer05.AndroidCase">
-        </activity>
-        <activity android:name=".designpattern.adapter06.AndroidCase">
-        </activity>
-        <activity android:name=".view.review.ScrollActivity">
-        </activity>
+        <activity android:name=".view.ListViewActivity"></activity>
+        <activity android:name=".MainActivity" />
+
+        <service
+            android:name=".aidl.BookManagerService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":remotecyb" />
+
+        <activity
+            android:name=".rxjave2.Rxjava2Activity"
+            android:theme="@style/AppTheme.cyb" />
+        <activity android:name=".myview.BatteryViewActivity" />
+        <activity android:name=".myview.JustifyTextViewActivity" />
+        <activity android:name=".dagger2.Dagger2Activity" />
+        <activity android:name=".slideback.BaseSlideBackActivity" />
+        <activity android:name=".thread.ThreadTestActivity" />
+        <activity android:name=".aidl.AidlTestActivity" />
+        <activity android:name=".android60_23.Main2Activity" />
+        <activity android:name=".db.DbTestActivity" />
+        <activity android:name=".aop.AopActivity" />
+        <activity
+            android:name=".anim.SimpleActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity
+            android:name=".broadcastreceiver.BroadcastReceiverActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity
+            android:name=".popupwindow.PopupWindowTestActivty"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity android:name=".mvp.LoginActivity" />
+        <activity android:name=".designpattern.observer05.AndroidCase" />
+        <activity android:name=".designpattern.adapter06.AndroidCase" />
+        <activity android:name=".view.review.ScrollActivity" />
+        <activity android:name=".view.review.TouchEventActivity"></activity>
 
         <provider
-                android:name=".provider.BookProvider"
-                android:authorities="com.example.administrator.bookprovider"
-                android:permission="com.example.administrator.permission.bookprovider"
-                android:process=":provider"/>
+            android:name=".provider.BookProvider"
+            android:authorities="com.example.administrator.bookprovider"
+            android:permission="com.example.administrator.permission.bookprovider"
+            android:process=":provider" />
         <provider
-                android:name=".provider.preview.AppleProvider"
-                android:authorities="com.cyb.appleprovider"/>
+            android:name=".provider.preview.AppleProvider"
+            android:authorities="com.cyb.appleprovider" />
 
         <receiver android:name=".broadcastreceiver.BroadcastReceiverA">
             <intent-filter android:priority="80">
-                <action android:name="android.intent.action.cyb"/>
+                <action android:name="android.intent.action.cyb" />
             </intent-filter>
         </receiver>
         <receiver android:name=".broadcastreceiver.BroadcastReceiverB">
             <intent-filter android:priority="100">
-                <action android:name="android.intent.action.cyb"/>
+                <action android:name="android.intent.action.cyb" />
             </intent-filter>
         </receiver>
     </application>
