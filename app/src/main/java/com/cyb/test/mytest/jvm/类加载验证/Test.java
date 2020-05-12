@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by pc on 2018/7/21.
@@ -40,13 +41,37 @@ public class Test {
 //
 //        Student.method(new ArrayList<String>());
 //
-//        new Test().print();
-
-        String str = new String("111");
-        System.err.println(str);
+        new Test().print();
+//
+//        String str = new String("111");
+//        System.err.println(str);
     }
 
     public void print() {
+        System.err.println(c == d); //1
+        System.err.println(e == f); //0
+        System.err.println(c == (a + b)); //1
+        System.err.println(c.equals(a + b)); //1
+
+        System.err.println();
+        System.err.println(g == (a + b)); //1
+        System.err.println(g.equals(a + b)); //0 ，a+b为integer类型
+
+        System.err.println();
+        System.err.println(this.c == this.d); //1
+        System.err.println(this.e == this.f); //0
+
+        System.err.println();
+        System.err.println(this.c.intValue() == this.a.intValue() + this.b.intValue());//1
+        System.err.println(this.c.equals(Integer.valueOf(this.a.intValue() + this.b.intValue())));//1
+
+        System.err.println();
+        System.err.println(this.g.longValue() == (long) (this.a.intValue() + this.b.intValue()));//1
+        System.err.println(this.g.equals(Integer.valueOf(this.a.intValue() + this.b.intValue())));//0
+        System.err.println(Color.valueOf("RED"));
+        System.err.println(Color.values()[0]);
+//        System.err.println(Color.valueOf(Color.class, "BLUe"));
+//        System.err.println(Color.valueOf("RED1"));
 
         if (false) {
             System.err.println("true");
@@ -81,25 +106,6 @@ public class Test {
 //            }
 //        }
 
-        System.err.println(c == d);
-        System.err.println(e == f);
-        System.err.println(c == (a + b));
-        System.err.println(c.equals(a + b));
-        System.err.println(g == (a + b));
-        System.err.println(g.equals(a + b));
-
-        System.err.println();
-
-        System.err.println(this.c == this.d);
-        System.err.println(this.e == this.f);
-        System.err.println(this.c.intValue() == this.a.intValue() + this.b.intValue());
-        System.err.println(this.c.equals(Integer.valueOf(this.a.intValue() + this.b.intValue())));
-        System.err.println(this.g.longValue() == (long) (this.a.intValue() + this.b.intValue()));
-        System.err.println(this.g.equals(Integer.valueOf(this.a.intValue() + this.b.intValue())));
-        System.err.println(Color.valueOf("RED"));
-        System.err.println(Color.values());
-//        System.err.println(Color.valueOf(Color.class, "BLUe"));
-        System.err.println(Color.valueOf("RED1"));
     }
 
     enum Color {

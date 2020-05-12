@@ -35,7 +35,7 @@ public class Student implements Cloneable, IInterface {
         return super.clone();
     }
 
-    @Override
+//    @Override
     public void test() {
         int a = 9;
     }
