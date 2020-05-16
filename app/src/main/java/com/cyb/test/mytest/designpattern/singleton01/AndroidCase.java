@@ -20,7 +20,7 @@ public class AndroidCase extends Activity {
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
         super.onCreate(savedInstanceState);
         //内部通过XmlPullParser解析布局xml文件，采用的深度优先遍历来构造视图树：每解析到一个view就会递归调用rInflate方法，直到
-        // 路径的最后一个元素，然后回溯过来将每个view添加到它们的parent中
+        //路径的最后一个元素，然后回溯过来将每个view添加到它们的parent中
         setContentView(R.layout.activity_battery_view);
 
 
@@ -32,8 +32,8 @@ public class AndroidCase extends Activity {
 
     private void case1() {
         /**
-         * 1.ContextImpl使用Map保存各个service，这些service在静态代码块中进行了初始化和加入map
-         * 2.而且这些service也进行了缓存
+         * 1.SystemServiceRegistry有一个HashMap<String, ServiceFetcher<?>>，static代码块中registerService各个服务和对应的ServiceFetcher，ServiceFetcher中createService方法会新建相应的服务，所以这里不会立即新建服务对象实例，get时才会真正创建
+         * 2.ContextImpl中获取服务：SystemServiceRegistry.getSystemService().getService(),getService会先判断缓存中(这个缓存是ContextImpl中的一个数组,所以这些服务每个context中会有一份，其他还有ActivityManager、nfc等service，还有一些是不检验缓存的)是否存在，存在直接返回，不存在则在同步方法中调用createService方法创建后返回
          *
          * LayoutInflater是一个抽象类，具体实现类是PhoneLayoutInflater
          */

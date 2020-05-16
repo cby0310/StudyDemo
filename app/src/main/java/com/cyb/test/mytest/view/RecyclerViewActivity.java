@@ -11,6 +11,11 @@ import android.widget.TextView;
 
 import com.cyb.test.mytest.R;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.concurrent.locks.ReentrantLock;
+
 import static android.support.v7.widget.RecyclerView.VERTICAL;
 
 public class RecyclerViewActivity extends AppCompatActivity {
@@ -23,9 +28,20 @@ public class RecyclerViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler_view);
         recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(3, VERTICAL));
+        RecyclerView.LayoutManager layoutManager = new StaggeredGridLayoutManager(1, VERTICAL);
+        layoutManager.setItemPrefetchEnabled(false);
+        recyclerView.setLayoutManager(layoutManager);
+
+        Collections.sort(new ArrayList<String>(3), new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return 0;
+            }
+        });
+
 //        recyclerView.setLayoutManager(new LinearLayoutManager(this, VERTICAL, false));
         adapter = new RecyclerView.Adapter() {
+
             @Override
             public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
                 TextView textView = new TextView(parent.getContext());
@@ -34,7 +50,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
 
             @Override
             public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-                ((TextView) holder.itemView).setText("rv item： " + position);
+                ((TextView) holder.itemView).setText("   rv item： " + position);
                 ((TextView) holder.itemView).setHeight(200);
             }
 
@@ -48,6 +64,9 @@ public class RecyclerViewActivity extends AppCompatActivity {
                 return super.getItemViewType(position);
             }
         };
+
+        recyclerView.getChildLayoutPosition(null);
+        recyclerView.getChildAdapterPosition(null);
 
         recyclerView.setAdapter(adapter);
 
