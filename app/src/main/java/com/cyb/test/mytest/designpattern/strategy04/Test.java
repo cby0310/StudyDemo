@@ -22,8 +22,11 @@ public class Test {
         Test main = new Test();
         main.test();
 
-        List<String> strings = new ArrayList<>(2);
+        ArrayList<String> strings = new ArrayList<String>();
+        strings.add("");
+//        strings.add("");
         try {
+            strings.size();
             strings.set(1, "1111111111");
             strings.set(0, "00000000");
             strings.size();
