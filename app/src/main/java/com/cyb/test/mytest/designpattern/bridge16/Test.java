@@ -3,6 +3,7 @@ package com.cyb.test.mytest.designpattern.bridge16;
 /**
  * 桥接模式，链接两地的枢纽
  * 将抽象部分和实现部分分离（抽象部分和实现部分实际上对应的是两个独立变化的维度，并不一定是抽象或者实现），使他们都可以独立地进行变化
+ * https://www.runoob.com/w3cnote/bridge-pattern2.html
  */
 
 public class Test {
