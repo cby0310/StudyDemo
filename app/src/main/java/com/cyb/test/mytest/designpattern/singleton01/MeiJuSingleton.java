@@ -16,7 +16,7 @@ public class MeiJuSingleton {
 
     public static MeiJuSingleton getInstance() {
         Singleton.valueOf("INSTANCE");
-        return Singleton1.INSTANCE.getInstance();
+        return Singleton.INSTANCE.getInstance();
     }
 
     private enum Singleton {
@@ -32,39 +32,39 @@ public class MeiJuSingleton {
         }
     }
 
-    static final class Singleton1 extends Enum<Singleton1> {
-
-        public static final Singleton1 INSTANCE;
-        public static final Singleton1 $VALUES[];
-
-        static {
-            INSTANCE = new Singleton1("INSTANCE", 0);
-            $VALUES = new Singleton1[]{
-                    INSTANCE
-            };
-        }
-
-        public static Singleton1[] values() {
-            return $VALUES;
-        }
-
-        public static Singleton1 valueOf(String s) {
-            return Enum.valueOf(Singleton1.class, s);
-        }
-
-        private MeiJuSingleton instance;
-
-        protected Singleton1(String name, int ordinal) {
-            super(name, ordinal);
-            instance = new MeiJuSingleton();
-        }
-
-
-        public MeiJuSingleton getInstance() {
-            return instance;
-        }
-
-    }
+//    static final class Singleton1 extends Enum<Singleton1> {
+//
+//        public static final Singleton1 INSTANCE;
+//        public static final Singleton1 $VALUES[];
+//
+//        static {
+//            INSTANCE = new Singleton1("INSTANCE", 0);
+//            $VALUES = new Singleton1[]{
+//                    INSTANCE
+//            };
+//        }
+//
+//        public static Singleton1[] values() {
+//            return $VALUES;
+//        }
+//
+//        public static Singleton1 valueOf(String s) {
+//            return Enum.valueOf(Singleton1.class, s);
+//        }
+//
+//        private MeiJuSingleton instance;
+//
+//        protected Singleton1(String name, int ordinal) {
+//            super(name, ordinal);
+//            instance = new MeiJuSingleton();
+//        }
+//
+//
+//        public MeiJuSingleton getInstance() {
+//            return instance;
+//        }
+//
+//    }
 
 }
 

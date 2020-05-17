@@ -33,7 +33,7 @@ public class AndroidCase extends Activity {
     private void case1() {
         /**
          * 1.SystemServiceRegistry有一个HashMap<String, ServiceFetcher<?>>，static代码块中registerService各个服务和对应的ServiceFetcher，ServiceFetcher中createService方法会新建相应的服务，所以这里不会立即新建服务对象实例，get时才会真正创建
-         * 2.ContextImpl中获取服务：SystemServiceRegistry.getSystemService().getService(),getService会先判断缓存中(这个缓存是ContextImpl中的一个数组,所以这些服务每个context中会有一份，其他还有ActivityManager、nfc等service，还有一些是不检验缓存的)是否存在，存在直接返回，不存在则在同步方法中调用createService方法创建后返回
+         * 2.ContextImpl中获取服务：SystemServiceRegistry.getSystemService().getService(),getService会先判断缓存中(这个缓存是ContextImpl中的一个数组,所以这些服务每个context中会有一份，其他还有ActivityManager、nfc等service，还有一些是不检验缓存的直接new，比如BatteryManager)是否存在，存在直接返回，不存在则在同步方法中调用createService方法创建后返回
          *
          * LayoutInflater是一个抽象类，具体实现类是PhoneLayoutInflater
          */

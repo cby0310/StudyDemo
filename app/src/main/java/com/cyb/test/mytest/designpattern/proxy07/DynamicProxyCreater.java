@@ -35,6 +35,7 @@ public class DynamicProxyCreater {
                 new InvocationHandler() {
                     @Override
                     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+                        System.err.println("method ：" + method.toString() + "  args : " + args);
                         long timeBegin = System.currentTimeMillis();
                         Object obj = method.invoke(iService, args);
                         long timeEnd = System.currentTimeMillis();

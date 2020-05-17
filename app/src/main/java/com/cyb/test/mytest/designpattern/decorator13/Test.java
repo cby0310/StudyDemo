@@ -8,6 +8,9 @@ package com.cyb.test.mytest.designpattern.decorator13;
  *
  * 装饰器模式，又名包装模式 Context、ContextImpl、ContextWrapper、ContextThemeWrapper、
  * Activity、Application、Service
+ *
+ *
+ * ContextWrapper、ContextThemeWrapper、Activity、Application、Service 装饰了 ContextImpl，ContextImpl提供了基本的功能
  */
 public class Test {
     public static void main(String[] args) {
