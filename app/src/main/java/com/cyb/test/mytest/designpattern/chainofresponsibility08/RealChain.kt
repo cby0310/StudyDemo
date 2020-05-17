@@ -27,6 +27,7 @@ class RealChain : Interceptor.Chain {
             var nextChain = RealChain(request, interceptors, index + 1)
             var interceptor = interceptors.get(index)
             response = interceptor.intercept(nextChain)
+            //最后一个过滤器不需要调用proceed
             if (index != interceptors?.size - 1 && !nextChain.flag) {
                 throw RuntimeException("自定义interceptor中要调用chain.proceed()方法")
             }
@@ -36,6 +37,9 @@ class RealChain : Interceptor.Chain {
     }
 
 
+    /**
+     * 最后一个过滤器，不需要调用proceed方法
+     */
     class LastInterceptor : Interceptor {
         override fun intercept(chain: Interceptor.Chain): Response? {
             var request = chain.request()
