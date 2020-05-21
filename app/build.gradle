@@ -35,6 +35,11 @@ android {
 //            enabled true
 //        }
 
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [eventBusIndex: 'com.cyb.test.mytest.MyEventBusIndex']
+            }
+        }
     }
 
 
@@ -42,7 +47,7 @@ android {
         abi {
             enable true
             reset()
-            include 'x86', 'armeabi-v7a','x86_64'
+            include 'x86', 'armeabi-v7a', 'x86_64'
             universalApk true
         }
     }
@@ -177,14 +182,14 @@ dependencies {
     provided 'org.glassfish:javax.annotation:10.0-b28'
     implementation 'org.jetbrains:annotations-java5:15.0'
     implementation 'org.ow2.asm:asm-all:5.2'
-    compile ('cglib:cglib:3.0'){
+    compile('cglib:cglib:3.0') {
         exclude group: 'org.ow2.asm', module: 'asm'
     }
     //******** 单元测试相关START *********
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:2.7.22'
     androidTestCompile 'org.mockito:mockito-android:2.7.22'
-    testCompile ('org.robolectric:robolectric:3.3.2'){
+    testCompile('org.robolectric:robolectric:3.3.2') {
         exclude group: 'org.ow2.asm', module: 'asm'
     }
     testCompile 'org.robolectric:shadows-multidex:3.2.2'
@@ -197,6 +202,12 @@ dependencies {
         exclude group: 'org.jetbrains', module: 'annotations'
     }
     compile 'me.weishu:epic:0.3.6'
+
+    implementation 'org.greenrobot:eventbus:3.2.0'
+    annotationProcessor 'org.greenrobot:eventbus-annotation-processor:3.0.1'
+
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 }
 
 
