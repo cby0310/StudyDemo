@@ -27,6 +27,7 @@ class Calculator(str: String) {
                     stack.push(
                         SubtractionExpression(
                             NumExpression(stack.pop().interpret()),
+
                             NumExpression(strs[++j].toInt())
                         )
                     )

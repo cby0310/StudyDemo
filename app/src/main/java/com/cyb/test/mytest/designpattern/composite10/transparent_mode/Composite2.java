@@ -1,7 +1,5 @@
 package com.cyb.test.mytest.designpattern.composite10.transparent_mode;
 
-import com.cyb.test.mytest.designpattern.composite10.Component;
-
 import java.util.ArrayList;
 import java.util.List;
 

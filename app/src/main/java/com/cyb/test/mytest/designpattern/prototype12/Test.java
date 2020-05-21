@@ -28,8 +28,8 @@ public class Test {
 
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.clone();
-//
-//        Intent intent = new Intent();
-//        intent.clone();
+
+        Intent intent = new Intent();
+        intent.clone();
     }
 }

@@ -19,10 +19,11 @@ public class AndroidCase extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //view动画时间插值器Interpolator的实现，view动画是通过Matrix对view进行的转换，
-        // 所以不影响点击事件的位置
-        //是在view的draw()-> applyLegacyAnimation() -> Animation#getTransformation() ->
-        //getTransformation() -> Interpolator#getInterpolation() -> Animation#applyTransformation()
-        //找到子类后执行对应的applyTransformation()方法进行matrix转换。
+        //所以不影响点击事件的位置
+
+        //view.startAnimation()后会触发invalidate()方法从而导致view重绘，在view的draw()
+        //方法内部会get到animation然后调用其getTransformation方法，最后会执行到特定动画比如TranslateAnimation的applyTransformation方法进行矩阵变换，另外
+        //getTransformation会并返回一个布尔值标识动画是否执行完毕，若未完毕则会调用parent的invalidate()方法执行下一帧动画。
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.translate2);
         animation.setInterpolator(new LinearInterpolator());
         animation.setFillAfter(true);

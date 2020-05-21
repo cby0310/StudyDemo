@@ -10,7 +10,7 @@ public class Test {
     public static void main(String[] args) {
         Leaf beidianCaiwu = new Leaf("beidianCaiwu");
         Leaf beidianGongguan = new Leaf("beidianGongguan");
-        //这里直接使用了Component的具体实现类Composite，违背了依赖导致的原则，我们应该面向接口编程。这种组合的方式称为安全的组合模式，
+        //这里直接使用了Component的具体实现类Composite，违背了依赖倒置的原则，我们应该面向接口编程。这种组合的方式称为安全的组合模式，
         //更好的使用透明的组合模式，见transparent_mode
         Composite beidian = new Composite("beidian");
         beidian.addChild(beidianCaiwu);
