@@ -1,34 +1,30 @@
 package com.cyb.test.mytest.view;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.EventLog;
 import android.util.Printer;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
 import com.cyb.test.mytest.MyEventBusIndex;
 import com.cyb.test.mytest.R;
 import com.cyb.test.mytest.anim.SimpleActivity;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.concurrent.locks.ReentrantLock;
 
 import static android.support.v7.widget.RecyclerView.VERTICAL;
 
@@ -40,11 +36,20 @@ public class RecyclerViewActivity extends AppCompatActivity {
     @BindView(R.id.recyclerView)
     public RecyclerView recyclerView;
 
+
+    private Unbinder unbinder;
+
+    @OnClick(R.id.recyclerView)
+    void click() {
+        Toast.makeText(this, "click", Toast.LENGTH_SHORT).show();
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler_view);
-        ButterKnife.bind(this);
+        unbinder = ButterKnife.bind(this);
 //        recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(3, VERTICAL));
         RecyclerView.LayoutManager layoutManager = new StaggeredGridLayoutManager(1, VERTICAL);
@@ -128,6 +133,12 @@ public class RecyclerViewActivity extends AppCompatActivity {
         Toast.makeText(this, obj.text, Toast.LENGTH_LONG).show();
     }
 
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbinder.unbind();
+    }
 
     static class EventObj {
         String text = "";
