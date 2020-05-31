@@ -6,6 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
@@ -59,19 +63,31 @@ public class OkHttpActivity extends AppCompatActivity {
     }
 
     public void okHttpTest() {
+
+
+        try {
+            HttpURLConnection httpURLConnection = (HttpURLConnection) new URL("").openConnection();
+            httpURLConnection.getResponseMessage();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+//        Executors.newFixedThreadPool()
+
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.addInterceptor(new Interceptor1());
         builder.addInterceptor(new Interceptor2());
         builder.connectTimeout(10, TimeUnit.SECONDS);
 
-//        File httpCacheDirectory = new File(getCacheDir(), "cache");
-//        int cacheSize = 10 * 1024 * 1024; // 10 MiB
-//        Cache cache = new Cache(httpCacheDirectory, cacheSize);
-//        builder.cache(cache);
+        File httpCacheDirectory = new File(getCacheDir(), "cache");
+        int cacheSize = 10 * 1024 * 1024; // 10 MiB
+        Cache cache = new Cache(httpCacheDirectory, cacheSize);
+        builder.cache(cache);
 
         OkHttpClient client = builder.build();
 
         Request request = new Request.Builder()
+//                .method(null,null)
                 .url("https://www.baidu.com/")
                 .get()
                 .build();

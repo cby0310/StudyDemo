@@ -140,7 +140,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
         unbinder.unbind();
     }
 
-    static class EventObj {
+    public static class EventObj {
         String text = "";
 
         public EventObj(String text) {

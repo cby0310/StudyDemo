@@ -11,4 +11,9 @@ public class Jesse implements IService {
     public void findGirl(String name, int age) {
         System.err.println("找到了一个妹子：" + name + "-" + age + "岁");
     }
+
+    @Override
+    public void findBoy(String name) {
+        System.err.println("找到了一个汉子：" + name);
+    }
 }

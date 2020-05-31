@@ -15,4 +15,12 @@ public interface IService {
      * @param age  姓名
      */
     void findGirl(String name, int age);
+
+
+    /**
+     * 找汉子
+     *
+     * @param name 名字
+     */
+    void findBoy(String name);
 }

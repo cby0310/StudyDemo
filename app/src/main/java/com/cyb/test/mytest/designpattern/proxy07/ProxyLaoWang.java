@@ -21,4 +21,9 @@ public class ProxyLaoWang implements IService {
          */
         iService.findGirl(name, age);
     }
+
+    @Override
+    public void findBoy(String name) {
+        iService.findBoy(name);
+    }
 }

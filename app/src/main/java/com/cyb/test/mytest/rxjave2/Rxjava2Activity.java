@@ -158,7 +158,7 @@ public class Rxjava2Activity extends AppCompatActivity {
     }
 
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         testFlatMap();
     }
 
@@ -243,6 +243,7 @@ public class Rxjava2Activity extends AppCompatActivity {
             @Override
             public void subscribe(FlowableEmitter<String> e) throws Exception {
                 e.onNext("ss");
+                e.onComplete();
             }
         }, BackpressureStrategy.DROP).subscribe(new Subscriber<String>() {
             @Override

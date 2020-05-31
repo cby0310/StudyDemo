@@ -45,7 +45,7 @@ public class BookManagerService extends Service {
     }
 
 
-    private IBinder mBinder = new IBookManager.Stub() {
+    private IBinder mBinder = new IBookManagerCopy.Stub() {
 
         @Override
         public IBinder asBinder() {

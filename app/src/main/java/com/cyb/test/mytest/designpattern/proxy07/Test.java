@@ -1,5 +1,8 @@
 package com.cyb.test.mytest.designpattern.proxy07;
 
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+
 /**
  * Created by pc on 2017/9/20.
  * <p>
@@ -22,14 +25,33 @@ public class Test {
 
         System.err.println("----------------");
 
+
+        // 保存生成的代理类的字节码文件
+        System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles", "true");
         //动态代理
         DynamicProxyCreater dynamicProxyCreater = new DynamicProxyCreater();
-        IService iService = new Jesse();
+        final IService iService = new Jesse();
         IService dynamicProxy = dynamicProxyCreater.createServiceProxy(iService);
         dynamicProxy.findGirl("unknown", 18);
 
         System.err.println("----------------");
 
+        $Proxy0 $Proxy0 = new $Proxy0(new InvocationHandler() {
+            @Override
+            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+                System.err.println("method ：" + method.toString() + "  args : " + args);
+                long timeBegin = System.currentTimeMillis();
+                Object obj = method.invoke(iService, args);
+                long timeEnd = System.currentTimeMillis();
+                System.err.println(method.getName() + "花费时间：" + (timeEnd - timeBegin) + "ms");
+                return obj;
+            }
+        });
+
+        $Proxy0.findGirl("unknown1", 18);
+        $Proxy0.findBoy("cyb");
+
+        System.err.println("----------------");
 
 //        IService jesse = dynamicProxyCreater.create(IService.class);
 //        jesse.findGirl("girl", 12);

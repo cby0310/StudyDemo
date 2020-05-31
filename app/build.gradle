@@ -182,7 +182,7 @@ dependencies {
     provided 'org.glassfish:javax.annotation:10.0-b28'
     implementation 'org.jetbrains:annotations-java5:15.0'
     implementation 'org.ow2.asm:asm-all:5.2'
-    compile('cglib:cglib:3.0') {
+    compile('cglib:cglib:3.2.5') {
         exclude group: 'org.ow2.asm', module: 'asm'
     }
     //******** 单元测试相关START *********

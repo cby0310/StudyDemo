@@ -26,8 +26,8 @@ public class AidlTestActivity extends AppCompatActivity {
         Intent intent = new Intent(this, BookManagerService.class);
         bindService(intent, MyServiceConn, Context.BIND_AUTO_CREATE);
 
-        startService(intent);
-        startActivityForResult(intent, RESULT_OK);
+//        startService(intent);
+//        startActivityForResult(intent, RESULT_OK);
 
     }
 
@@ -35,8 +35,11 @@ public class AidlTestActivity extends AppCompatActivity {
 
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            IBookManager iBookManager = IBookManager.Stub.asInterface(service);
+            IBookManagerCopy iBookManager = IBookManagerCopy.Stub.asInterface(service);
             try {
+
+                Log.e("TAG", "getInterfaceDescriptor: " + service.getInterfaceDescriptor());
+
                 iBookManager.addListener(listener);
 
                 iBookManager.addBook(new Book("语文", 12));
