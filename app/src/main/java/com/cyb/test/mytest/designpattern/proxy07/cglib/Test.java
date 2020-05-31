@@ -8,7 +8,7 @@ public class Test {
     public static void main(String[] args) {
 
         //代理类class文件存入本地磁盘
-        System.setProperty(DebuggingClassWriter.DEBUG_LOCATION_PROPERTY, "/Users/cyb/android/github/StudyDemo/app/src/main/java/com/cyb/test/mytest/designpattern/proxy07/cglib");
+        System.setProperty(DebuggingClassWriter.DEBUG_LOCATION_PROPERTY, "/Users/cyb/android/bytedance/StudyDemo/app/src/main/java/com/cyb/test/mytest/designpattern/proxy07/cglib/class");
 
         Programmer progammer = new Programmer();
 
