@@ -16,7 +16,7 @@ public class ASMClassCodeTest {
     public static void main(String[] args0) throws Throwable {
         try {
             String[] args = new String[1];
-            args[0] = "/Users/cyb/android/github/StudyDemo/app/src/main/java/com/cyb/test/mytest/designpattern/proxy07/invokedynamic/DynamicTest.class";
+            args[0] = "/Users/cyb/android/bytedance/StudyDemo/app/src/main/java/com/cyb/test/mytest/designpattern/proxy07/invokedynamic/DynamicTest.class";
             ASMifier.main(args);
 
         } catch (Exception e) {
