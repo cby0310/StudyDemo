@@ -6,6 +6,7 @@ public class Question13 {
      * 特殊情况，head 为 null
      * 则直接原路返回
      * 使用哨兵节点，辅助完成
+     *
      * @param head
      * @param target
      */
@@ -14,7 +15,7 @@ public class Question13 {
         Node p = head;
         Node newHead = node;
         node.next = p;
-        while (p!=null&&p.val != target) {
+        while (p != null && p.val != target) {
             p = p.next;
             node = node.next;
         }
@@ -34,7 +35,7 @@ public class Question13 {
         node3.next = null;
         Question13 question13 = new Question13();
         Node head = node1;
-        head=question13.deleteNode(head, 5);
+        head = question13.deleteNode(head, 5);
         while (head != null) {
             System.out.println(head.val);
             head = head.next;

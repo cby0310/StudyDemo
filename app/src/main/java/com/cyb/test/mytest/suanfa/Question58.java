@@ -8,6 +8,7 @@ public class Question58 {
      * 首先判断当前结点的右子结点是否存在，存在则返回其最左子结点，若左子节点也不存在则返回该右子结点
      * 若无右子结点，则判断当前结点是否为父节点的左子节点，下一结点为父节点
      * 否则判断父节点的父节点
+     *
      * @param node
      * @return
      */
@@ -40,12 +41,12 @@ public class Question58 {
         BinaryTree tree9 = new BinaryTree(9, null, null);
         BinaryTree tree8 = new BinaryTree(8, null, null);
         BinaryTree tree7 = new BinaryTree(7, null, null);
-        BinaryTree tree6 = new BinaryTree(6,null, null);
+        BinaryTree tree6 = new BinaryTree(6, null, null);
         BinaryTree tree5 = new BinaryTree(5, tree8, tree9);
         BinaryTree tree4 = new BinaryTree(4, null, null);
         BinaryTree tree3 = new BinaryTree(3, tree6, tree7);
         BinaryTree tree2 = new BinaryTree(2, tree4, tree5);
-        BinaryTree tree1 = new BinaryTree(1, tree2, tree3,null);
+        BinaryTree tree1 = new BinaryTree(1, tree2, tree3, null);
         tree9.root = tree5;
         tree8.root = tree5;
         tree7.root = tree3;

@@ -1,7 +1,5 @@
 package com.cyb.test.mytest.suanfa;
 
-import java.util.Arrays;
-
 public class Question67 {
     /**
      * 题：地上有一个 M 行 N 列的方格。一个机器人从坐标（0,0）的格子开始移动，它每一次可以向左、右、上、下移动一格，
@@ -16,7 +14,7 @@ public class Question67 {
      * @param k
      * @return
      */
-    int maxLong = 0,row=0, col=0, k = 0;
+    int maxLong = 0, row = 0, col = 0, k = 0;
 
     public int moveCount(int m, int n, int k) {
         this.row = m;
@@ -30,8 +28,8 @@ public class Question67 {
     private void moveCount(int rowIndex, int colIndex, int count, boolean[][] visited) {
         maxLong = maxLong < count ? count : maxLong; // 存储最大距离
         if (rowIndex >= 0 && rowIndex < row &&
-                colIndex >= 0 && colIndex < col && !visited[rowIndex][colIndex]&&
-                getDigitSum(rowIndex,colIndex)<=k) { // 判断是否满足可移动条件
+                colIndex >= 0 && colIndex < col && !visited[rowIndex][colIndex] &&
+                getDigitSum(rowIndex, colIndex) <= k) { // 判断是否满足可移动条件
             visited[rowIndex][colIndex] = true; // 更改可访问性
             count++; // 增加长度
             moveCount(rowIndex + 1, colIndex, count, visited); // 从上、下、左、右 任意前进一步
@@ -56,7 +54,7 @@ public class Question67 {
 
     public static void main(String[] args) {
         Question67 q = new Question67();
-        System.out.println(q.moveCount(2,2,1));
+        System.out.println(q.moveCount(20, 20, 12));
 //        System.out.println(Arrays.toString(new boolean[3]));
     }
 }

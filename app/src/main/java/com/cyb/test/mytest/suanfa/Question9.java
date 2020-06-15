@@ -1,10 +1,15 @@
 package com.cyb.test.mytest.suanfa;
 
+
+/**
+ * https://blog.csdn.net/chenxuegui1234/article/details/89224172
+ */
 public class Question9 {
     /**
      * 计算斐波那契数列的答案
      * f(1)=1,f(0)=0
      * f(n)=f(n-1)+f(n-2)
+     *
      * @param n
      * @return
      */
@@ -28,9 +33,10 @@ public class Question9 {
 
     /**
      * 斐波那契数列的升级，用 1*2 的矩形，填满一个 2*N 的大矩形（横放或竖放），问有多少种填法
+     *
      * @return
      */
-    public int fibonacciPlus(int width){
+    public int fibonacciPlus(int width) {
         if (width == 1) {
             return 1;
         }
@@ -39,17 +45,77 @@ public class Question9 {
         }
         return fibonacciPlus(width - 1) + fibonacciPlus(width - 2);
     }
-    public long power(int num,int e) {
-        if (e ==1) {
+
+    public long power(int num, int e) {
+        if (e == 1) {
             return num;
         }
-        return e%2==0? power(num, e / 2) * power(num, e / 2):power(num, (e-1) / 2) * power(num, (e+1) / 2);
+        return e % 2 == 0 ? power(num, e / 2) * power(num, e / 2) : power(num, (e - 1) / 2) * power(num, (e + 1) / 2);
+    }
+
+
+    /**
+     * 递归求法
+     *
+     * @param n
+     * @return
+     */
+    public int FB(int n) {
+        if (n <= 0) {
+            return 0;
+        }
+        if (n == 1) {
+            return 1;
+        }
+
+        int result = FB(n - 1) + FB(n - 2);
+        return result;
+    }
+
+
+    /**
+     * 循环求法
+     *
+     * @param n
+     * @return
+     */
+    public int FB1(int n) {
+        int fbN_1 = 1; //n-1的值
+        int fbN_2 = 0; //n-2的值
+
+        if (n <= 0) {
+            return fbN_2;
+        }
+
+        if (n == 1) {
+            return fbN_1;
+        }
+
+        int result = 0;
+        for (int i = 1; i < n; i++) {
+            result = fbN_1 + fbN_2;
+            fbN_2 = fbN_1;
+            fbN_1 = result;
+        }
+
+        return result;
     }
 
     public static void main(String[] args) {
         Question9 question = new Question9();
 //        System.out.println(question.power(2,10));
-        System.out.println(question.fibonacciPlus(4));
+
+        for (int i = 0; i < 10; i++) {
+            System.out.print(question.FB(i) + " ");
+        }
+        System.out.println();
+
+        for (int i = 0; i < 10; i++) {
+            System.out.print(question.FB1(i) + " ");
+        }
+        System.out.println();
+
+//        System.out.println(question.fibonacciPlus(4));
 //        System.out.println(question.fibonacci(0));
     }
 }

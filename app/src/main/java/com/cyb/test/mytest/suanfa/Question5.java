@@ -2,9 +2,10 @@ package com.cyb.test.mytest.suanfa;
 
 import java.util.Stack;
 
-class Node{
+class Node {
     int val;
     Node next;
+
     public Node(int val) {
         this.val = val;
     }
@@ -21,13 +22,15 @@ class Node{
                 '}';
     }
 }
+
 public class Question5 {
     /**
      * 递归法打印所有节点信息
      * 存在问题：链表过长，递归层数过多，超出栈顶
+     *
      * @param head
      */
-    public void printNode(Node head){
+    public void printNode(Node head) {
         if (head == null) {
             return;
         }
@@ -37,6 +40,7 @@ public class Question5 {
 
     /**
      * 创建一个新链表，每遍历一个非空节点，则在新链表一个同值的新节点
+     *
      * @param head
      */
     public void printNodePlus(Node head) {
@@ -48,7 +52,7 @@ public class Question5 {
             stack.push(head);
             head = head.next;
         }
-        while (stack.size()!=0) {
+        while (stack.size() != 0) {
             System.out.println(stack.pop().val);
         }
     }

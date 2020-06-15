@@ -9,11 +9,12 @@ public class Question6 {
      * 左子树的根节点、右子树的根节点分别为上一节点的左右节点
      * 当中序数组中查找到的位置为数组起始点，则左子树为 null，
      * 查找到的位置为数组末端，则右子树为 null，
+     *
      * @param pre
      * @param mid
      * @return
      */
-    public BinaryTree reBuilder(int[] pre,int[] mid,int preStart,int preEnd,int midStart,int midEnd){
+    public BinaryTree reBuilder(int[] pre, int[] mid, int preStart, int preEnd, int midStart, int midEnd) {
         if (preStart >= preEnd || midStart >= midEnd) {
             return null;
         }
@@ -28,7 +29,7 @@ public class Question6 {
         BinaryTree root = new BinaryTree(pre[preStart], null, null);
         int leftRang = rootIndex - midStart; // 左子树范围
         // 中序遍历中中节点的左边都是左子树，右边都是右子树，同样前序遍历中当前点后
-        root.left = reBuilder(pre, mid, preStart + 1, preStart+leftRang+1, midStart, rootIndex);
+        root.left = reBuilder(pre, mid, preStart + 1, preStart + leftRang + 1, midStart, rootIndex);
         root.right = reBuilder(pre, mid, preStart + leftRang + 1, preEnd, rootIndex + 1, midEnd);
         return root;
     }
@@ -38,6 +39,6 @@ public class Question6 {
         int[] mid = {4, 7, 2, 1, 5, 3, 8, 6};
         Question6 question = new Question6();
         BinaryTree root = new BinaryTree();
-        root.prePrint(question.reBuilder(pre,mid,0,pre.length,0,mid.length));
+        root.prePrint(question.reBuilder(pre, mid, 0, pre.length, 0, mid.length));
     }
 }

@@ -7,6 +7,7 @@ public class Sort {
      * 实现插入排序
      * 将元素分为有序区和无序区两个部分
      * 每次从无序区取出一个数，将数据搬迁，将数字插入无序区有序位置，
+     *
      * @param nums
      */
     public void insertSort(int[] nums) {
@@ -15,7 +16,7 @@ public class Sort {
         }
         // 默认第一数为有序区
         for (int i = 1; i < nums.length; i++) { // 无序区
-            int j = i-1;
+            int j = i - 1;
             int temp = nums[i];
             // 逆序查找有序区插入位置，当 temp<nums[j] 时插入
             for (; j >= 0; j--) {
@@ -26,16 +27,17 @@ public class Sort {
                     break;
                 }
             }
-            nums[j+1] = temp;
+            nums[j + 1] = temp;
         }
     }
 
     /**
      * 归并排序
      * 将数组分为一各个小块，对每一块进行排序再合并
+     *
      * @param nums
      */
-    public void mergeSort(int[] nums,int start,int end){
+    public void mergeSort(int[] nums, int start, int end) {
         // 当元素数量小于 3 时，不再向下分
         if (end == start) {
             return;
@@ -58,13 +60,13 @@ public class Sort {
     /**
      * 合并两个有序数组
      */
-    public void merge(int[] nums,int start1,int end1,int start2,int end2){
+    public void merge(int[] nums, int start1, int end1, int start2, int end2) {
         int len = end2 - start1 + 1;
         int[] temp = new int[len];
         int index = 0;
         // 借用临时数组存储
         while (index < len) {
-            if (start2>end2||(start1<=end1&&nums[start1] <= nums[start2])) {
+            if (start2 > end2 || (start1 <= end1 && nums[start1] <= nums[start2])) {
                 temp[index] = nums[start1];
                 start1++;
             } else {
@@ -79,46 +81,59 @@ public class Sort {
         }
     }
 
-    public void quickSort(int[] nums, int start, int end) {
-        // 当元素数量小于 3 时，不再向下分
-        if (end == start) {
-            return;
-        }
-        if (end - start == 1) {
-            if (nums[start] > nums[end]) {
-                swap(nums, start, end);
-            }
-            return;
-        }
-        int mid = (start + end) >>> 1; // 取中间数
-        int left = start,
-                right = end;
-        while (left < right) {
-            if (nums[left] <= nums[mid]) {
-                left++;
-            }
-            if (nums[right] >= nums[mid]) {
-                right--;
-            }
-            if (nums[left] > nums[mid] && nums[right] < nums[mid]) {
-                swap(nums, left, right);
-                left++;
-                right--;
-            }
-        }
-        quickSort(nums, start, mid);
-        quickSort(nums,mid+1,end);
-    }
 
     private void swap(int[] nums, int index1, int index2) {
         int temp = nums[index1];
         nums[index1] = nums[index2];
         nums[index2] = temp;
     }
+
+    /**
+     * 以第一个数为基准，将nums下标从left到right的部分按大小两边分列
+     *
+     * @param nums
+     * @param left
+     * @param right
+     * @return
+     */
+    private int partition(int[] nums, int left, int right) {
+        int pivot = nums[left];
+        while (left < right) {
+            while (left < right && nums[right] >= pivot) {//从右侧找到第一个比基准小的数,相等时继续移动
+                right--;
+            }
+            nums[left] = nums[right];
+
+            while (left < right && nums[left] <= pivot) {//从左侧找到第一个比基准大的数
+                left++;
+            }
+            nums[right] = nums[left];
+        }
+
+        nums[left] = pivot;//将基准数字复位
+        return left;
+    }
+
+    /**
+     * 快排实现
+     *
+     * @param nums
+     * @param left
+     * @param right
+     */
+    private void quickSort(int[] nums, int left, int right) {
+        if (left >= right) {
+            return;
+        }
+        int middle = partition(nums, left, right);
+        quickSort(nums, left, middle - 1);
+        quickSort(nums, middle + 1, right);
+    }
+
     public static void main(String[] args) {
         Sort sort = new Sort();
-        int[] nums = {1,2,3,4,5,6,7,8,9,10};
-        sort.quickSort(nums,0,nums.length-1);
+        int[] nums = {5, 2, 3, 1, 6, 1, 6, 1, 6};
+        sort.quickSort(nums, 0, nums.length - 1);
         System.out.println(Arrays.toString(nums));
     }
 }

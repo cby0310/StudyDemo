@@ -22,22 +22,29 @@ public class Question28 {
      * @param index
      */
     public void permutation(char[] str, int index) {
+
         if (index == str.length-1) {
             System.out.println(str);
         }
+
         for (int i = index; i < str.length; i++) {
+
             char temp = str[index];
             str[index] = str[i];
             str[i] = temp;
+
+//            System.err.println(str);
             permutation(str, index+1);
+
             // 还原
             str[i] = str[index];
             str[index] = temp;
+
         }
     }
 
     public static void main(String[] args) {
         Question28 q = new Question28();
-        q.permutation("ab");
+        q.permutation("eue");
     }
 }
