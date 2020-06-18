@@ -5,10 +5,11 @@ public class Question19 {
      * 输入二叉树，输出其镜像（所有的左子树变成右子树，右子树变成左子树）
      * 特殊情况，root、root.left 、 root.right 为 null，直接原路返回
      * 将root 的左右子树互换，再递归调用 mirrorOfBinaryTree
+     *
      * @param root
      * @return
      */
-    public BinaryTree mirrorOfBinaryTree(BinaryTree root){
+    public BinaryTree mirrorOfBinaryTree(BinaryTree root) {
         if (root == null || (root.right == null && root.left == null)) {
             return root;
         }

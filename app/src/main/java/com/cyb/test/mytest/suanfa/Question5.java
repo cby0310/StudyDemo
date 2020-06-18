@@ -4,7 +4,7 @@ import java.util.Stack;
 
 class Node {
     int val;
-    Node next;
+    Node next = null;
 
     public Node(int val) {
         this.val = val;

@@ -39,7 +39,7 @@ public class Question17 {
         node4.next = node5;
         node5.next = node6;
         node6.next = null;
-        Node head = question17.mergeTwoList(null, node4);
+        Node head = question17.mergeTwoList(node1, node4);
         while (head != null) {
             System.out.print(head.val+" ");
             head = head.next;
