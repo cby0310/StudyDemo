@@ -10,9 +10,10 @@ public class Question20 {
      * 执行一次 i++
      * 当 i *2>=row.length&& i*2>=col.length 时停止打印
      * 特殊情况，只有一行、一列
+     *
      * @param matrix
      */
-    public void printMatrixClockWisely(int[][] matrix){
+    public void printMatrixClockWisely(int[][] matrix) {
         if (matrix == null) {
             return;
         }
@@ -20,38 +21,39 @@ public class Question20 {
         int colLen = matrix[0].length;
         int rowLen = matrix.length;
         while (n * 2 < colLen && n * 2 < rowLen) {
-            printMatrixInCircle(matrix, n,colLen-n,n,rowLen-n);
+            printMatrixInCircle(matrix, n, colLen - n, n, rowLen - n);
             n++;
         }
     }
-    private void printMatrixInCircle(int[][] matrix,int startCol,int endCol,int startRow,int endRow){
+
+    private void printMatrixInCircle(int[][] matrix, int startCol, int endCol, int startRow, int endRow) {
 
         // 打印从左到右
         for (int i = startCol; i < endCol; i++) {
-            System.out.print(matrix[startRow][i]+" ");
+            System.out.print(matrix[startRow][i] + " ");
         }
 
         // 只有一行，则不打印
-        if (startRow < endRow-1) {
+        if (startRow < endRow - 1) {
             // 打印从上到下
-            for (int i = startRow+1; i < endRow; i++) {
-                System.out.print(matrix[i][endCol-1]+" ");
+            for (int i = startRow + 1; i < endRow; i++) {
+                System.out.print(matrix[i][endCol - 1] + " ");
             }
         }
 
         // 不止一行一列
-        if (startRow < endRow-1 && startCol < endCol - 1) {
+        if (startRow < endRow - 1 && startCol < endCol - 1) {
             // 打印从右到左
-            for (int i = endCol-2; i >=startCol ; i--) {
-                System.out.print(matrix[endRow-1][i]+" ");
+            for (int i = endCol - 2; i >= startCol; i--) {
+                System.out.print(matrix[endRow - 1][i] + " ");
             }
         }
 
         // 不止两行两列
-        if (startRow < endRow-2 && startCol < endCol - 2) {
+        if (startRow < endRow - 2 && startCol < endCol - 2) {
             // 最后打印 (row.length-i，i+1)列的第 i 列数据，从下到上
-            for (int i = endRow-2; i > startRow; i--) {
-                System.out.print(matrix[i][startCol]+" ");
+            for (int i = endRow - 2; i > startRow; i--) {
+                System.out.print(matrix[i][startCol] + " ");
             }
         }
 

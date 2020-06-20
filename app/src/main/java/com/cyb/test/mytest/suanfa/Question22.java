@@ -8,21 +8,22 @@ public class Question22 {
      * 思路：建立一个辅助栈，依序遍历压栈序列，若与出栈数不相等，则将该压栈数压入辅助栈，继续遍历压栈数组
      * 若相等则继续遍历入栈序列和出栈序列，当出栈序列与入栈序列和辅助栈序列都不一致时，返回 false
      * 若辅助栈空，且入栈序列遍历完毕则返回 true
+     *
      * @param pushOrder
      * @param popOrder
      * @return
      */
-    public boolean isPopOrder(int[] pushOrder,int[] popOrder){
+    public boolean isPopOrder(int[] pushOrder, int[] popOrder) {
         // 出栈、入栈序列为空或长度不相等，则返回 false
-        if (pushOrder == null || popOrder == null||pushOrder.length!=popOrder.length) {
+        if (pushOrder == null || popOrder == null || pushOrder.length != popOrder.length) {
             return false;
         }
         Stack<Integer> stack = new Stack<>();
         int pushIndex = 0,
                 popIndex = 0,
-                len=pushOrder.length;
+                len = pushOrder.length;
         while (popIndex < len) {
-            if (pushIndex<len&&pushOrder[pushIndex] == popOrder[popIndex]) { // 入栈出栈序列一致，继续遍历下一个
+            if (pushIndex < len && pushOrder[pushIndex] == popOrder[popIndex]) { // 入栈出栈序列一致，继续遍历下一个
                 popIndex++;
                 pushIndex++;
             }
@@ -41,13 +42,32 @@ public class Question22 {
                 pushIndex++;
             }
         }
-        return stack.size()==0&&pushIndex==len; // 当序列一致时，辅助栈为空，入栈序列遍历完成
+        return stack.size() == 0 && pushIndex == len; // 当序列一致时，辅助栈为空，入栈序列遍历完成
+    }
+
+
+    private boolean isPopOrder1(int[] pushOrder, int[] popOrder) {
+        if (pushOrder == null || pushOrder.length <= 0 || popOrder == null || popOrder.length <= 0) {
+            return false;
+        }
+        Stack<Integer> stack = new Stack<>();
+        int popIndex = 0;
+
+        for (int ele : pushOrder) {
+            stack.push(ele);
+            while (popIndex < popOrder.length && !stack.isEmpty() && stack.peek() == popOrder[popIndex]) {
+                popIndex++;
+                stack.pop();
+            }
+        }
+
+        return popIndex == popOrder.length;
     }
 
     public static void main(String[] args) {
         int[] push = {1, 2, 3, 4, 5};
         int[] pop = {4, 3, 5, 1, 2};
         Question22 question22 = new Question22();
-        System.out.println(question22.isPopOrder(push,pop));
+        System.out.println(question22.isPopOrder1(push, pop));
     }
 }

@@ -8,7 +8,7 @@ public class Question21 {
      * pop 返回头节点值，删除头节点
      * min 辅助栈存储，按照升序将新节点插入辅助栈
      */
-    public class StackWithMin{
+    public class StackWithMin {
         Node head = new Node(0);
         Node support = new Node(0);
 
@@ -19,6 +19,7 @@ public class Question21 {
 
         /**
          * 头节点插入新元素
+         *
          * @param val
          */
         public void push(int val) {
@@ -26,7 +27,7 @@ public class Question21 {
             node.next = head.next;
             head.next = node;
             // 当辅助栈为空或插入元素小于辅助栈栈顶，则直接在辅助栈栈顶插入
-            if (support.next == null||support.next.val>val) {
+            if (support.next == null || support.next.val > val) {
                 Node temp = new Node(val);
                 temp.next = support.next;
                 support.next = temp;
@@ -40,12 +41,13 @@ public class Question21 {
             }
             Node node = head.next;
             // 最小值元素被移除出栈
-            if (support.next!=null&&node.val == support.next.val) {
+            if (support.next != null && node.val == support.next.val) {
                 support.next = support.next.next;
             }
             head = head.next;
             return node;
         }
+
         // 返回最小值辅助栈栈顶元素
         public Node min() throws Exception {
             if (head.next == null) {
@@ -74,11 +76,11 @@ public class Question21 {
         node.push(3);
         node.push(2);
         node.push(1);
-        System.out.println("当前最小值为:"+node.min().val);
+        System.out.println("当前最小值为:" + node.min().val);
         System.out.println(node.pop().val);
-        System.out.println("当前最小值为:"+node.min().val);
+        System.out.println("当前最小值为:" + node.min().val);
         System.out.println(node.pop().val);
-        System.out.println("当前最小值为:"+node.min().val);
+        System.out.println("当前最小值为:" + node.min().val);
         System.out.println(node.pop().val);
     }
 }
