@@ -5,6 +5,7 @@ import android.os.Build;
 
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.Stack;
 
 public class Question60 {
     /**
@@ -42,7 +43,7 @@ public class Question60 {
     }
 
     /**
-     * 广度优先遍历
+     * 广度优先遍历，层序打印并换行
      */
     @TargetApi(Build.VERSION_CODES.GINGERBREAD)
     private void print1(BinaryTree tree) {
@@ -81,6 +82,55 @@ public class Question60 {
 
     }
 
+
+    /**
+     * 之字打印
+     */
+    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
+    private void print2(BinaryTree tree) {
+
+        if (tree == null) {
+            return;
+        }
+
+        Stack<BinaryTree>[] stacks = new Stack[2];
+        stacks[0] = new Stack<>();
+        stacks[1] = new Stack<>();
+
+        int stackIndex = 0;
+        stacks[stackIndex].push(tree);
+
+        while (!stacks[stackIndex].empty()) {
+            BinaryTree binaryTree = stacks[stackIndex].pop();
+            System.err.print(binaryTree.val + " ");
+
+            if (stackIndex == 0) {
+                if (binaryTree.left != null) {
+                    stacks[1].push(binaryTree.left);
+                }
+                if (binaryTree.right != null) {
+                    stacks[1].push(binaryTree.right);
+                }
+            } else {
+                if (binaryTree.right != null) {
+                    stacks[0].push(binaryTree.right);
+                }
+                if (binaryTree.left != null) {
+                    stacks[0].push(binaryTree.left);
+                }
+            }
+
+            if (stacks[stackIndex].empty()) {
+                if (stackIndex == 0) {
+                    stackIndex = 1;
+                } else {
+                    stackIndex = 0;
+                }
+                System.err.println();
+            }
+        }
+    }
+
     public static void main(String[] args) {
         BinaryTree tree5 = new BinaryTree(5, null, null);
         BinaryTree tree7 = new BinaryTree(7, null, null);
@@ -90,7 +140,6 @@ public class Question60 {
         BinaryTree tree10 = new BinaryTree(10, tree9, tree11);
         BinaryTree tree8 = new BinaryTree(8, tree6, tree10);
         Question60 q = new Question60();
-        q.print1(tree8);
-
+        q.print2(tree8);
     }
 }

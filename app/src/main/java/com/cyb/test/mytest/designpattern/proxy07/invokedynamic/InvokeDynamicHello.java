@@ -16,7 +16,7 @@ public class InvokeDynamicHello {
     public static void main(String[] args) throws Exception {
         byte[] codes = DynamicTestDump.dump();
         Class<?> clazz = new MyClassLoader().defineClass("DynamicTest", codes);
-        clazz.getMethod("say", null).invoke(clazz.newInstance(), new Object[]{});
+//        clazz.getMethod("say", null).invoke(clazz.newInstance(), new Object[]{});
 
         //将改变后的字节码输出
         File file = new File("/Users/cyb/android/bytedance/StudyDemo/app/src/main/java/com/cyb/test/mytest/designpattern/proxy07/invokedynamic/cyb.class");
