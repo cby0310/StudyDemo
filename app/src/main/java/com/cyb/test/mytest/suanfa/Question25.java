@@ -10,11 +10,13 @@ public class Question25 {
      * 每遍历一节点，将其压栈，计算栈内元素和，若为目标值，返回，输出栈内元素
      * 大于目标值，元素出栈，不输出栈内序列
      * 小于目标值，继续遍历下一层节点
+     *
      * @param root
      * @param target
      */
     Stack<BinaryTree> stack = new Stack<>();
-    public void findPath(BinaryTree root,int target){
+
+    public void findPath(BinaryTree root, int target) {
         if (root == null) {
             return;
         }
@@ -25,10 +27,10 @@ public class Question25 {
         if (tree == null) {
             return;
         }
-        if (tree.left==null&&tree.right==null&&tree.val == target) { // 遍历至叶节点，找到目标值，输出路径，返回
-            System.out.print(target+" ");
+        if (tree.left == null && tree.right == null && tree.val == target) { // 遍历至叶节点，找到目标值，输出路径，返回
+            System.out.print(target + " ");
             for (BinaryTree binaryTree : stack) { // 将
-                System.out.print(binaryTree.val+" ");
+                System.out.print(binaryTree.val + " ");
             }
             System.out.println("");
             return;
@@ -51,6 +53,6 @@ public class Question25 {
         BinaryTree left = new BinaryTree(5, left1, left2);
         BinaryTree right = new BinaryTree(12, null, null);
         BinaryTree root = new BinaryTree(10, left, right);
-        question25.findPath(root,22);
+        question25.findPath(root, 22);
     }
 }

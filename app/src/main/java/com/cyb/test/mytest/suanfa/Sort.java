@@ -126,13 +126,14 @@ public class Sort {
             return;
         }
         int middle = partition(nums, left, right);
+        System.err.println("middle = " + middle);
         quickSort(nums, left, middle - 1);
         quickSort(nums, middle + 1, right);
     }
 
     public static void main(String[] args) {
         Sort sort = new Sort();
-        int[] nums = {5, 2, 3, 1, 6, 1, 6, 1, 6};
+        int[] nums = {4, 5, 1, 6, 2, 7, 3, 8};
         sort.quickSort(nums, 0, nums.length - 1);
         System.out.println(Arrays.toString(nums));
     }

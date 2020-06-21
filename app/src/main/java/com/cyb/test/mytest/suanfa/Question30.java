@@ -17,12 +17,14 @@ public class Question30 {
         int left = 0;
         int right = nums.length - 1;
         int mid = partition(nums, left, right);
+        System.err.println("mid = " + mid);
         while (mid != k - 1) {
             if (mid > k - 1) { // 区间超过范围，在左区间寻找
                 mid = partition(nums, left, mid);
             } else {
                 mid = partition(nums, mid + 1, right);
             }
+            System.err.println("mid = " + mid);
         }
         for (int i = 0; i < k; i++) {
             System.out.print(nums[i] + " ");
@@ -72,6 +74,6 @@ public class Question30 {
     public static void main(String[] args) {
         int[] nums = {5, 4, 3, 2, 1, -1, 7};
         Question30 q = new Question30();
-        q.printLeastKNums(nums, 5);
+        q.printLeastKNums(nums, 6);
     }
 }

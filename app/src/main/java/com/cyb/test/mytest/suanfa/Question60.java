@@ -140,6 +140,6 @@ public class Question60 {
         BinaryTree tree10 = new BinaryTree(10, tree9, tree11);
         BinaryTree tree8 = new BinaryTree(8, tree6, tree10);
         Question60 q = new Question60();
-        q.print2(tree8);
+        q.print1(tree8);
     }
 }

@@ -7,11 +7,12 @@ public class Question31 {
      * 依序遍历数组，当上一组合为负数或 0 时，放弃上一组合，sum 为当前遍历元素
      * 当上一组合为正数时，则加上当前遍历元素
      * 判断当前组合之和 sum 是否大于 maxSum ，是更新 maxSum，否不更新，继续遍历
+     *
      * @param nums
      * @return
      */
-    public int findLargestSumOfArrays(int[] nums){
-        if (nums == null||nums.length<1) {
+    public int findLargestSumOfArrays(int[] nums) {
+        if (nums == null || nums.length < 1) {
             throw new NullPointerException("数组不能为空");
         }
         int maxSum = nums[0],
@@ -20,7 +21,7 @@ public class Question31 {
             // 模拟求解思路，放弃上一非正数解
             if (sum <= 0) {
                 sum = nums[i];
-            }else {
+            } else {
                 sum += nums[i];
             }
             // maxSum 存储最大组合
@@ -29,9 +30,28 @@ public class Question31 {
         return maxSum;
     }
 
+
+    private int get(int[] nums) {
+        int maxSum = nums[0];
+        int sum = nums[0];
+
+        for (int i = 0; i < nums.length; i++) {
+            if (sum <= 0) {
+                sum = nums[i];
+            } else {
+                sum += nums[i];
+            }
+
+            maxSum = Math.max(maxSum, sum);
+        }
+
+        return maxSum;
+    }
+
+
     public static void main(String[] args) {
         Question31 q = new Question31();
-        int[] nums = {-1, 3,-2, 1, 2, 3};
+        int[] nums = {-1, 3, -2, 1, 2, 3};
         System.out.println(q.findLargestSumOfArrays(nums));
     }
 }

@@ -19,7 +19,7 @@ public class Question32 {
                 count += (before + 1) * i;
             } else if (cur == 0) {
                 count += before * i;
-            } else if (cur==1){
+            } else if (cur == 1) {
                 count += before * i + after + 1;
             }
             i *= 10;

@@ -30,6 +30,7 @@ public class Question26 {
      * 第一次遍历复杂链表，将其节点全部复制一份，插入当前结点后
      * 第二次遍历链表，将偶数结点的 sibling 都指向其节点的下一结点（复制完成）
      * 将原链表与复制链表分离，返回复制链表
+     *
      * @param head
      * @return
      */
@@ -46,7 +47,7 @@ public class Question26 {
         }
         // 将偶数节点的 sibling 都指向其节点的下一结点（复制完成）
         node = head.next;
-        while (node != null&&node.next!=null) { // 奇数偶数节点都指向一个空节点
+        while (node != null && node.next != null) { // 奇数偶数节点都指向一个空节点
             if (node.sibling != null) {
                 node.sibling = node.sibling.next;
             }
@@ -57,7 +58,7 @@ public class Question26 {
         node = head.next;
         ComplexNode odd = head; // 串联奇数链表（原链表）
         ComplexNode even = node; // 串联偶数链表（被复制链表）
-        while (odd != null&&even.next!=null) { // 奇数偶数节点都指向一个空节点
+        while (odd != null && even.next != null) { // 奇数偶数节点都指向一个空节点
             odd.next = odd.next.next;
             even.next = even.next.next;
             odd = odd.next;
