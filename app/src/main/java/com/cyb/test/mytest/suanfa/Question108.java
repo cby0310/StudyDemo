@@ -40,6 +40,34 @@ public class Question108 {
         datas[j] = tmp;
     }
 
+
+    /**
+     * 输入字符串"abc",则输出a、b、c、ab、ac、bc、abc 共7种组合。
+     */
+    private void allZuhe() {
+        char[] chars = "abc".toCharArray();
+
+        for (int len = 1; len <= chars.length; len++) {
+            combinate(chars, 0, len, new StringBuilder());
+        }
+    }
+
+
+    private void combinate(char[] chars, int begin, int len, StringBuilder stringBuilder) {
+        if (len == 0) {
+            System.err.println(stringBuilder);
+            return;
+        }
+        if (begin == chars.length) {
+            return;
+        }
+        stringBuilder.append(chars[begin]);//取当前字符
+        combinate(chars, begin + 1, len - 1, stringBuilder);
+
+        stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+        combinate(chars, begin + 1, len, stringBuilder);
+    }
+
     /**
      * @param args
      */
@@ -47,5 +75,7 @@ public class Question108 {
         String str = "abc";
         Question108 question108 = new Question108();
         question108.allKinds(str);
+
+        question108.allZuhe();
     }
 }
