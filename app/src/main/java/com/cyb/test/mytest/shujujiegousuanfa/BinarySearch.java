@@ -8,9 +8,9 @@ public class BinarySearch {
 
     public static void main(String[] args) {
         int[] datas = {1, 2, 3, 4, 5, 6, 7};//等于int[] var1 = new int[]{1, 2, 3, 4, 5, 6, 44};
-//        int index = binarySearch1(datas, 7);
-        int index = binarySearch2(datas, 0, datas.length - 1, 17);
-        System.err.println(index);
+        int index = binarySearch1(datas, 7);
+        int index1 = binarySearch2(datas, 0, datas.length - 1, 7);
+        System.err.println(index + "," + index1);
     }
 
 

@@ -29,6 +29,6 @@ public class Question32 {
 
     public static void main(String[] args) {
         Question32 q = new Question32();
-        System.out.println(q.numberOfOne(9));
+        System.out.println(q.numberOfOne(90099));
     }
 }

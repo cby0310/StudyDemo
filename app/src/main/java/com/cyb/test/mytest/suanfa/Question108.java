@@ -40,6 +40,12 @@ public class Question108 {
         datas[j] = tmp;
     }
 
+    private void swap(int[] datas, int i, int j) {
+        int tmp = datas[i];
+        datas[i] = datas[j];
+        datas[j] = tmp;
+    }
+
 
     /**
      * 输入字符串"abc",则输出a、b、c、ab、ac、bc、abc 共7种组合。
@@ -68,14 +74,60 @@ public class Question108 {
         combinate(chars, begin + 1, len, stringBuilder);
     }
 
+
+    /**
+     * 正方体全排列
+     */
+    private void zhengfangti() {
+        int[] nums = new int[]{7, 7, 7, 70, 5, 5, 5, 5};
+        dfs2(nums, 0);
+        System.err.println("count = " + count);
+    }
+
+
+    private boolean isMatch(int[] nums) {
+        return nums[0] + nums[1] + nums[2] + nums[3] == nums[4] + nums[5] + nums[6] + nums[7] &&
+                nums[0] + nums[2] + nums[4] + nums[6] == nums[1] + nums[3] + nums[5] + nums[7] &&
+                nums[0] + nums[1] + nums[4] + nums[5] == nums[2] + nums[3] + nums[6] + nums[7];
+    }
+
+    int count = 0;
+
+    private void dfs2(int[] nums, int index) {
+        if (index == nums.length - 1 && isMatch(nums)) {
+            for (int i : nums) {
+                System.err.print(i + " ");
+            }
+            System.err.println();
+            count++;
+            return;
+        }
+
+        HashSet hashSet = new HashSet();
+        for (int i = index; i < nums.length; i++) {
+            if (hashSet.contains(nums[i])) {
+                continue;
+            } else {
+                hashSet.add(nums[i]);
+            }
+
+            swap(nums, i, index);//固定第index位
+            dfs2(nums, index + 1);
+            swap(nums, i, index);
+        }
+    }
+
+
     /**
      * @param args
      */
     public static void main(String[] args) {
         String str = "abc";
         Question108 question108 = new Question108();
-        question108.allKinds(str);
+//        question108.allKinds(str);
+//
+//        question108.allZuhe();
 
-        question108.allZuhe();
+        question108.zhengfangti();
     }
 }

@@ -9,15 +9,16 @@ public class Question41 {
      * 问题：输入升序数组以及一个数字 target。在数组中查找两个数，使他们相加之和正好与 target 相等
      * 双指针法，left、right 分别从左往右、从右往左扫描，当相加之和小于 target，left 移动，大于目标值 right 移动
      * 相等结束循环，返回查找结果
+     *
      * @param nums
      * @param target
      * @return
      */
-    public int[] findNumsWithSum(int[] nums,int target){
+    public int[] findNumsWithSum(int[] nums, int target) {
         if (nums == null || nums.length < 2) {
             return nums;
         }
-        int left = 0, right = nums.length-1;
+        int left = 0, right = nums.length - 1;
         int[] result = {0, 0};
         while (left < right) {
             int sum = nums[left] + nums[right];
@@ -44,14 +45,15 @@ public class Question41 {
      * @return
      */
     List<List<Integer>> results = new ArrayList<>();
-    public List<List<Integer>> findContinueSequence(int target){
-        for (int i = 1; i < (target+1)>>>1; i++) {
+
+    public List<List<Integer>> findContinueSequence(int target) {
+        for (int i = 1; i < (target + 1) >>> 1; i++) {
             findContinueSequence(new ArrayList<Integer>(), i, target);
         }
         return results;
     }
 
-    private void findContinueSequence(List<Integer> result, int cur,int target) {
+    private void findContinueSequence(List<Integer> result, int cur, int target) {
         if (cur > target) {
             return;
         } else if (cur == target) {
@@ -60,14 +62,44 @@ public class Question41 {
             return;
         } else {
             result.add(cur);
-            findContinueSequence(result, cur+1,target - cur);
+            findContinueSequence(result, cur + 1, target - cur);
+        }
+    }
+
+
+    /**
+     * @param tar
+     */
+    private void findContinueNums(int tar) {
+        if (tar < 3) {
+            System.err.println("not found!");
+            return;
+        }
+
+        int left = 1;
+        int right = 2;
+        int sum;
+
+        while (right + (right - 1) <= tar) {
+            sum = ((right - left + 1) * (right + left)) >> 1;
+            if (sum == tar) {
+                System.err.println(left + " - " + right);
+                left++;
+                right++;
+            } else if (sum < tar) {
+                right++;
+            } else {
+                left++;
+            }
         }
     }
 
     public static void main(String[] args) {
         Question41 q = new Question41();
-//        int[] nums = {1, 2, 4, 7, 11, 15};
-//        System.out.println(Arrays.toString(q.findNumsWithSum(nums,15)));
-        System.out.println(q.findContinueSequence(15));
+        int[] nums = {1, 2, 4, 7, 11, 15};
+        System.out.println(Arrays.toString(q.findNumsWithSum(nums, 15)));
+        System.out.println(q.findContinueSequence(115));
+        q.findContinueNums(115);
+
     }
 }

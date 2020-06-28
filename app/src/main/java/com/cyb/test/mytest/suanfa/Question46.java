@@ -6,7 +6,7 @@ package com.cyb.test.mytest.suanfa;
  */
 public class Question46 {
     public int sum(int n) {
-        return (int)(n+Math.pow(n,2))>>>1;
+        return (int) (n + Math.pow(n, 2)) >>> 1;
     }
 
     public static void main(String[] args) {
