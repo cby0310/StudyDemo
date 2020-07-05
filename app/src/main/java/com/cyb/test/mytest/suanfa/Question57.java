@@ -26,6 +26,32 @@ public class Question57 {
         return head.next;
     }
 
+    /**
+     * 我的写法
+     * @param head
+     * @return
+     */
+    public Node deleteDuplicates(Node head) {
+
+        Node temp = new Node(0);
+        temp.next = head;
+        Node next = head;
+        Node pre = temp;
+
+        while (next != null && next.next != null) {
+            if (next.val == next.next.val) {
+                while (next.next != null && next.val == next.next.val) next = next.next;
+                pre.next = next.next;
+            } else {
+                pre = next;
+            }
+            next = next.next;
+        }
+
+        return temp.next;
+
+    }
+
     public static void main(String[] args) {
         Node node11 = new Node(5, null);
         Node node1 = new Node(4, node11);
