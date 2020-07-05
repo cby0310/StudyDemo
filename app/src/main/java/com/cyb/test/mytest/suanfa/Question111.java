@@ -16,6 +16,20 @@ public class Question111 {
         Question111 question111 = new Question111();
         System.err.println(question111.getMaxLengthSubStr2(str));
 
+        System.err.println(question111.reverse(1534236469));
+
+    }
+
+    public int reverse(int x) {
+        long sum = 0;
+
+        while (Math.abs(x) > 0) {
+            int a = x % 10;
+            sum = sum * 10 + a;
+            x = x / 10;
+        }
+
+        return (int) sum == sum ? (int) sum : 0;
     }
 
     private int getMaxLengthSubStr(String str) {

@@ -12,61 +12,54 @@ public class Question66 {
      * 3、递归：下一步可以选择上、下、左、右任意一格。
      * 4、剪枝：与目前字符串当前需要的字符不匹配、已走过该格子、超过格子边界
      * 5、出现任意一种解即返回 true
-     *
-     * @param matrix
-     * @param target
      * @return
      */
-    int row = 0, col = 0;
-    char[][] matrx = null;
+    public boolean exist(char[][] board, String word) {
 
-    public boolean hasPath(char[][] matrix, String target) {
-        if (matrix == null || target == null) {
-            return false;
-        }
-        int row = matrix.length, col = matrix[0].length;
-        this.row = row;
-        this.col = col;
-        this.matrx = matrix;
-        for (int i = 0; i < row; i++) { // 选取起始点
-            for (int j = 0; j < col; j++) {
-                boolean[][] visited = new boolean[row][col];
-                for (int k = 0; k < visited.length; k++) { // 初始化可访问性
-                    Arrays.fill(visited[k], false);
-                }
-                if (hasPath(i, j, target, 0, visited)) {
+        int row = board.length;
+        int col = board[0].length;
+
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) { //确定起点
+                boolean exist = hasPath(board, word, i, j, 0);
+                if (exist) {
                     return true;
                 }
             }
         }
+
         return false;
     }
 
-    private boolean hasPath(int indexRow, int indexCol, String target, int index, boolean[][] visited) {
-        if (index == target.length()) { // 路径和目标字符一致，匹配成功
+    public boolean hasPath(char[][] board, String word, int i, int j, int index) {
+        if (index == word.length()) {
             return true;
         }
-        boolean pathEqual = false;
-        if (indexRow >= 0 && indexRow < row && indexCol >= 0 &&
-                indexCol < col && matrx[indexRow][indexCol] == target.charAt(index) &&
-                !visited[indexRow][indexCol]) { // 确认当前格子可访问
-            visited[indexRow][indexCol] = true; // 将当前格子设置为已访问
-            index++;
-            pathEqual = hasPath(indexRow - 1, indexCol, target, index, visited) || //上下左右任意一种通过即可
-                    hasPath(indexRow + 1, indexCol, target, index, visited) ||
-                    hasPath(indexRow, indexCol - 1, target, index, visited) ||
-                    hasPath(indexRow, indexCol + 1, target, index, visited);
+
+        int row = board.length;
+        int col = board[0].length;
+
+        boolean hasPath = false;
+        if (i >= 0 && i < row && j >= 0 && j < col && board[i][j] == word.charAt(index)) {
+            char temp = board[i][j];
+            board[i][j] = '/';
+            hasPath = hasPath(board, word, i - 1, j, index + 1) ||
+                    hasPath(board, word, i + 1, j, index + 1) ||
+                    hasPath(board, word, i, j - 1, index + 1) ||
+                    hasPath(board, word, i, j + 1, index + 1);
+            board[i][j] = temp;
         }
-        return pathEqual;
+
+        return hasPath;
     }
 
     public static void main(String[] args) {
         Question66 q = new Question66();
         char[][] matrix = {
                 {'a', 'b', 'c', 'e'},
-                {'f', 's', 'c', 's'},
-                {'a', 'd', 'e', 'e'}
+                {'s', 'f', 'e', 's'},
+                {'a', 'd', 'E', 'e'}
         };
-        System.out.println(q.hasPath(matrix, "absccesee"));
+        System.out.println(q.exist(matrix, "abceseEef"));
     }
 }

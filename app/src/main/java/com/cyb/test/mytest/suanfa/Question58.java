@@ -56,7 +56,6 @@ public class Question58 {
         tree3.root = tree1;
         tree2.root = tree1;
         Question58 q = new Question58();
-        System.out.println(q.getNext(tree9
-        ));
+        System.out.println(q.getNext(tree9));
     }
 }

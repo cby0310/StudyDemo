@@ -1,6 +1,7 @@
 package com.cyb.test.mytest.suanfa;
 
 /**
+ * https://krahets.gitee.io/views/sword-for-offer/2020-05-20-sword-for-offer-00.html
  * 二分查找、归并、快排
  * 1:x ->
  * 2:x ->
@@ -12,7 +13,7 @@ package com.cyb.test.mytest.suanfa;
  * 8:二叉树的下一个节点 -> 58
  * 9:两个栈实现一个队列 -> 7
  * 10:斐波那契数列第N项、青蛙跳台阶、大矩形放小矩形 -> 9
- * 11:旋转数组中的最小数字:二分查找 -> 8 ~
+ * 11:旋转数组中的最小数字:二分查找 -> 8 力扣牛逼
  * 12:矩阵中的路径：回溯法 -> 66
  * 13:机器人的运动范围：回溯 -> 67
  * 14:剪绳子：动态规划、贪婪算法 -> 102 ???  https://www.cnblogs.com/aiguozou/p/11576036.html
@@ -67,6 +68,7 @@ package com.cyb.test.mytest.suanfa;
  * 63:股票的最大利润 -> 101
  * 64:求1+2+...+n -> 46
  * 65:不用加减乘除做加法 -> 47
+ * 66:构建乘积数组 -> 52
  */
 public class AAA {
 }

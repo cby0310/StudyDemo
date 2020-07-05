@@ -7,6 +7,7 @@ public class Question52 {
      * 题：给定一个数组 A[0,1,..,n-1]，请构建一个数组 B[0,1,..,n-1]，其中 B 中的元素 B[i]=A[0]*A[1]*...*A[i-1]*A[i+1]*A[n-1]
      * 不能使用除法。—— 即 B[i]=A乘积/A[i]
      * 将B[i] 分为两部分 C[i]*D[i], C[i]=C[i-1]*A[i-1],D[i]=D[i+1]*A[i+1]
+     *
      * @param nums
      * @return
      */
@@ -21,7 +22,7 @@ public class Question52 {
             c[i] = c[i - 1] * nums[i - 1];
         }
         int temp = 1; // D[i]
-        for (int i = nums.length-1; i >=0 ; i--) {
+        for (int i = nums.length - 1; i >= 0; i--) {
             result[i] = c[i] * temp; // B[i]=C[i]*D[i]
             temp *= nums[i]; // D[i]=D[i+1]*A[i+1]
         }

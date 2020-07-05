@@ -9,7 +9,7 @@ public class Question6 {
      * 左子树的根节点、右子树的根节点分别为上一节点的左右节点
      * 当中序数组中查找到的位置为数组起始点，则左子树为 null，
      * 查找到的位置为数组末端，则右子树为 null，
-     *
+     * 不包含preEnd 和 midEnd
      * @param pre
      * @param mid
      * @return

@@ -57,6 +57,7 @@ public class Question5 {
         }
     }
 
+    //    从尾到头打印链表
     public static void main(String[] args) {
         Node node1 = new Node(1);
         Node node2 = new Node(2);

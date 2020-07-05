@@ -9,8 +9,13 @@ public class Question46 {
         return (int) (n + Math.pow(n, 2)) >>> 1;
     }
 
+    private int getSum(int n) {
+        boolean b = n > 1 && (n += getSum(n - 1)) > 999990;
+        return n;
+    }
+
     public static void main(String[] args) {
         Question46 q = new Question46();
-        System.out.println(q.sum(3));
+        System.out.println(q.getSum(20));
     }
 }

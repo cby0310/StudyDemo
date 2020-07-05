@@ -20,10 +20,10 @@ public class Question100 {
             return false;
         }
 
-        int row = 0;
+        int row = 0; //行
         int col = colLength - 1;
 
-        while (row < rowLength && col >= 0) {
+        while (row <= rowLength - 1 && col >= 0) {
             count++;
             if (array[row][col] > target) {
                 col--;
