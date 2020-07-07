@@ -70,6 +70,8 @@ package com.cyb.test.mytest.suanfa;
  * 64:求1+2+...+n -> 46
  * 65:不用加减乘除做加法 -> 47
  * 66:构建乘积数组 -> 52
+ *
+ * 67:跳水板 -> 116
  */
 public class AAA {
 }
