@@ -17,7 +17,7 @@ public class Question116 {
      */
     public static void main(String[] args) {
         Question116 question116 = new Question116();
-        question116.divingBoard(4, 12, 2);
+        question116.divingBoard(4, 12, 10);
     }
 
 
@@ -33,7 +33,7 @@ public class Question116 {
 //            return new int[]{shorter * k};
 //        }
 
-        dfs(shorter, longer, k, 1);
+        dfs(shorter, longer, k, 0);
 
         int[] a = new int[res.size()];
         for (int i = 0; i < res.size(); i++) {
@@ -44,20 +44,22 @@ public class Question116 {
     }
 
     public void dfs(int shorter, int longer, int k, int index) {
-        if (index == k + 1) {
+        if (index == k) {
             if (!res.contains(sum))
                 res.add(sum);
             return;
         }
 
-        for (int i = index; i <= k; i++) {
+        //这里只可能有两种取值，长或者短，不用for循环
+//        for (int i = 1; i < 2; i++) {
             sum += shorter;//第i位选短的
-            dfs(shorter, longer, k, i + 1);
+            dfs(shorter, longer, k, index + 1);
+
             sum -= shorter;//第i位选长的
             sum += longer;
-            dfs(shorter, longer, k, i + 1);
+            dfs(shorter, longer, k, index + 1);
             sum -= longer;
-        }
+//        }
     }
 
 
