@@ -16,12 +16,13 @@ public class Question54 {
         if (num == null) {
             return false;
         }
+        num = num.trim();
         boolean result = true;
         int index = 0;
         if (num.charAt(index) == '+' || num.charAt(index) == '-') { // 过滤加减号
             index++;
         }
-        if (index == num.length() || !(num.charAt(index) < '9' && num.charAt(index) > '0')) { // 加减号后为非数字，则返回 true
+        if (index == num.length() || !(num.charAt(index) <= '9' && num.charAt(index) >= '0')) { // 加减号后为非数字，则返回 true
             return false;
         }
         while (index < num.length()) {
@@ -32,7 +33,7 @@ public class Question54 {
                 if (index < num.length() && num.charAt(index) == '.') { // 过滤多个小数点
                     return false;
                 }
-            } else if ((num.charAt(index) < '9' && num.charAt(index) > '0')) {
+            } else if ((num.charAt(index) <= '9' && num.charAt(index) >= '0')) {
                 index = scanDigital(num, index); // 过滤数字
             } else if (num.charAt(index) == 'E' || num.charAt(index) == 'e') { // 检测科学计数部分是否正确
                 index++;

@@ -29,6 +29,26 @@ public class Question14 {
         }
     }
 
+    public int[] exchange(int[] nums) {
+        int left = 0, right = nums.length - 1;
+        while (left < right) {
+            while (left < right && (nums[left] & 1) != 0) { //奇数
+                left++;
+            }
+
+            while (left < right && (nums[right] & 1) == 0) { //偶数
+                right--;
+            }
+
+            if (left != right) {
+                int temp = nums[left];
+                nums[left] = nums[right];
+                nums[right] = temp;
+            }
+        }
+        return nums;
+    }
+
     private boolean condition(int num1, int num2) {
         if ((num1 & 1) == 0 && (num2 & 1) != 0) {
             return true;
@@ -39,7 +59,7 @@ public class Question14 {
     public static void main(String[] args) {
         Question14 question14 = new Question14();
         int[] nums = {1, 4, 2, 7, 3, 8};
-        question14.ReOrder(nums);
+        question14.exchange(nums);
         System.out.println(Arrays.toString(nums));
     }
 }
