@@ -55,7 +55,7 @@ public class Question54 {
     }
 
     private int scanDigital(String num, int index) { // 过滤数字
-        while (index < num.length() && (num.charAt(index) < '9' && num.charAt(index) > '0')) {
+        while (index < num.length() && (num.charAt(index) <= '9' && num.charAt(index) >= '0')) {
             index++;
         }
         return index;
@@ -63,6 +63,6 @@ public class Question54 {
 
     public static void main(String[] args) {
         Question54 q = new Question54();
-        System.out.println(q.isNumeric("-1E--16"));
+        System.out.println(q.isNumeric("1.9"));
     }
 }
