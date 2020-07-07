@@ -9,6 +9,11 @@ public class BinaryTree {
     public BinaryTree() {
     }
 
+
+    public BinaryTree(int val) {
+        this.val = val;
+    }
+
     public BinaryTree(int val, BinaryTree left, BinaryTree right) {
         this.val = val;
         this.left = left;

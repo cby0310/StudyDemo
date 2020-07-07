@@ -61,8 +61,8 @@ public class Question27 {
 
         dfs(root);
         //这是pre指向最后一个节点
-        head.left = pre;
-        pre.right = head;
+//        head.left = pre;
+//        pre.right = head;
 
         return head;
     }

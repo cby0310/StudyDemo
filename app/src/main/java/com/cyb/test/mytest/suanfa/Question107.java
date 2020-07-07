@@ -71,11 +71,65 @@ public class Question107 {
         root.prePrint(root);
         System.err.println();
 
-        Question107 question107 = new Question107();
-        question107.serilaze(root);
-        System.err.println(question107.serilazeStr);
+//        Question107 question107 = new Question107();
+//        question107.serilaze(root);
+//        System.err.println(question107.serilazeStr);
+//
+//        BinaryTree root1 = question107.deserilaze(question107.serilazeStr);
+//        root1.prePrint(root1);
 
-        BinaryTree root1 = question107.deserilaze(question107.serilazeStr);
-        root1.prePrint(root1);
+        Codec codec = new Codec();
+        String s = codec.serialize(root);
+        System.err.println(s);
+        BinaryTree tree = codec.deserialize(s);
+        tree.prePrint(tree);
+    }
+}
+
+class Codec {
+
+    int index = 0; //一定要用全局的
+    // Encodes a tree to a single string.
+    public String serialize(BinaryTree root) {
+        StringBuilder sb = new StringBuilder();
+        dfs(root, sb);
+        return sb.toString();
+    }
+
+    public void dfs(BinaryTree root, StringBuilder sb){
+        sb.append(root == null ? "null," : root.val + ",");
+        if(root == null){
+            return;
+        }
+
+        dfs(root.left, sb);
+        dfs(root.right, sb);
+    }
+
+    // Decodes your encoded data to tree.
+    public BinaryTree deserialize(String data) {
+        if(data == null || data.length() <= 0){
+            return null;
+        }
+
+        String[] strs = data.split(",");
+        return create(strs);
+    }
+
+    public BinaryTree create(String[] strs){
+        if(index >= strs.length){
+            return null;
+        }
+
+        BinaryTree root = (strs[index].equals("null") ? null : new BinaryTree(Integer.parseInt(strs[index])));
+
+        index++;
+
+        if (root != null) {
+            root.left = create(strs);
+            root.right = create(strs);
+        }
+
+        return root;
     }
 }

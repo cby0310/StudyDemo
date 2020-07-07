@@ -51,7 +51,7 @@ public class Question108 {
      * 输入字符串"abc",则输出a、b、c、ab、ac、bc、abc 共7种组合。
      */
     private void allZuhe() {
-        char[] chars = "abc".toCharArray();
+        char[] chars = "aabc".toCharArray();
 
         for (int len = 1; len <= chars.length; len++) {
             combinate(chars, 0, len, new StringBuilder());
@@ -67,11 +67,15 @@ public class Question108 {
         if (begin == chars.length) {
             return;
         }
-        stringBuilder.append(chars[begin]);//取当前字符
-        combinate(chars, begin + 1, len - 1, stringBuilder);
 
-        stringBuilder.deleteCharAt(stringBuilder.length() - 1);
-        combinate(chars, begin + 1, len, stringBuilder);
+        if(stringBuilder.toString().indexOf(chars[begin]) == -1){
+            stringBuilder.append(chars[begin]);//取当前字符
+            combinate(chars, begin + 1, len - 1, stringBuilder);
+
+            stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+            combinate(chars, begin + 1, len, stringBuilder);
+        }
+
     }
 
 
@@ -124,10 +128,11 @@ public class Question108 {
     public static void main(String[] args) {
         String str = "abc";
         Question108 question108 = new Question108();
-//        question108.allKinds(str);
+        question108.allKinds(str);
 //
-//        question108.allZuhe();
+        System.err.println();
+        question108.allZuhe();
 
-        question108.zhengfangti();
+//        question108.zhengfangti();
     }
 }
