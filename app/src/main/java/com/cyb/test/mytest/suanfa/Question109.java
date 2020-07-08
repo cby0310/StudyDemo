@@ -102,3 +102,54 @@ public class Question109 {
 
     }
 }
+
+class Solution {
+    int count = 0;
+
+
+    /**
+     * 使用动态规划，效率高的很
+     *
+     * @param num
+     * @return
+     */
+    public int translateNum2(int num) {
+
+        char[] chars = (String.valueOf(num)).toCharArray();
+        int a = 1;
+        int b = 1;
+
+        for (int i = 2; i <= chars.length; i++) {
+            int c = b + (((chars[i - 2] != '0') && (((chars[i - 2] - '0') * 10 + (chars[i - 1] - '0')) <= 25)) ? a : 0);
+            a = b;
+            b = c;
+        }
+
+        return b;
+    }
+
+    /**
+     * 这种效率较低
+     *
+     * @param num
+     * @return
+     */
+    public int translateNum(int num) {
+        dfs((num + "").toCharArray(), 0);
+        return count;
+    }
+
+    public void dfs(char[] chars, int i) {
+        if (i >= chars.length) {
+            count++;
+            return;
+        }
+
+        //只取一位
+        dfs(chars, i + 1);
+
+        if ((i < chars.length - 1) && (chars[i] != '0') && ((chars[i] - '0') * 10 + (chars[i + 1] - '0')) <= 25) { //检查是否可取两位
+            dfs(chars, i + 2);
+        }
+    }
+}

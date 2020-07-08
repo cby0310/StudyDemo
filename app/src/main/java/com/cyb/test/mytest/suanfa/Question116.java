@@ -1,6 +1,8 @@
 package com.cyb.test.mytest.suanfa;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 
 public class Question116 {
 
@@ -18,6 +20,22 @@ public class Question116 {
     public static void main(String[] args) {
         Question116 question116 = new Question116();
         question116.divingBoard(4, 12, 10);
+
+
+        int[] nums = new int[]{3, 30, 34, 9, 5};
+        String[] strs = new String[nums.length];
+        for (int i = 0; i < nums.length; i++)
+            strs[i] = String.valueOf(nums[i]);
+
+        Arrays.sort(strs, new Comparator<String>() {
+
+            @Override
+            public int compare(String s1, String s2) {
+                return -(s1 + s2).compareTo(s2 + s1);
+            }
+        });
+
+        System.err.print(strs);
     }
 
 
@@ -52,13 +70,13 @@ public class Question116 {
 
         //这里只可能有两种取值，长或者短，不用for循环
 //        for (int i = 1; i < 2; i++) {
-            sum += shorter;//第i位选短的
-            dfs(shorter, longer, k, index + 1);
+        sum += shorter;//第i位选短的
+        dfs(shorter, longer, k, index + 1);
 
-            sum -= shorter;//第i位选长的
-            sum += longer;
-            dfs(shorter, longer, k, index + 1);
-            sum -= longer;
+        sum -= shorter;//第i位选长的
+        sum += longer;
+        dfs(shorter, longer, k, index + 1);
+        sum -= longer;
 //        }
     }
 
