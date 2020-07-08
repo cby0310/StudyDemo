@@ -44,9 +44,9 @@ package com.cyb.test.mytest.suanfa;
  * 38:字符串的排列 -> 28  108  扩展还得看下
  * 39:数组中出现次数超过一半的数字 -> 29
  * 40:最小的k个数 -> 30
- * 41:数据流中的中位数 -> 64
+ * 41:数据流中的中位数 -> 64  ？？
  * 42:连续子数组的最大和 -> 31
- * 43:1~n整数中1出现的次数 -> 32看不懂 https://leetcode-cn.com/problems/1nzheng-shu-zhong-1chu-xian-de-ci-shu-lcof/solution/mian-shi-ti-43-1n-zheng-shu-zhong-1-chu-xian-de-2/
+ * 43:1~n整数中1出现的次数 -> 32 ?? 看不懂 https://leetcode-cn.com/problems/1nzheng-shu-zhong-1chu-xian-de-ci-shu-lcof/solution/mian-shi-ti-43-1n-zheng-shu-zhong-1-chu-xian-de-2/
  * 44:数字序列中某一位的数字 -> ？？ fuck
  * 45:把数组排成最小的数 ->
  * 46:把数字翻译成字符串 -> 109
