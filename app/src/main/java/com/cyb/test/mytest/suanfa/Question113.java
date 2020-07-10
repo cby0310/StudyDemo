@@ -33,6 +33,21 @@ public class Question113 {
         maxQueue.popFront();
         System.err.println("max  = " + maxQueue.maxValue());
 
+        int[] a = question113.test();
+        System.err.print(a);
+    }
+
+    public int[] test() {
+        int[] array = new int[]{10,10,8,7,20};
+        int minIndex = 0;
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] > array[minIndex]) {
+                return new int[]{minIndex, i};
+            } else {
+                minIndex = i;
+            }
+        }
+        return new int[]{-1, -1};
     }
 
 

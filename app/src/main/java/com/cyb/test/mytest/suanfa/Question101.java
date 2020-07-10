@@ -39,8 +39,8 @@ public class Question101 {
      * @param args
      */
     public static void main(String[] args) {
-//        int[] array = {9, 11, 8, 50, 7, 12, 16, 140};
-        int[] array = {1,1,1,1,1};
+        int[] array = {9, 11, 8, 50, 7, 12, 16, 140};
+//        int[] array = {1,1,1,1,1};
 
         System.err.println("money = " + getMaxMoney(array));
     }

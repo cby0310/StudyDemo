@@ -1,23 +1,22 @@
 package com.cyb.test.mytest.suanfa;
 
-import java.util.Arrays;
-
 public class Question43 {
     /**
      * 问题：把 N 个骰子扔在地上，所有骰子朝上一面的点数之和为 s。输入 N 打印出 s 的所有可能性
      * 思路1：暴力枚举骰子点数出现的所有可能进行统计 —— 时间复杂度高，存在重复计算
      * 思路2：记录上一总和出现概率，当前和为 n 的次数为上一总和 (n-1)次数+（n-2）次数+...+（n-6）次数之和
+     *
      * @param n
      * @return
      */
     public void printProbability(int n) {
         if (n < 1) {
-            return ;
+            return;
         }
         int[][] probabilities = new int[2][]; // 两个数组，轮流表示上一总和次数、当前总和次数，6*n 为骰子之和最大数，+1 空出一位方便计算
         probabilities[0] = new int[6 * n + 1];
         probabilities[1] = new int[6 * n + 1];
-        for (int i = 0; i < 6*n+1; i++) { // 初始化总和
+        for (int i = 0; i < 6 * n + 1; i++) { // 初始化总和
             probabilities[0][i] = 0;
             probabilities[1][i] = 0;
         }
@@ -26,7 +25,7 @@ public class Question43 {
             probabilities[flag][i] = 1;
         }
         for (int i = 2; i <= n; i++) {
-            for (int j = i; j <= 6*i; j++) {
+            for (int j = i; j <= 6 * i; j++) {
                 probabilities[1 - flag][j] = 0; // 初始化当前总和次数
                 for (int k = 1; k <= 6; k++) { // 当前和为 n 的次数为上一总和 (n-1)次数+（n-2）次数+...+（n-6）次数之和
                     if (k >= j) { // 当前和小于骰子大小时，不存在上一概率，直接计算上一总可能
@@ -38,15 +37,68 @@ public class Question43 {
             flag = 1 - flag;
         }
         int total = (int) Math.pow(6, n);
-        System.out.printf(n+" 个骰子：");
-        for (int i = n; i <= 6*n ; i++) {
+        System.out.printf(n + " 个骰子：");
+        for (int i = n; i <= 6 * n; i++) {
             System.out.print("骰子向上面之和为:" + i + " 出现概率约为: ");
-            System.out.printf("%.6f\n",(float) probabilities[flag][i] / total);
+            System.out.printf("%.6f\n", (float) probabilities[flag][i] / total);
         }
     }
 
     public static void main(String[] args) {
         Question43 q = new Question43();
         q.printProbability(6);
+        q.twoSum(18);
     }
+
+
+    public double[] twoSum2(int n) {
+        double pre[] = {1 / 6d, 1 / 6d, 1 / 6d, 1 / 6d, 1 / 6d, 1 / 6d};
+        for (int i = 2; i <= n; i++) {
+            double tmp[] = new double[5 * i + 1];
+            for (int j = 0; j < pre.length; j++)
+                for (int x = 0; x < 6; x++)
+                    tmp[j + x] += pre[j] / 6;
+            pre = tmp;
+        }
+        return pre;
+    }
+
+    public double[] twoSum(int n) {
+        double[] res = new double[5 * n + 1];
+
+        for (int i = n; i <= 6 * n; i++) {
+            core(n, 1, i);
+            res[i - n] = tempCount * 1.0 / Math.pow(6, n);
+            tempCount = 0;
+        }
+
+        return res;
+    }
+
+
+    int tempSum = 0;
+    int tempCount = 0;
+
+    /**
+     * 骰子数量，第几个，和
+     */
+    public void core(int n, int k, int sum) {
+        if (tempSum > sum || k > n + 1) {
+            return;
+        }
+
+        if (tempSum == sum && k == n + 1) {
+            tempCount++;
+            return;
+        }
+
+        for (int i = 1; i <= 6; i++) {
+            tempSum += i;
+            core(n, k + 1, sum);
+            tempSum -= i;
+        }
+
+    }
+
+
 }
