@@ -22,13 +22,6 @@ public class AidlTestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aidl_test2);
-
-        Intent intent = new Intent(this, BookManagerService.class);
-        bindService(intent, MyServiceConn, Context.BIND_AUTO_CREATE);
-
-//        startService(intent);
-//        startActivityForResult(intent, RESULT_OK);
-
     }
 
     private ServiceConnection MyServiceConn = new ServiceConnection() {

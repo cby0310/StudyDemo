@@ -3,6 +3,7 @@ package com.cyb.test.mytest;
 import android.app.Application;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.support.multidex.MultiDex;
 import android.util.Log;
 
 import com.cyb.test.mytest.retrofit.ApiManager;
@@ -21,6 +22,7 @@ public class MyApp extends Application {
         L.e("MyApp -> onCreate()");
 //        ApiManager apiManager = new ApiManager();
 //        apiManager.test();
+        MultiDex.install(this);
 
     }
 

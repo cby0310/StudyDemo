@@ -21,13 +21,16 @@
         <activity android:name=".view.RecyclerViewActivity">
         </activity>
         <activity android:name=".view.ListViewActivity"></activity>
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".MainActivity"
+            android:taskAffinity="com.test.xx"
+            android:launchMode="singleInstance"
+            android:process=":mainaa"/>
 
         <service
                 android:name=".aidl.BookManagerService"
                 android:enabled="true"
                 android:exported="true"
-                android:process=":remotecyb"/>
+               />
 
         <activity
                 android:name=".rxjave2.Rxjava2Activity"
@@ -38,15 +41,19 @@
         <activity android:name=".slideback.BaseSlideBackActivity"/>
         <activity android:name=".thread.ThreadTestActivity"/>
         <activity android:name=".aidl.AidlTestActivity">
+
+        </activity>
+        <activity android:name=".android60_23.Main2Activity"/>
+        <activity android:name=".db.DbTestActivity"
+            android:taskAffinity="com.test.xx"
+            android:launchMode="singleInstance"/>
+        <activity android:name=".aop.AopActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".android60_23.Main2Activity"/>
-        <activity android:name=".db.DbTestActivity"/>
-        <activity android:name=".aop.AopActivity"/>
         <activity
                 android:name=".anim.SimpleActivity"
                 android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>

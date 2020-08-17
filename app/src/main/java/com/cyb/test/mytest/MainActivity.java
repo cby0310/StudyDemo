@@ -1,5 +1,6 @@
 package com.cyb.test.mytest;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,6 +13,9 @@ import android.util.Log;
 import android.util.LruCache;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.cyb.test.mytest.aop.AopActivity;
+import com.cyb.test.mytest.db.DbTestActivity;
 
 import java.io.BufferedReader;
 import java.io.EOFException;
@@ -51,14 +55,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        LruCache lruCache = new LruCache<String, Bitmap>(120) {
-            @Override
-            protected int sizeOf(String key, Bitmap value) {
-                return super.sizeOf(key, value);
-            }
-        };
-        lruCache.put("", null);
-        lruCache.get("");
+//        LruCache lruCache = new LruCache<String, Bitmap>(120) {
+//            @Override
+//            protected int sizeOf(String key, Bitmap value) {
+//                return super.sizeOf(key, value);
+//            }
+//        };
+//        lruCache.put("", null);
+//        lruCache.get("");
 //
 //        Map<String, String> map = new HashMap<>();
 //        map.keySet();
@@ -117,6 +121,8 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+
+        startActivity(new Intent(this, DbTestActivity.class));
 
     }
 

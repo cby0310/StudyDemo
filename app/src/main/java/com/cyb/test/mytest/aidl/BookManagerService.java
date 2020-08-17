@@ -16,10 +16,6 @@ public class BookManagerService extends Service {
     private RemoteCallbackList<IOnNewBookArrivedListener> listeners = new RemoteCallbackList();
 
 
-    public BookManagerService() {
-    }
-
-
     @Override
     public void onCreate() {
         super.onCreate();

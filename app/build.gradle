@@ -26,6 +26,7 @@ android {
         targetSdkVersion 21
         versionCode verCode
         versionName APP_VERSION
+        multiDexEnabled true
         resValue("string", 'app_version', APP_VERSION)
         buildConfigField "boolean", "LEO_DEBUG", "true"
         buildConfigField 'String', 'API_SERVER_URL', RELEASE_API_SERVER_URL
@@ -208,6 +209,8 @@ dependencies {
 
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
+    compile 'com.android.support:multidex:1.0.1'
 }
 
 
