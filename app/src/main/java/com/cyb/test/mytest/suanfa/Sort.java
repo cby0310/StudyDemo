@@ -51,6 +51,7 @@ public class Sort {
 
 
     /**
+     * https://www.cnblogs.com/xaimicom/p/9189471.html
      * 3.插入排序,最差、平均：O(n^2) 最好：O(n) , 稳定
      */
     private void insertSort(int[] nums) {

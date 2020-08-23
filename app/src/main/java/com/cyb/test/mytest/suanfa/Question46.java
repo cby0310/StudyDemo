@@ -17,5 +17,14 @@ public class Question46 {
     public static void main(String[] args) {
         Question46 q = new Question46();
         System.out.println(q.getSum(20));
+        System.out.println(q.getSum1(20));
     }
+
+    private int getSum1(int n){
+        if (n == 1) {
+            return 1;
+        }
+        return n + getSum(n - 1);
+    }
+
 }
