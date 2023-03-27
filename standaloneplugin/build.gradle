@@ -1,15 +1,15 @@
 apply plugin: 'groovy'
-apply plugin: 'maven'
+//apply plugin: 'maven'
 dependencies {
-    compile gradleApi()
-    compile localGroovy()
+    implementation gradleApi()
+    implementation localGroovy()
 }
 group = 'com.cyb.plugin'
 version = '1.0.0'
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            repository(url: uri('../repo'))
-        }
-    }
-}
+//uploadArchives {
+//    repositories {
+//        mavenDeployer {
+//            repository(url: uri('../repo'))
+//        }
+//    }
+//}

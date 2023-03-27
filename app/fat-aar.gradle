@@ -63,7 +63,7 @@ configurations {
 }
 
 dependencies {
-    compile configurations.embedded
+    implementation configurations.embedded
 }
 
 // Paths to embedded jar files
